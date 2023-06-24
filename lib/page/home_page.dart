@@ -37,9 +37,33 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(height: 15,),
                   Expanded(
                     flex: 4,
-                      child: Container(
-                    color: Colors.white,
-                  ))
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 15,),
+                          Expanded(
+                            flex: 2,
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                left: 10,
+                                right: 10,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25),
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: AssetImage("assets/image/main page image.png")
+                                )
+                              ),
+                              )),
+                          const SizedBox(height: 15,),
+                          Expanded(
+                            flex: 7,
+                            child: Container(
+                              color: Colors.white,
+                            ),
+                          )
+                        ],
+                      ))
                 ],
               ))
         ],
