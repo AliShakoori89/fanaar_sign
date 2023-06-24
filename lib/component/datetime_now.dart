@@ -6,10 +6,10 @@ class DateTimeNow extends StatelessWidget {
   DateTimeNow({super.key});
 
   String date = Jalali.now().day < 10 && Jalali.now().month < 10
-      ? "${Jalali.now().year}-0${Jalali.now().month}-0${Jalali.now().day}"
+      ? "${Jalali.now().year}/0${Jalali.now().month}/0${Jalali.now().day}"
       : Jalali.now().month < 10
-      ? "${Jalali.now().year}-0${Jalali.now().month}-${Jalali.now().day}"
-      : "${Jalali.now().year}-${Jalali.now().month}-0${Jalali.now().day}";
+      ? "${Jalali.now().year}/0${Jalali.now().month}/${Jalali.now().day}"
+      : "${Jalali.now().year}/${Jalali.now().month}/0${Jalali.now().day}";
 
   @override
   Widget build(BuildContext context) {

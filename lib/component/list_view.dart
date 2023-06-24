@@ -23,18 +23,6 @@ class MainPageListView extends StatelessWidget {
                     0.0, // Move to right 5  horizontally
                     5.0, // Move to bottom 5 Vertically
                   ),),
-                // BoxShadow(color: Color.fromRGBO(139, 139, 139, 1.0),
-                //     spreadRadius: 0.5,
-                //     blurRadius: 15,
-                //     offset: Offset(0, 1)),
-                // BoxShadow(color: Color.fromRGBO(139, 139, 139, 1.0),
-                //     spreadRadius: 0.5,
-                //     blurRadius: 15,
-                //     offset: Offset(-1, -1)),
-                // BoxShadow(color: Color.fromRGBO(139, 139, 139, 1.0),
-                //     spreadRadius: 0.5,
-                //     blurRadius: 15,
-                //     offset: Offset(-1, 1)),
               ],
               gradient: index/2 == 1 || index/2 == 0
                   ? const LinearGradient(

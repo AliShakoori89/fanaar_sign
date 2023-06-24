@@ -20,14 +20,14 @@ class _HomePageState extends State<HomePage> {
         children: [
           const MainPageHeader(),
           Expanded(
-              flex: 5,
+              flex: 8,
               child: Column(
                 children: [
                   const SizedBox(height: 20,),
                   const Expanded(
                     flex: 1,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(width: 15,),
                         MainPageListView()
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     flex: 4,
                       child: Container(
-                    color: Colors.red,
+                    color: Colors.white,
                   ))
                 ],
               ))

@@ -9,7 +9,7 @@ class MainPageHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 2,
+      flex: 3,
       child: Container(
         width: double.infinity,
         height: MediaQuery.of(context).size.height / 4,
@@ -47,6 +47,7 @@ class MainPageHeader extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      SizedBox(height: MediaQuery.of(context).size.height / 60,),
                       FanaarLogo(),
                       SizedBox(
                           height: MediaQuery.of(context).size.height / 80
