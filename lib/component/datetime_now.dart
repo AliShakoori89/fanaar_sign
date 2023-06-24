@@ -13,13 +13,10 @@ class DateTimeNow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 20),
-      child: Text(date.toPersianDigit(),
-        style: TextStyle(
-            color: Colors.white,
-            fontSize: MediaQuery.of(context).size.height / 50
-        ),),
-    );
+    return Text(date.toPersianDigit(),
+      style: TextStyle(
+          color: Colors.white,
+          fontSize: MediaQuery.of(context).size.height / 40
+      ),);
   }
 }

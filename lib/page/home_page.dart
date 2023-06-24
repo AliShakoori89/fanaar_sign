@@ -1,6 +1,4 @@
-import 'package:fanar_sign/const/datetime_now.dart';
-import 'package:fanar_sign/const/fanaar_logo.dart';
-import 'package:fanar_sign/const/profile_pic.dart';
+import 'package:fanar_sign/component/main_page_header.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,66 +17,18 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Column(
         children: [
+          const MainPageHeader(),
           Expanded(
-            flex: 1,
-            child: Container(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height / 4,
-              decoration: const BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                      color: Color.fromRGBO(21,70,160, 1),
-                      spreadRadius: 1,
-                      blurRadius: 15
-                  )
-                ],
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color.fromRGBO(5,101,178, 1),
-                    Color.fromRGBO(21,70,160, 1),
-                  ],
-                ),
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(45)
-                )
-              ),
-              child: Container(
-                margin: const EdgeInsets.all(
-                  30
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        FanaarLogo(),
-                        ProfilePic()
-                      ],
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height / 80
-                    ),
-                    DateTimeNow()
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-              flex: 3,
+              flex: 5,
               child: Column(
                 children: [
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   Expanded(
                     flex: 1,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SizedBox(width: 15,),
+                        const SizedBox(width: 15,),
                         ListView.separated(
                             separatorBuilder: (context, index) => const SizedBox(width: 15,),
                             scrollDirection: Axis.horizontal,
@@ -111,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                                     //     offset: Offset(-1, 1)),
                                   ],
                                   gradient: index/2 == 1 || index/2 == 0
-                                      ? LinearGradient(
+                                      ? const LinearGradient(
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
                                     colors: [
@@ -119,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                                       Color.fromRGBO(21,70,160, 1),
                                     ],
                                   )
-                                      : LinearGradient(
+                                      : const LinearGradient(
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
                                     colors: [
@@ -135,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  const SizedBox(height: 15,),
                   Expanded(
                     flex: 4,
                       child: Container(
