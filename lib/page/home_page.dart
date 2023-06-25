@@ -17,16 +17,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         children: [
-          MainPageHeader(),
+          const MainPageHeader(),
           Expanded(
-              flex: 8,
+              flex: 10,
               child: Column(
                 children: [
-                  SizedBox(height: 20,),
-                  Expanded(
+                  const SizedBox(height: 20,),
+                  const Expanded(
                     flex: 1,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -36,14 +36,14 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  const SizedBox(height: 15,),
                   Expanded(
                     flex: 4,
                       child: Column(
                         children: [
-                          SizedBox(height: 15,),
-                          MainPageImage(),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 15,),
+                          const MainPageImage(),
+                          const SizedBox(height: 10,),
                           MainPageCard()
                         ],
                       ))

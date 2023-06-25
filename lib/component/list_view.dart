@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MainPageListView extends StatelessWidget {
-  const MainPageListView({super.key});
+  MainPageListView({super.key});
+
+  List boxName = ["صدور امضا","احراز هویت"];
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +11,7 @@ class MainPageListView extends StatelessWidget {
         separatorBuilder: (context, index) => const SizedBox(width: 15,),
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
-        itemCount: 2,
+        itemCount: boxName.length,
         itemBuilder: (BuildContext context, int index){
           return Container(
             height: MediaQuery.of(context).size.height / 7,
@@ -42,6 +44,11 @@ class MainPageListView extends StatelessWidget {
                 ],
               ) ,
               borderRadius: BorderRadius.circular(25),
+            ),
+            child: Column(
+              children: [
+                Image.asset("")
+              ],
             ),
           );
         }
