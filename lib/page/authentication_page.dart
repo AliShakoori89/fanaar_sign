@@ -137,24 +137,22 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: ElevatedButton(
-          onPressed: _authenticateWithBiometrics,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(_isAuthenticating
-                  ? 'Cancel'
-                  : 'Authenticate: biometrics only'),
-              const Icon(Icons.fingerprint),
-            ],
-          ),
-        ),
-      ),
+    return Scaffold(
+        body: Center(child: Icon(Icons.fingerprint,
+          size: MediaQuery.of(context).size.width / 4,
+          color: Colors.grey,))
+      // ElevatedButton(
+      //   onPressed: _authenticateWithBiometrics,
+      //   child: Row(
+      //     mainAxisSize: MainAxisSize.min,
+      //     children: <Widget>[
+      //       Text(_isAuthenticating
+      //           ? 'Cancel'
+      //           : 'Authenticate: biometrics only'),
+      //       const Icon(Icons.fingerprint),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }
