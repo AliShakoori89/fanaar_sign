@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   const SizedBox(height: 20,),
-                  const Expanded(
+                  Expanded(
                     flex: 1,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
