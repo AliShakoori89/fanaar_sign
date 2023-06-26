@@ -1,3 +1,4 @@
+import 'package:fanar_sign/page/authentication_page.dart';
 import 'package:fanar_sign/page/home_page.dart';
 import 'package:fanar_sign/page/navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: NavigationBarPage(),
+      home: AuthenticationPage(),
     );
   }
 }
