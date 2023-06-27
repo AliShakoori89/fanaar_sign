@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:local_auth_android/local_auth_android.dart';
 
+import 'authentication_page.dart';
+
 class AuthorizationPage extends StatefulWidget {
   const AuthorizationPage({Key? key}) : super(key: key);
 
@@ -45,7 +47,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     if(authenticated == true){
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => const AuthenticationPage()),
       );
     }
   }
