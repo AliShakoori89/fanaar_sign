@@ -1,8 +1,6 @@
 import 'package:fanar_sign/component/my_app_button.dart';
 import 'package:fanar_sign/component/text_field.dart';
 import 'package:flutter/material.dart';
-
-import '../component/fanaar_logo.dart';
 import '../component/main_page_header.dart';
 
 class AuthenticationPage extends StatefulWidget {
@@ -13,6 +11,10 @@ class AuthenticationPage extends StatefulWidget {
 }
 
 class _AuthenticationPageState extends State<AuthenticationPage> {
+
+  late TextEditingController nationalCode = TextEditingController();
+  late TextEditingController mobileCode = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +29,9 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const MyTextField(hintText: "کد ملی", labelText: "کد ملی", stringType: false,),
+                MyTextField(hintText: "کد ملی", labelText: "کد ملی", stringType: false, controller: nationalCode),
                 SizedBox(height: MediaQuery.of(context).size.height / 30),
-                const MyTextField(hintText: "موبایل", labelText: "موبایل", stringType: false,),
+                MyTextField(hintText: "موبایل", labelText: "موبایل", stringType: false, controller: mobileCode),
               ],
             ),
           )

@@ -1,3 +1,4 @@
+import 'package:fanar_sign/const/app%20color/app_color.dart';
 import 'package:flutter/material.dart';
 
 class MainPageCard extends StatelessWidget {
@@ -24,7 +25,7 @@ class MainPageCard extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(25),
                   boxShadow: const [
-                    BoxShadow(color: Color.fromRGBO(139, 139, 139, 0.4),
+                    BoxShadow(color: AppColors.cardShadowColor,
                       spreadRadius: 1,
                       blurRadius: 4,
                       offset: Offset(

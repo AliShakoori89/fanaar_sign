@@ -17,7 +17,7 @@ class MainPageHeader extends StatelessWidget {
       decoration: const BoxDecoration(
           boxShadow: [
             BoxShadow(
-                color: Color.fromRGBO(21,70,160, 1),
+                color: AppColors.appbarShadowColor,
                 spreadRadius: 1,
                 blurRadius: 15
             )

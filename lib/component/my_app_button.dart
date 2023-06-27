@@ -1,3 +1,4 @@
+import 'package:fanar_sign/const/app%20color/app_color.dart';
 import 'package:flutter/material.dart';
 
 class MyAppButton extends StatelessWidget {
@@ -13,13 +14,10 @@ class MyAppButton extends StatelessWidget {
       height: MediaQuery.of(context).size.height / 13,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Color.fromRGBO(5,101,178, 1),
-            Color.fromRGBO(21,70,160, 1),
-          ],
+          colors: AppColors.mainColor,
         ),
       ),
       child: Center(
