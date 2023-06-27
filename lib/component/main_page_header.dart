@@ -1,4 +1,5 @@
 import 'package:fanar_sign/component/profile_pic.dart';
+import 'package:fanar_sign/const/app%20color/app_color.dart';
 import 'package:flutter/material.dart';
 import 'datetime_now.dart';
 import 'fanaar_logo.dart';
@@ -24,10 +25,7 @@ class MainPageHeader extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Color.fromRGBO(5,101,178, 1),
-              Color.fromRGBO(21,70,160, 1),
-            ],
+            colors: AppColors.mainColor,
           ),
           borderRadius: BorderRadius.only(
               bottomRight: Radius.circular(45)

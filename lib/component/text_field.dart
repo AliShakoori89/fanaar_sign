@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
 class MyTextField extends StatelessWidget {
-  const MyTextField({super.key});
+  const MyTextField({super.key, required this.labelText, required this.hintText, required this.stringType});
+
+  final String labelText;
+  final String hintText;
+  final bool stringType;
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
         textDirection: TextDirection.rtl,
         child: TextField(
+          keyboardType: TextInputType.number,
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: MediaQuery.of(context).size.width / 20
@@ -17,8 +22,8 @@ class MyTextField extends StatelessWidget {
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25)
               ),
-              labelText: "کد ملی",
-              hintText: "کد ملی خود را وارد کنید"
+              labelText: labelText,
+              hintText: hintText
           ),
         )
     );
