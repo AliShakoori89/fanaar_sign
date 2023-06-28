@@ -25,7 +25,7 @@ class _OTPCodePageState extends State<OTPCodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: MyAppButton(buttonType: false),
+      bottomSheet: MyAppButton(buttonType: false, otpCodController: otpCodeController),
       body: Column(
         children: [
           const MainPageHeader(mainPage: false),

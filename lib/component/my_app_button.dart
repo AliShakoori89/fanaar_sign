@@ -59,10 +59,17 @@ class MyAppButton extends StatelessWidget {
                 Text('کد ملی وارد شده صحیح نمی باشد')));
           }
         }else{
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const HomePage()),
-          );
+          if(otpCodController!.text == "1111"){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePage()),
+            );
+          }else{
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content:
+                Text('کد صادره صحیح نمی باشد')));
+          }
+
         }
       },
     );
