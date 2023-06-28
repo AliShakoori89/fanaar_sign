@@ -1,5 +1,5 @@
 import 'package:fanar_sign/component/profile_pic.dart';
-import 'package:fanar_sign/const/app%20color/app_color.dart';
+import 'package:fanar_sign/const/app_color.dart';
 import 'package:flutter/material.dart';
 import 'datetime_now.dart';
 import 'fanaar_logo.dart';
@@ -13,7 +13,9 @@ class MainPageHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height / 4,
+      height: mainPage == true
+          ? MediaQuery.of(context).size.height / 4
+          : MediaQuery.of(context).size.height / 4.5,
       decoration: const BoxDecoration(
           boxShadow: [
             BoxShadow(
