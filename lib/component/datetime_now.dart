@@ -16,7 +16,7 @@ class DateTimeNow extends StatelessWidget {
     return Text(date.toPersianDigit(),
       style: TextStyle(
           color: Colors.white,
-          fontSize: MediaQuery.of(context).size.height / 40
+          fontSize: MediaQuery.of(context).size.height / 60
       ),);
   }
 }

@@ -13,9 +13,6 @@ class MainPageHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: mainPage == true
-          ? MediaQuery.of(context).size.height / 4
-          : MediaQuery.of(context).size.height / 4.5,
       decoration: const BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -34,8 +31,12 @@ class MainPageHeader extends StatelessWidget {
           )
       ),
       child: Container(
-        margin: const EdgeInsets.all(
-            30
+        margin: EdgeInsets.only(
+          left: MediaQuery.of(context).size.width / 20,
+          right: MediaQuery.of(context).size.width / 20,
+          top: MediaQuery.of(context).size.height / 50,
+          bottom: MediaQuery.of(context).size.height / 50,
+
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

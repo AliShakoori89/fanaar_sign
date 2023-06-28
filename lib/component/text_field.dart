@@ -12,20 +12,28 @@ class MyTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Directionality(
         textDirection: TextDirection.rtl,
-        child: TextField(
-          controller: controller,
-          keyboardType: TextInputType.number,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: MediaQuery.of(context).size.width / 20
-          ),
-          autofocus: true,
-          decoration: InputDecoration(
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25)
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height / 11,
+          child: TextField(
+            textAlignVertical: TextAlignVertical.center,
+            controller: controller,
+            keyboardType: TextInputType.number,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width / 20
+            ),
+            autofocus: true,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height / 50,
+                bottom: MediaQuery.of(context).size.height / 50
               ),
-              labelText: labelText,
-              hintText: hintText
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25)
+                ),
+                labelText: labelText,
+                hintText: hintText
+            ),
           ),
         )
     );

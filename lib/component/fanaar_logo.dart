@@ -6,8 +6,7 @@ class FanaarLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset("assets/logo/1.png",
-      height: MediaQuery.of(context).size.width / 3.8,
-
+      height: MediaQuery.of(context).size.width / 5,
     );
   }
 }

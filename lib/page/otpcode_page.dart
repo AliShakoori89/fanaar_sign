@@ -25,6 +25,7 @@ class _OTPCodePageState extends State<OTPCodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       bottomSheet: MyAppButton(buttonType: false, otpCodController: otpCodeController),
       body: Column(
         children: [
@@ -39,7 +40,10 @@ class _OTPCodePageState extends State<OTPCodePage> {
                 SizedBox(height: MediaQuery.of(context).size.height / 4),
                 OTPCodeText(mobileNumberController: mobileNumberController),
                 SizedBox(height: MediaQuery.of(context).size.height / 30),
-                MyTextField(controller: otpCodeController, stringType: false, hintText: "کد احراز هویت", labelText: "کد احراز هویت",),
+                MyTextField(controller: otpCodeController,
+                  stringType: false,
+                  hintText: "کد احراز هویت",
+                  labelText: "کد احراز هویت",),
                 const EditMobileNumber()
               ],
             ),

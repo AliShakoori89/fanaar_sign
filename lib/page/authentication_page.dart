@@ -15,15 +15,13 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
   late TextEditingController nationalCodeController = TextEditingController();
   late TextEditingController mobileNumberController = TextEditingController();
 
-  final formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       bottomSheet: MyAppButton(nationalCodeController: nationalCodeController, mobileNumberController: mobileNumberController, buttonType: true),
       body: Form(
-        key: formKey,
         child: Column(
           children: [
             const MainPageHeader(mainPage: false),
