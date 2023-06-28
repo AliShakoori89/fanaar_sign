@@ -12,30 +12,35 @@ class AuthenticationPage extends StatefulWidget {
 
 class _AuthenticationPageState extends State<AuthenticationPage> {
 
-  late TextEditingController nationalCode = TextEditingController();
-  late TextEditingController mobileCode = TextEditingController();
+  late TextEditingController nationalCodeController = TextEditingController();
+  late TextEditingController mobileNumberController = TextEditingController();
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      bottomSheet: const MyAppButton(),
-      body: Column(
-        children: [
-          const MainPageHeader(mainPage: false),
-          SizedBox(height: MediaQuery.of(context).size.height / 6,),
-          Container(
-            margin: EdgeInsets.only(left: MediaQuery.of(context).size.width / 20, right: MediaQuery.of(context).size.width / 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                MyTextField(hintText: "کد ملی", labelText: "کد ملی", stringType: false, controller: nationalCode),
-                SizedBox(height: MediaQuery.of(context).size.height / 30),
-                MyTextField(hintText: "موبایل", labelText: "موبایل", stringType: false, controller: mobileCode),
-              ],
-            ),
-          )
-        ],
+      bottomSheet: MyAppButton(nationalCodeController: nationalCodeController, mobileNumberController: mobileNumberController),
+      body: Form(
+        key: formKey,
+        child: Column(
+          children: [
+            const MainPageHeader(mainPage: false),
+            SizedBox(height: MediaQuery.of(context).size.height / 6,),
+            Container(
+              margin: EdgeInsets.only(left: MediaQuery.of(context).size.width / 20, right: MediaQuery.of(context).size.width / 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MyTextField(hintText: "کد ملی", labelText: "کد ملی", stringType: false, controller: nationalCodeController),
+                  SizedBox(height: MediaQuery.of(context).size.height / 30),
+                  MyTextField(hintText: "موبایل", labelText: "موبایل", stringType: false, controller: mobileNumberController),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
