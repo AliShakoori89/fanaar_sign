@@ -1,4 +1,4 @@
-import 'package:fanar_sign/const/app%20color/app_color.dart';
+import 'package:fanar_sign/const/app_color.dart';
 import 'package:flutter/material.dart';
 
 class MainPageCard extends StatelessWidget {
