@@ -21,7 +21,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      bottomSheet: MyAppButton(nationalCodeController: nationalCodeController, mobileNumberController: mobileNumberController),
+      bottomSheet: MyAppButton(nationalCodeController: nationalCodeController, mobileNumberController: mobileNumberController, buttonType: true),
       body: Form(
         key: formKey,
         child: Column(

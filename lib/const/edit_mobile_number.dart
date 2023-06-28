@@ -15,7 +15,11 @@ class EditMobileNumber extends StatelessWidget {
         child: Row(
           children: [
             const Icon(Icons.phone_enabled_outlined),
-            const Text("ویرایش شماره موبایل"),
+            GestureDetector(
+                child: const Text("ویرایش شماره موبایل"),
+            onTap: (){
+                  Navigator.pop(context);
+            }),
             Text(" | ", style: TextStyle(fontSize: MediaQuery.of(context).size.width / 20,),),
             const Icon(Icons.refresh),
             const Text("درخواست مجدد کد فعالسازی")

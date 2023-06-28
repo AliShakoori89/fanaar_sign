@@ -1,3 +1,5 @@
+import 'package:fanar_sign/component/my_app_button.dart';
+import 'package:fanar_sign/const/edit_mobile_number.dart';
 import 'package:fanar_sign/const/otp_code_text.dart';
 import 'package:flutter/material.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
@@ -23,6 +25,7 @@ class _OTPCodePageState extends State<OTPCodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: MyAppButton(buttonType: false),
       body: Column(
         children: [
           const MainPageHeader(mainPage: false),
@@ -37,7 +40,7 @@ class _OTPCodePageState extends State<OTPCodePage> {
                 OTPCodeText(mobileNumberController: mobileNumberController),
                 SizedBox(height: MediaQuery.of(context).size.height / 30),
                 MyTextField(controller: otpCodeController, stringType: false, hintText: "کد احراز هویت", labelText: "کد احراز هویت",),
-
+                const EditMobileNumber()
               ],
             ),
           )
