@@ -16,11 +16,21 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
   late TextEditingController mobileNumberController = TextEditingController();
 
   @override
+  void dispose() {
+    nationalCodeController.dispose();
+    mobileNumberController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
-      bottomSheet: MyAppButton(nationalCodeController: nationalCodeController, mobileNumberController: mobileNumberController, buttonType: true),
+      bottomSheet: MyAppButton(
+          nationalCodeController: nationalCodeController,
+          mobileNumberController: mobileNumberController,
+          buttonType: true),
       body: Form(
         child: Column(
           children: [
@@ -31,9 +41,17 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  MyTextField(hintText: "کد ملی", labelText: "کد ملی", stringType: false, controller: nationalCodeController),
+                  MyTextField(
+                      hintText: "کد ملی",
+                      labelText: "کد ملی",
+                      stringType: false,
+                      controller: nationalCodeController),
                   SizedBox(height: MediaQuery.of(context).size.height / 30),
-                  MyTextField(hintText: "موبایل", labelText: "موبایل", stringType: false, controller: mobileNumberController),
+                  MyTextField(
+                      hintText: "موبایل",
+                      labelText: "موبایل",
+                      stringType: false,
+                      controller: mobileNumberController),
                 ],
               ),
             )

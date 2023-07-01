@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MyTextField extends StatelessWidget {
-  const MyTextField({super.key, required this.labelText, required this.hintText, required this.stringType, required this.controller});
+  const MyTextField({super.key,
+    required this.labelText,
+    required this.hintText,
+    required this.stringType,
+    required this.controller});
 
   final String labelText;
   final String hintText;
@@ -34,7 +38,6 @@ class MyTextField extends StatelessWidget {
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25)
                 ),
-
                 labelText: labelText,
               ),
               autocorrect: false,

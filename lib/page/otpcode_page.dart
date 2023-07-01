@@ -43,7 +43,7 @@ class _OTPCodePageState extends State<OTPCodePage> {
                 MyTextField(controller: otpCodeController,
                   stringType: false,
                   hintText: "کد احراز هویت",
-                  labelText: "کد احراز هویت",),
+                  labelText: "کد احراز هویت"),
                 const EditMobileNumber()
               ],
             ),
