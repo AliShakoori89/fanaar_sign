@@ -1,4 +1,5 @@
 import 'package:fanar_sign/component/my_app_button.dart';
+import 'package:fanar_sign/component/otp_app_button.dart';
 import 'package:fanar_sign/const/edit_mobile_number.dart';
 import 'package:fanar_sign/const/otp_code_text.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class _OTPCodePageState extends State<OTPCodePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      bottomSheet: MyAppButton(buttonType: false, otpCodController: otpCodeController),
+      bottomSheet: OTPAppButton( otpCodController: otpCodeController),
       body: Column(
         children: [
           const MainPageHeader(mainPage: false),

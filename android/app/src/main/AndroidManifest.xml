@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="fanaar_sign"
+        android:label="Fanaar Sign"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

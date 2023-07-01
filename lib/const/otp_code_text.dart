@@ -11,9 +11,10 @@ class OTPCodeText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
-      child: Text("لطفا کد احراز هویت ارسال شده به شماره${0.toString().toPersianDigit()}"
-          "${mobileNumberController.toString().substring(0,3).toString().toPersianDigit()}****"
-          "${int.parse(mobileNumberController.toString().substring(8,10)).toString().toPersianDigit()}را وارد کنید."
+      child: Text("لطفا کد احراز هویت ارسال شده به شماره "
+          "${int.parse(mobileNumberController.toString().substring(8,10)).toString().toPersianDigit()}****"
+          " ${0.toString().toPersianDigit()}${mobileNumberController.toString().substring(0,3).toString().toPersianDigit()} "
+          "را وارد کنید."
           ,
           // maxLines: 1,
           style: TextStyle(fontSize: MediaQuery.of(context).size.width / 30,

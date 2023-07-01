@@ -62,7 +62,6 @@ class _MyAppButtonState extends State<MyAppButton> {
         ),
         onTap: (){
           RegExp regExp = RegExp(pattern);
-
           if (widget.nationalCodeController!.text.isNotEmpty &&
               widget.mobileNumberController!.text.isNotEmpty){
             if(buttonType == true){
