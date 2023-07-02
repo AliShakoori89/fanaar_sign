@@ -3,17 +3,17 @@ import 'package:persian_number_utility/persian_number_utility.dart';
 
 class OTPCodeText extends StatelessWidget {
 
-  const OTPCodeText({super.key, required this.mobileNumberController});
+  const OTPCodeText({super.key, required this.otpCodeController});
 
-  final int mobileNumberController;
+  final TextEditingController otpCodeController;
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Text("لطفا کد احراز هویت ارسال شده به شماره "
-          "${int.parse(mobileNumberController.toString().substring(8,10)).toString().toPersianDigit()}****"
-          " ${0.toString().toPersianDigit()}${mobileNumberController.toString().substring(0,3).toString().toPersianDigit()} "
+          "${int.parse(otpCodeController.toString().substring(8,10)).toString().toPersianDigit()}****"
+          " ${0.toString().toPersianDigit()}${otpCodeController.toString().substring(0,3).toString().toPersianDigit()} "
           "را وارد کنید."
           ,
           // maxLines: 1,

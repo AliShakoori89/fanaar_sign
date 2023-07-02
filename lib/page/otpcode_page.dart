@@ -5,49 +5,42 @@ import 'package:flutter/material.dart';
 import '../component/main_page_header.dart';
 import '../component/text_field.dart';
 
-class OTPCodePage extends StatefulWidget {
-  const OTPCodePage({super.key, required this.mobileNumberController});
-
-  final int mobileNumberController;
-
-  @override
-  State<OTPCodePage> createState() => _OTPCodePageState(mobileNumberController);
-}
-
-class _OTPCodePageState extends State<OTPCodePage> {
+class OTPCodePage extends StatelessWidget {
 
   late TextEditingController otpCodeController = TextEditingController();
-  final int mobileNumberController;
+  final formKey = GlobalKey<FormState>();
 
-  _OTPCodePageState(this.mobileNumberController);
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      bottomSheet: MyAppButton( otpCodController: otpCodeController, pageName: "OTPCodePage", buttonType: true),
-      body: Column(
-        children: [
-          const MainPageHeader(mainPage: false),
-          Container(
-            margin: EdgeInsets.only(
-                left: MediaQuery.of(context).size.width / 20,
-                right: MediaQuery.of(context).size.width / 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: MediaQuery.of(context).size.height / 4),
-                OTPCodeText(mobileNumberController: mobileNumberController),
-                SizedBox(height: MediaQuery.of(context).size.height / 30),
-                MyTextField(controller: otpCodeController,
-                  stringType: false,
-                  hintText: "کد احراز هویت",
-                  labelText: "کد احراز هویت"),
-                const EditMobileNumber()
-              ],
-            ),
-          )
-        ],
+      bottomSheet: MyAppButton( otpCodController: otpCodeController, pageName: "OTPCodePage", buttonType: true, formKey: formKey),
+      body: Form(
+        key: formKey,
+        child: Column(
+          children: [
+            const MainPageHeader(mainPage: false),
+            Container(
+              margin: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width / 20,
+                  right: MediaQuery.of(context).size.width / 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: MediaQuery.of(context).size.height / 4),
+                  OTPCodeText(otpCodeController: otpCodeController),
+                  SizedBox(height: MediaQuery.of(context).size.height / 30),
+                  MyTextField(
+                    controller: otpCodeController,
+                    stringType: false,
+                    hintText: "کد احراز هویت",
+                    labelText: "کد احراز هویت",),
+                  const EditMobileNumber()
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

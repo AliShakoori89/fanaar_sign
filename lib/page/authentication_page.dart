@@ -14,6 +14,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
 
   late TextEditingController nationalCodeController = TextEditingController();
   late TextEditingController mobileNumberController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -31,8 +32,10 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
           nationalCodeController: nationalCodeController,
           mobileNumberController: mobileNumberController,
           pageName: "AuthenticationPage",
-          buttonType: true),
+          buttonType: true,
+          formKey: formKey),
       body: Form(
+        key: formKey,
         child: Column(
           children: [
             const MainPageHeader(mainPage: false),
@@ -49,10 +52,11 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                       controller: nationalCodeController),
                   SizedBox(height: MediaQuery.of(context).size.height / 30),
                   MyTextField(
-                      hintText: "موبایل",
-                      labelText: "موبایل",
+                      hintText: "شماره موبایل",
+                      labelText: "شماره موبایل",
                       stringType: false,
-                      controller: mobileNumberController),
+                      controller: mobileNumberController
+                  ),
                 ],
               ),
             )

@@ -3,11 +3,12 @@ import 'package:fanar_sign/page/home_page.dart';
 import 'package:fanar_sign/page/otpcode_page.dart';
 import 'package:flutter/material.dart';
 
-class MyAppButton extends StatefulWidget {
+class MyAppButton extends StatelessWidget {
   MyAppButton({super.key,
     this.nationalCodeController,
     this.mobileNumberController,
     this.otpCodController,
+    required this.formKey,
     required this.pageName,
     required this.buttonType});
 
@@ -16,29 +17,9 @@ class MyAppButton extends StatefulWidget {
   TextEditingController? otpCodController;
   final String pageName;
   final bool buttonType;
+  final GlobalKey<FormState> formKey;
 
-  @override
-  State<MyAppButton> createState() => _MyAppButtonState(
-      this.nationalCodeController,
-      this.mobileNumberController,
-      this.otpCodController,
-      this.buttonType,
-      this.pageName
-  );
-}
-
-class _MyAppButtonState extends State<MyAppButton> {
-  final bool buttonType;
-  TextEditingController? nationalCodeController;
-  TextEditingController? mobileNumberController;
-  TextEditingController? otpCodController;
-  final String pageName;
   String pattern = r'(^\+?09[0-9]{9}$)';
-
-  _MyAppButtonState(this.nationalCodeController,
-      this.mobileNumberController,
-      this.otpCodController,
-      this.buttonType, this.pageName);
 
   @override
   Widget build(BuildContext context) {
@@ -66,16 +47,15 @@ class _MyAppButtonState extends State<MyAppButton> {
         ),
         onTap: (){
           RegExp regExp = RegExp(pattern);
+        if (formKey.currentState!.validate()) {
           if(pageName == "AuthenticationPage"){
-            if (widget.nationalCodeController!.text.isNotEmpty &&
-                widget.mobileNumberController!.text.isNotEmpty){
               if(buttonType == true){
-                if (widget.nationalCodeController!.text.length == 10) {
-                  if (regExp.hasMatch(widget.mobileNumberController!.text)) {
+                if (nationalCodeController!.text.length == 10) {
+                  if (regExp.hasMatch(mobileNumberController!.text)) {
 
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => OTPCodePage(mobileNumberController: int.parse(widget.mobileNumberController!.text))),
+                      MaterialPageRoute(builder: (context) => OTPCodePage()),
                     );
 
                   } else {
@@ -92,14 +72,8 @@ class _MyAppButtonState extends State<MyAppButton> {
                           textDirection: TextDirection.rtl)));
                 }
               }
-            }else{
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content:
-                  Text('لطفا تمام فیلدها را پر کنید.',
-                      textDirection: TextDirection.rtl)));
-            }
           }else{
-            if(widget.otpCodController!.text == "1111"){
+            if(otpCodController!.text == "1111"){
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const HomePage()),
@@ -111,6 +85,8 @@ class _MyAppButtonState extends State<MyAppButton> {
                       textDirection: TextDirection.rtl)));
             }
           }
+        }
+
         },
       ),
     );
