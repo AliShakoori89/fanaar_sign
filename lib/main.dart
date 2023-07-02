@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: "Fanaar Sign",
       debugShowCheckedModeBanner: false,
-      home: AuthorizationPage(),
+      home: AuthenticationPage(),
     );
   }
 }

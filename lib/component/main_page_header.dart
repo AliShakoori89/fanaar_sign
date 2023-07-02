@@ -39,28 +39,23 @@ class MainPageHeader extends StatelessWidget {
 
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 25,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: MediaQuery.of(context).size.height / 60,),
-                    const FanaarLogo(),
-                    mainPage == true ? SizedBox(
-                        height: MediaQuery.of(context).size.height / 80
-                    ) : const SizedBox(),
-                    mainPage == true ? DateTimeNow() : Container()
-                  ],
-                ),
+                const FanaarLogo(),
                 mainPage == true ? const ProfilePic() : Container(),
               ],
             ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 50,
+            ),
+            mainPage == true ? DateTimeNow() : Container()
           ],
-        ),
+        )
       ),
     );
   }

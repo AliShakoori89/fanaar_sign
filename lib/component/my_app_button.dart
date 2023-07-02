@@ -8,11 +8,13 @@ class MyAppButton extends StatefulWidget {
     this.nationalCodeController,
     this.mobileNumberController,
     this.otpCodController,
+    required this.pageName,
     required this.buttonType});
 
   TextEditingController? nationalCodeController;
   TextEditingController? mobileNumberController;
   TextEditingController? otpCodController;
+  final String pageName;
   final bool buttonType;
 
   @override
@@ -20,7 +22,8 @@ class MyAppButton extends StatefulWidget {
       this.nationalCodeController,
       this.mobileNumberController,
       this.otpCodController,
-      this.buttonType
+      this.buttonType,
+      this.pageName
   );
 }
 
@@ -29,12 +32,13 @@ class _MyAppButtonState extends State<MyAppButton> {
   TextEditingController? nationalCodeController;
   TextEditingController? mobileNumberController;
   TextEditingController? otpCodController;
+  final String pageName;
   String pattern = r'(^\+?09[0-9]{9}$)';
 
   _MyAppButtonState(this.nationalCodeController,
       this.mobileNumberController,
       this.otpCodController,
-      this.buttonType);
+      this.buttonType, this.pageName);
 
   @override
   Widget build(BuildContext context) {
@@ -62,48 +66,50 @@ class _MyAppButtonState extends State<MyAppButton> {
         ),
         onTap: (){
           RegExp regExp = RegExp(pattern);
-          if (widget.nationalCodeController!.text.isNotEmpty &&
-              widget.mobileNumberController!.text.isNotEmpty){
-            if(buttonType == true){
-              if (widget.nationalCodeController!.text.length == 10) {
-                if (regExp.hasMatch(widget.mobileNumberController!.text)) {
+          if(pageName == "AuthenticationPage"){
+            if (widget.nationalCodeController!.text.isNotEmpty &&
+                widget.mobileNumberController!.text.isNotEmpty){
+              if(buttonType == true){
+                if (widget.nationalCodeController!.text.length == 10) {
+                  if (regExp.hasMatch(widget.mobileNumberController!.text)) {
 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => OTPCodePage(mobileNumberController: int.parse(widget.mobileNumberController!.text))),
-                  );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => OTPCodePage(mobileNumberController: int.parse(widget.mobileNumberController!.text))),
+                    );
 
-                } else {
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content:
+                        Text('شماره موبایل وارد شده صحیح نمی باشد.',
+                            textDirection: TextDirection.rtl)));
+                  }
+                }
+                else {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content:
-                      Text('شماره موبایل وارد شده صحیح نمی باشد.',
+                      Text('کد ملی وارد شده صحیح نمی باشد.',
                           textDirection: TextDirection.rtl)));
                 }
               }
-              else {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content:
-                    Text('کد ملی وارد شده صحیح نمی باشد.',
-                        textDirection: TextDirection.rtl)));
-              }
             }else{
-              if(widget.otpCodController!.text == "1111"){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
-                );
-              }else{
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content:
-                    Text('کد صادره صحیح نمی باشد.',
-                        textDirection: TextDirection.rtl)));
-              }
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content:
+                  Text('لطفا تمام فیلدها را پر کنید.',
+                      textDirection: TextDirection.rtl)));
             }
           }else{
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content:
-                Text('لطفا تمام فیلدها را پر کنید.',
-                textDirection: TextDirection.rtl)));
+            if(widget.otpCodController!.text == "1111"){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePage()),
+              );
+            }else{
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content:
+                  Text('کد صادره صحیح نمی باشد.',
+                      textDirection: TextDirection.rtl)));
+            }
           }
         },
       ),
