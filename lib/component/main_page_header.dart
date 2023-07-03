@@ -34,27 +34,29 @@ class MainPageHeader extends StatelessWidget {
         margin: EdgeInsets.only(
           left: MediaQuery.of(context).size.width / 20,
           right: MediaQuery.of(context).size.width / 20,
-          top: MediaQuery.of(context).size.height / 50,
+          top: MediaQuery.of(context).size.height / 20,
           bottom: MediaQuery.of(context).size.height / 50,
 
         ),
-        child: Column(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 25,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const FanaarLogo(),
-                mainPage == true ? const ProfilePic() : Container(),
-              ],
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 50,
-            ),
-            mainPage == true ? DateTimeNow() : Container()
-          ],
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height / 5,
+          child: Column(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const FanaarLogo(),
+                    mainPage == true ? const ProfilePic() : Container(),
+                  ],
+                ),
+              ),
+              mainPage == true ? Expanded(
+                  flex: 1,
+                  child: DateTimeNow()) : Container()
+            ],
+          ),
         )
       ),
     );

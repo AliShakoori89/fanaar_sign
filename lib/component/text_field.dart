@@ -14,6 +14,10 @@ class MyTextField extends StatelessWidget {
 
   String pattern = r'(^\+?09[0-9]{9}$)';
 
+  int sum = 0;
+  int div = 0;
+  int counter = 0;
+
   @override
   Widget build(BuildContext context) {
 
@@ -37,7 +41,22 @@ class MyTextField extends StatelessWidget {
               if(labelText == "کد ملی"){
                 if (val!.isNotEmpty){
                   if(val.length == 10){
-                    return null;
+                    for(int i = 10; i > 1; i--){
+                        sum += (i)*int.parse(val[counter]);
+                        counter++;
+                    }
+                    div = int.parse("${sum % 11}");
+                    if(div < 2){
+                      if(val[9] == div.toString()){
+                        return null;
+                      }else{
+                        return "'کد ملی وارد شده صحیح نمی باشد.'";
+                      }
+                    }else if(val[9] == (11-div).toString()){
+                      return null;
+                    }else{
+                      return "'کد ملی وارد شده صحیح نمی باشد.'";
+                    }
                   }else{
                     return "'کد ملی وارد شده صحیح نمی باشد.'";
                   }

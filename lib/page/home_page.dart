@@ -21,10 +21,10 @@ class _HomePageState extends State<HomePage> {
         body: Column(
           children: [
             Expanded(
-              flex: 3,
+              flex: 4,
                 child: MainPageHeader(mainPage: true)),
             Expanded(
-                flex: 10,
+                flex: 12,
                 child: MainPageFooter())
           ],
         ),
