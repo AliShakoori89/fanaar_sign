@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:persian_number_utility/persian_number_utility.dart';
 
 class MyTextField extends StatelessWidget {
   MyTextField({super.key,
@@ -13,8 +12,13 @@ class MyTextField extends StatelessWidget {
   final bool stringType;
   TextEditingController? controller;
 
+  String pattern = r'(^\+?09[0-9]{9}$)';
+
   @override
   Widget build(BuildContext context) {
+
+    RegExp regExp = RegExp(pattern);
+
     return Directionality(
         textDirection: TextDirection.rtl,
         child: SizedBox(
@@ -32,19 +36,31 @@ class MyTextField extends StatelessWidget {
             validator: (val) {
               if(labelText == "کد ملی"){
                 if (val!.isNotEmpty){
-                  return null;
+                  if(val.length == 10){
+                    return null;
+                  }else{
+                    return "'کد ملی وارد شده صحیح نمی باشد.'";
+                  }
                 }else {
                   return "لطفا کد ملی خود را وارد نمایید.";
                 }
               } if(labelText == "شماره موبایل"){
                 if (val!.isNotEmpty) {
-                  return null;
+                  if(val.length == 11 && regExp.hasMatch(val)){
+                    return null;
+                  }else{
+                    return "شماره موبایل وارد شده صحیح نمی باشد.";
+                  }
                 } else {
                   return "لطفا شماره موبایل خود را وارد نمایید.";
                 }
               } if(labelText == "کد احراز هویت"){
                 if (val!.isNotEmpty) {
-                  return null;
+                  if(val == "1111"){
+                    return null;
+                  } else{
+                    return 'کد ارسال شده صحیح نمی باشد.';
+                  }
                 } else {
                   return "لطفا کد احراز هویت را وارد نمایید.";
                 }

@@ -19,8 +19,6 @@ class MyAppButton extends StatelessWidget {
   final bool buttonType;
   final GlobalKey<FormState> formKey;
 
-  String pattern = r'(^\+?09[0-9]{9}$)';
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -46,47 +44,19 @@ class MyAppButton extends StatelessWidget {
           ),
         ),
         onTap: (){
-          RegExp regExp = RegExp(pattern);
         if (formKey.currentState!.validate()) {
           if(pageName == "AuthenticationPage"){
-              if(buttonType == true){
-                if (nationalCodeController!.text.length == 10) {
-                  if (regExp.hasMatch(mobileNumberController!.text)) {
-
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => OTPCodePage()),
-                    );
-
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content:
-                        Text('شماره موبایل وارد شده صحیح نمی باشد.',
-                            textDirection: TextDirection.rtl)));
-                  }
-                }
-                else {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content:
-                      Text('کد ملی وارد شده صحیح نمی باشد.',
-                          textDirection: TextDirection.rtl)));
-                }
-              }
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => OTPCodePage(mobileNumber: mobileNumberController!)),
+            );
           }else{
-            if(otpCodController!.text == "1111"){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
-              );
-            }else{
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content:
-                  Text('کد صادره صحیح نمی باشد.',
-                      textDirection: TextDirection.rtl)));
-            }
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePage()),
+            );
           }
         }
-
         },
       ),
     );

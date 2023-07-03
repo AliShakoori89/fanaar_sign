@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'list_view.dart';
 import 'main_page_card.dart';
 import 'main_page_image.dart';

@@ -7,7 +7,10 @@ import '../component/text_field.dart';
 
 class OTPCodePage extends StatelessWidget {
 
-  late TextEditingController otpCodeController = TextEditingController();
+  OTPCodePage({super.key, required this.mobileNumber});
+
+  TextEditingController otpCodeController = TextEditingController();
+  final TextEditingController mobileNumber;
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -28,7 +31,7 @@ class OTPCodePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(height: MediaQuery.of(context).size.height / 4),
-                  OTPCodeText(otpCodeController: otpCodeController),
+                  OTPCodeText(otpCode: mobileNumber),
                   SizedBox(height: MediaQuery.of(context).size.height / 30),
                   MyTextField(
                     controller: otpCodeController,

@@ -1,11 +1,5 @@
-import 'dart:io';
-
-import 'package:fanar_sign/component/list_view.dart';
-import 'package:fanar_sign/component/main_page_card.dart';
 import 'package:fanar_sign/component/main_page_header.dart';
-import 'package:fanar_sign/component/main_page_image.dart';
 import 'package:flutter/material.dart';
-
 import '../component/main_page_footer.dart';
 
 class HomePage extends StatefulWidget {

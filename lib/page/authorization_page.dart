@@ -1,9 +1,7 @@
-import 'package:fanar_sign/page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:local_auth_android/local_auth_android.dart';
-
 import 'authentication_page.dart';
 
 class AuthorizationPage extends StatefulWidget {
