@@ -1,16 +1,10 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:fanar_sign/page/authentication_page.dart';
-import 'package:flutter/foundation.dart';
+import 'package:fanar_sign/page/authorization_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() {
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) =>
       const MyApp()
-    ),
   );
 }
 
@@ -29,7 +23,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: "Fanaar Sign",
       debugShowCheckedModeBanner: false,
-      home: AuthenticationPage(),
+      home: AuthorizationPage(),
     );
   }
 }

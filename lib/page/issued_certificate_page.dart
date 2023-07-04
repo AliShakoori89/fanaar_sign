@@ -1,4 +1,7 @@
+import 'package:fanar_sign/const/app_color.dart';
 import 'package:flutter/material.dart';
+
+import '../component/main_page_header.dart';
 
 class IssuedCertificatePage extends StatelessWidget {
   const IssuedCertificatePage({super.key});
@@ -12,14 +15,19 @@ class IssuedCertificatePage extends StatelessWidget {
           textDirection: TextDirection.rtl,
           child: FloatingActionButton.extended(
             onPressed: () {},
-
+            backgroundColor: AppColors.appbarShadowColor,
             icon: Icon(Icons.add),
             label: Text("صدور گواهی",
             style: TextStyle(fontWeight: FontWeight.w700)),
           ),
         ),
       ),
-      body: Container(),
+      body: Column(
+        children: [
+          MainPageHeader(mainPage: false),
+          Container(),
+        ],
+      ),
     );
   }
 }

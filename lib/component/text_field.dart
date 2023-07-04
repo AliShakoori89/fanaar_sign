@@ -50,15 +50,15 @@ class MyTextField extends StatelessWidget {
                       if(val[9] == div.toString()){
                         return null;
                       }else{
-                        return "'کد ملی وارد شده صحیح نمی باشد.'";
+                        return "کد ملی وارد شده صحیح نمی باشد.";
                       }
                     }else if(val[9] == (11-div).toString()){
                       return null;
                     }else{
-                      return "'کد ملی وارد شده صحیح نمی باشد.'";
+                      return "کد ملی وارد شده صحیح نمی باشد.";
                     }
                   }else{
-                    return "'کد ملی وارد شده صحیح نمی باشد.'";
+                    return "کد ملی وارد شده صحیح نمی باشد.";
                   }
                 }else {
                   return "لطفا کد ملی خود را وارد نمایید.";

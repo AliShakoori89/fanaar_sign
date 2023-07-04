@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fanar_sign/component/main_page_header.dart';
 import 'package:flutter/material.dart';
 import '../component/main_page_footer.dart';
@@ -53,7 +55,7 @@ class _HomePageState extends State<HomePage> {
           Directionality(
             textDirection: TextDirection.rtl,
             child: TextButton(
-              onPressed: () => Navigator.of(context).pop(true),
+              onPressed: () => exit(0),
               child: const Text('بله'),
             ),
           ),

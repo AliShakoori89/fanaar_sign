@@ -39,7 +39,9 @@ class MainPageHeader extends StatelessWidget {
 
         ),
         child: SizedBox(
-          height: MediaQuery.of(context).size.height / 5,
+          height: mainPage == true
+              ? MediaQuery.of(context).size.height / 5
+              : MediaQuery.of(context).size.height / 7 ,
           child: Column(
             children: [
               Expanded(
