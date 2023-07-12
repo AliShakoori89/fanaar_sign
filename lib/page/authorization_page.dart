@@ -72,7 +72,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                   child: child,
                 );
               },
-              child: Image.asset("assets/logo/fanaar logo.png"),
+              child: Image.asset("assets/logo/icon.png"),
             ),
             SizedBox(height: MediaQuery.of(context).size.height / 5,),
             Directionality(

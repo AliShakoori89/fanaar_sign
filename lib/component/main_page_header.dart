@@ -6,7 +6,7 @@ import 'fanaar_logo.dart';
 
 class MainPageHeader extends StatelessWidget {
   const MainPageHeader({super.key, required this.mainPage});
-  
+
   final bool mainPage;
 
   @override
@@ -31,35 +31,35 @@ class MainPageHeader extends StatelessWidget {
           )
       ),
       child: Container(
-        margin: EdgeInsets.only(
-          left: MediaQuery.of(context).size.width / 20,
-          right: MediaQuery.of(context).size.width / 20,
-          top: MediaQuery.of(context).size.height / 20,
-          bottom: MediaQuery.of(context).size.height / 50,
+          margin: EdgeInsets.only(
+            left: MediaQuery.of(context).size.width / 20,
+            right: MediaQuery.of(context).size.width / 20,
+            top: MediaQuery.of(context).size.height / 20,
+            bottom: MediaQuery.of(context).size.height / 50,
 
-        ),
-        child: SizedBox(
-          height: mainPage == true
-              ? MediaQuery.of(context).size.height / 5
-              : MediaQuery.of(context).size.height / 7 ,
-          child: Column(
-            children: [
-              Expanded(
-                flex: 3,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const FanaarLogo(),
-                    mainPage == true ? const ProfilePic() : Container(),
-                  ],
-                ),
-              ),
-              mainPage == true ? Expanded(
-                  flex: 1,
-                  child: DateTimeNow()) : Container()
-            ],
           ),
-        )
+          child: SizedBox(
+            height: mainPage == true
+                ? MediaQuery.of(context).size.height / 5
+                : MediaQuery.of(context).size.height / 7 ,
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const FanaarLogo(),
+                      mainPage == true ? const ProfilePic() : Container(),
+                    ],
+                  ),
+                ),
+                mainPage == true ? Expanded(
+                    flex: 1,
+                    child: DateTimeNow()) : Container()
+              ],
+            ),
+          )
       ),
     );
   }
