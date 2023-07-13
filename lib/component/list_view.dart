@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class MainPageListView extends StatelessWidget {
   MainPageListView({super.key});
 
-  List boxName = ["صدور گواهی","احراز هویت"];
-  List imagePath = ["assets/icon/digital-signature.png", "assets/icon/face-detection.png"];
+  List boxName = ["مدیزیت گواهی امضا","امضای من"];
+  List imagePath = ["assets/icon/digital-signature.png", "assets/icon/my digital signature.png"];
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class MainPageListView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(imagePath[index], height: MediaQuery.of(context).size.height / 20,
-                      width: MediaQuery.of(context).size.width / 10,
+                      width: MediaQuery.of(context).size.width / 9,
                       color: index/2 == 1 || index/2 == 0 ? Colors.white : Colors.black),
                   SizedBox(height: MediaQuery.of(context).size.height / 100,),
                   Text(boxName[index],

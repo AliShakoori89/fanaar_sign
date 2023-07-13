@@ -5,15 +5,8 @@
 class AssetsRes {
   static const String PLUGIN_NAME = 'fanar_sign';
   static const String PLUGIN_VERSION = '1.0.0+1';
-  static const String FANAAR
+  static const String MY
 
-  LOGO
-
-  =
-
-  '
-
-  assets/icon/fanaar logo.png
-
-  ';
+  DIGITAL SIGNATURE = 'assets/icon/my digital signature.png';
+  static const String ICON = 'assets/logo/icon.png';
 }
