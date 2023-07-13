@@ -2,9 +2,9 @@ import 'package:fanar_sign/const/app_color.dart';
 import 'package:flutter/material.dart';
 
 class MainPageCard extends StatelessWidget {
-  MainPageCard({super.key});
+  MainPageCard({super.key, required this.cardList});
 
-  final List cardName = ["سامانه ثبت من","سفته الکترونیکی","سامانه املاک"];
+  final List cardList;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class MainPageCard extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      cardName[index],
+                      cardList[index],
                       style: TextStyle(color: Colors.black,
                         fontSize: MediaQuery.of(context).size.width / 25,
                         fontWeight: FontWeight.w700
@@ -52,7 +52,7 @@ class MainPageCard extends StatelessWidget {
               ),
             );
           },
-          itemCount: cardName.length),
+          itemCount: cardList.length),
     );
   }
 }

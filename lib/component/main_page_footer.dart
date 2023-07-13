@@ -4,7 +4,9 @@ import 'main_page_card.dart';
 import 'main_page_image.dart';
 
 class MainPageFooter extends StatelessWidget {
-  const MainPageFooter({super.key});
+  MainPageFooter({super.key});
+
+  final List cardName = ["سامانه ثبت من","سفته الکترونیکی","سامانه املاک"];
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class MainPageFooter extends StatelessWidget {
                 const SizedBox(height: 15,),
                 const MainPageImage(),
                 const SizedBox(height: 10,),
-                MainPageCard()
+                MainPageCard(cardList: cardName)
               ],
             ))
       ],

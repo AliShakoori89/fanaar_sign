@@ -1,4 +1,4 @@
-import 'package:fanar_sign/page/issued_certificate_page.dart';
+import 'package:fanar_sign/page/certificate_managment_page.dart';
 import 'package:flutter/material.dart';
 
 class MainPageListView extends StatelessWidget {
@@ -20,8 +20,10 @@ class MainPageListView extends StatelessWidget {
               if(index == 0){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const IssuedCertificatePage()),
+                  MaterialPageRoute(builder: (context) => CertificateManagementPage()),
                 );
+              }else{
+
               }
             },
             child: Container(
