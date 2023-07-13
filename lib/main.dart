@@ -1,5 +1,7 @@
 import 'package:fanar_sign/page/authentication_page.dart';
 import 'package:fanar_sign/page/authorization_page.dart';
+import 'package:fanar_sign/page/certificate_managment_page.dart';
+import 'package:fanar_sign/page/issued_new_certificate_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,10 +23,10 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
 
-    return const MaterialApp(
+    return MaterialApp(
       title: "Fanaar Sign",
       debugShowCheckedModeBanner: false,
-      home: AuthenticationPage(),
+      home: CertificateManagementPage(),
     );
   }
 }
