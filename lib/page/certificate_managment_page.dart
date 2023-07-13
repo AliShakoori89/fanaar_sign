@@ -1,5 +1,6 @@
 import 'package:fanar_sign/component/main_page_card.dart';
 import 'package:fanar_sign/const/app_color.dart';
+import 'package:fanar_sign/page/issued_new_certificate_page.dart';
 import 'package:flutter/material.dart';
 
 import '../component/main_page_header.dart';
@@ -17,7 +18,12 @@ class CertificateManagementPage extends StatelessWidget {
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: FloatingActionButton.extended(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => IssuedNewCertificatePage()),
+              );
+            },
             backgroundColor: AppColors.appbarShadowColor,
             icon: Icon(Icons.add),
             label: Text("صدور گواهی",
