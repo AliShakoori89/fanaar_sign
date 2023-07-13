@@ -1,6 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
+import '../const/app_color.dart';
+
 class DropDownButton extends StatefulWidget {
   const DropDownButton({super.key});
 
@@ -11,60 +13,76 @@ class DropDownButton extends StatefulWidget {
 class _DropDownButtonState extends State<DropDownButton> {
 
   final List<String> items = [
-    'Item1',
-    'Item2',
-    'Item3',
-    'Item4',
-    'Item5',
-    'Item6',
-    'Item7',
-    'Item8',
+    'مرکز میانی فن آوران اعتماد راهبر',
+    'مرکز میانی نماد',
   ];
 
   String? selectedValue;
+
+  List<DropdownMenuItem<String>> _addDividersAfterItems(List<String> items) {
+    final List<DropdownMenuItem<String>> menuItems = [];
+    for (final String item in items) {
+      menuItems.addAll(
+        [
+          DropdownMenuItem<String>(
+            value: item,
+            alignment: Alignment.center,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                textAlign: TextAlign.right,
+                item,
+                style: const TextStyle(
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ),
+          //If it's last item, we will not add Divider after it.
+          if (item != items.last)
+            DropdownMenuItem<String>(
+              enabled: false,
+              child: Divider(
+                height: 5,
+              ),
+            ),
+        ],
+      );
+    }
+    return menuItems;
+  }
+
+  List<double> _getCustomItemsHeights() {
+    final List<double> itemsHeights = [];
+    for (int i = 0; i < (items.length * 2) - 1; i++) {
+      if (i.isEven) {
+        itemsHeights.add(40);
+      }
+      //Dividers indexes will be the odd indexes
+      if (i.isOdd) {
+        itemsHeights.add(4);
+      }
+    }
+    return itemsHeights;
+  }
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButton2<String>(
         isExpanded: true,
-        hint: const Row(
-          children: [
-            Icon(
-              Icons.list,
-              size: 16,
-              color: Colors.yellow,
-            ),
-            SizedBox(
-              width: 4,
-            ),
-            Expanded(
-              child: Text(
-                'Select Item',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.yellow,
-                ),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          ],
-        ),
-        items: items
-            .map((String item) => DropdownMenuItem<String>(
-          value: item,
+        hint: Center(
           child: Text(
-            item,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
+            textAlign: TextAlign.center,
+            'انتخاب مرکز صدور گواهی',
+            style: TextStyle(
+              fontSize: MediaQuery.of(context).size.width / 30,
               color: Colors.white,
+              fontWeight: FontWeight.w700
             ),
-            overflow: TextOverflow.ellipsis,
           ),
-        ))
-            .toList(),
+        ),
+        items: _addDividersAfterItems(items),
         value: selectedValue,
         onChanged: (String? value) {
           setState(() {
@@ -72,43 +90,35 @@ class _DropDownButtonState extends State<DropDownButton> {
           });
         },
         buttonStyleData: ButtonStyleData(
+          padding: EdgeInsets.symmetric(horizontal: 16),
           height: 50,
-          width: 160,
-          padding: const EdgeInsets.only(left: 14, right: 14),
+          width: MediaQuery.of(context).size.width / 1.5,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(
-              color: Colors.black26,
+            borderRadius: BorderRadius.circular(15),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: AppColors.mainColor,
             ),
-            color: Colors.redAccent,
-          ),
-          elevation: 2,
-        ),
-        iconStyleData: const IconStyleData(
-          icon: Icon(
-            Icons.arrow_forward_ios_outlined,
-          ),
-          iconSize: 14,
-          iconEnabledColor: Colors.yellow,
-          iconDisabledColor: Colors.grey,
+          )
         ),
         dropdownStyleData: DropdownStyleData(
-          maxHeight: 200,
-          width: 200,
+          maxHeight: MediaQuery.of(context).size.height / 10,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(14),
-            color: Colors.redAccent,
-          ),
-          offset: const Offset(-20, 0),
-          scrollbarTheme: ScrollbarThemeData(
-            radius: const Radius.circular(40),
-            thickness: MaterialStateProperty.all<double>(6),
-            thumbVisibility: MaterialStateProperty.all<bool>(true),
-          ),
+            borderRadius: BorderRadius.circular(15)
+          )
         ),
-        menuItemStyleData: const MenuItemStyleData(
-          height: 40,
-          padding: EdgeInsets.only(left: 14, right: 14),
+        menuItemStyleData: MenuItemStyleData(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          customHeights: _getCustomItemsHeights(),
+        ),
+        // style: TextStyle(
+        //   color: Colors.white,
+        // ),
+
+        iconStyleData: const IconStyleData(
+          openMenuIcon: Icon(Icons.arrow_drop_up, color: Colors.white),
+          iconEnabledColor: Colors.white
         ),
       ),
     );
