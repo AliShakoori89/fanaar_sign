@@ -5,7 +5,7 @@ class MainPageListView extends StatelessWidget {
   MainPageListView({super.key});
 
   List boxName = ["مدیزیت گواهی امضا","امضای من"];
-  List imagePath = ["assets/icon/digital-signature.png", "assets/icon/my digital signature.png"];
+  List imagePath = ["assets/icon/digital-signature.png", "assets/icon/my-digital-signature-transformed.png"];
 
   @override
   Widget build(BuildContext context) {

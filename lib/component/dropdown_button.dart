@@ -34,6 +34,7 @@ class _DropDownButtonState extends State<DropDownButton> {
                 item,
                 style: const TextStyle(
                   fontSize: 14,
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -88,6 +89,20 @@ class _DropDownButtonState extends State<DropDownButton> {
           setState(() {
             selectedValue = value;
           });
+        },
+        selectedItemBuilder: (BuildContext context) { //<-- SEE HERE
+          return <String>['مرکز میانی فن آوران اعتماد راهبر',
+            'مرکز میانی نماد','']
+              .map((String value) {
+            return Center(
+              child: Text(
+                selectedValue == null ? 'انتخاب مرکز صدور گواهی' : selectedValue!,
+                style: TextStyle(color: Colors.white,
+                    fontSize: MediaQuery.of(context).size.width / 30,
+                    fontWeight: FontWeight.w700),
+              ),
+            );
+          }).toList();
         },
         buttonStyleData: ButtonStyleData(
           padding: EdgeInsets.symmetric(horizontal: 16),
