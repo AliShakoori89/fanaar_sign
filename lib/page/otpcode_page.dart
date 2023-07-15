@@ -17,7 +17,7 @@ class OTPCodePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      bottomSheet: MyAppButton( otpCodController: otpCodeController, pageName: "OTPCodePage", buttonType: true, formKey: formKey),
+      bottomSheet: MyAppButton(otpCodController: otpCodeController, pageName: "OTPCodePage", formKey: formKey),
       body: Form(
         key: formKey,
         child: Column(
