@@ -1,23 +1,31 @@
 import 'package:fanar_sign/const/app_color.dart';
+import 'package:fanar_sign/page/certificate_managment_page.dart';
 import 'package:fanar_sign/page/home_page.dart';
 import 'package:fanar_sign/page/otpcode_page.dart';
 import 'package:flutter/material.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
+
+import '../page/authentication_page.dart';
+import '../page/input_information_page.dart';
 
 class MyAppButton extends StatelessWidget {
   MyAppButton({super.key,
     this.nationalCodeController,
     this.mobileNumberController,
     this.otpCodController,
-    required this.formKey,
-    required this.pageName,
-    required this.buttonType});
+    this.formKey,
+    this.selectedValue,
+    required this.pageName});
 
   TextEditingController? nationalCodeController;
   TextEditingController? mobileNumberController;
   TextEditingController? otpCodController;
+  GlobalKey<FormState>? formKey;
+  String? selectedValue;
+
   final String pageName;
-  final bool buttonType;
-  final GlobalKey<FormState> formKey;
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +52,29 @@ class MyAppButton extends StatelessWidget {
           ),
         ),
         onTap: (){
-        if (formKey.currentState!.validate()) {
+        if (formKey!.currentState!.validate()) {
           if(pageName == "AuthenticationPage"){
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => OTPCodePage(mobileNumber: mobileNumberController!)),
             );
+          }else if(pageName == "IssuedNewCertificatePage"){
+            if(selectedValue != null){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AuthenticationPage()),
+              );
+            }else{
+              showTopSnackBar(
+                snackBarPosition: SnackBarPosition.top,
+                Overlay.of(context),
+                CustomSnackBar.success(
+                  backgroundColor: Colors.black26,
+                  message:
+                  ".مرکز میانی مورد نظر را انتخاب کنید",
+                ),
+              );
+            }
           }else{
             Navigator.push(
               context,
