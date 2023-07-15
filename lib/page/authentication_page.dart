@@ -32,7 +32,6 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
           nationalCodeController: nationalCodeController,
           mobileNumberController: mobileNumberController,
           pageName: "AuthenticationPage",
-          buttonType: true,
           formKey: formKey),
       body: Form(
         key: formKey,
