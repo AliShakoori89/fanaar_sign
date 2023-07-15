@@ -1,6 +1,7 @@
 import 'package:fanar_sign/component/main_page_card.dart';
 import 'package:fanar_sign/const/app_color.dart';
 import 'package:fanar_sign/page/issued_new_certificate_page.dart';
+import 'package:fanar_sign/page/no_data_page.dart';
 import 'package:flutter/material.dart';
 
 import '../component/main_page_header.dart';
@@ -34,7 +35,9 @@ class CertificateManagementPage extends StatelessWidget {
       body: Column(
         children: [
           MainPageHeader(mainPage: false),
-          MainPageCard(cardList: cardList),
+          cardList.isNotEmpty
+              ? MainPageCard(cardList: cardList)
+              : NoDataPage(),
         ],
       ),
     );
