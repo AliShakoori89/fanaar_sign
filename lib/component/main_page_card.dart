@@ -1,4 +1,5 @@
 import 'package:fanar_sign/const/app_color.dart';
+import 'package:fanar_sign/page/certificate_details_page.dart';
 import 'package:flutter/material.dart';
 
 class MainPageCard extends StatelessWidget {
@@ -16,7 +17,7 @@ class MainPageCard extends StatelessWidget {
               onTap: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ),
+                  MaterialPageRoute(builder: (context) => CertificateDetails(certificateName: cardList[index],)),
                 );
               },
               child: Directionality(
