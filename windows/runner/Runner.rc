@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "fanaar_sign" "\0"
+            VALUE "FileDescription", "fanaar" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "fanaar_sign" "\0"
+            VALUE "InternalName", "fanaar" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "fanaar_sign.exe" "\0"
-            VALUE "ProductName", "fanaar_sign" "\0"
+            VALUE "OriginalFilename", "fanaar.exe" "\0"
+            VALUE "ProductName", "fanaar" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

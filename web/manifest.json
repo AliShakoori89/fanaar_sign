@@ -1,6 +1,6 @@
 {
-    "name": "fanaar_sign",
-    "short_name": "fanaar_sign",
+    "name": "fanaar",
+    "short_name": "fanaar",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

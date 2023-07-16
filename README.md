@@ -1,4 +1,4 @@
-# fanaar_sign
+# fanaar
 
 A new Flutter project.
 
