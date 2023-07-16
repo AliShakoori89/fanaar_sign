@@ -56,7 +56,7 @@ class MyAppButton extends StatelessWidget {
         ),
         onTap: (){
         if (formKey!.currentState!.validate()) {
-          if(pageName == "AuthenticationPage"){
+          if(pageName == "OTPCodePage"){
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => OTPCodePage(mobileNumber: mobileNumberController!)),
@@ -92,7 +92,7 @@ class MyAppButton extends StatelessWidget {
               ),
             );
 
-          }else{
+          }if(pageName == "CheckOTPCodePage" ){
             if(index == 0){
               Navigator.push(
                 context,
@@ -104,7 +104,6 @@ class MyAppButton extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => MyCertificatePage()),
               );
             }
-
           }
         }
         },
