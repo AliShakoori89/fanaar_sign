@@ -1,3 +1,6 @@
+import 'package:fanar_sign/page/certificate_managment_page.dart';
+import 'package:fanar_sign/page/my_certificate_page.dart';
+import 'package:fanar_sign/page/otpcode_page.dart';
 import 'package:flutter/material.dart';
 
 import '../const/app_color.dart';
@@ -26,13 +29,13 @@ class MYAppFloatingActionButton extends StatelessWidget {
             }else if(buttonType == "MyCertificatePage"){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ActivationCode()),
+                MaterialPageRoute(builder: (context) => ActivationQRCodePage()),
               );
             }
           },
           backgroundColor: AppColors.appbarShadowColor,
           icon: Icon(Icons.add),
-          label: Text(buttonName,
+          label: Text(buttonType == "CertificateManagementPage" ? "صدور گواهی" : "فعال سازی",
               style: TextStyle(fontWeight: FontWeight.w700)),
         ),
       ),

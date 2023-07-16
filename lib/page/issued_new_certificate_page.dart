@@ -72,7 +72,7 @@ class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: MyAppButton(pageName: "IssuedNewCertificatePage", selectedValue: selectedValue, formKey: formKey,),
+      // bottomSheet: MyAppButton(pageName: "IssuedNewCertificatePage", selectedValue: selectedValue, formKey: formKey,),
       body: Column(
         children: [
           const MainPageHeader(mainPage: false),

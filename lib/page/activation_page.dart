@@ -1,24 +1,23 @@
-import 'dart:developer';
 import 'package:barcode_scan2/gen/protos/protos.pb.dart';
 import 'package:barcode_scan2/gen/protos/protos.pbenum.dart';
 import 'package:barcode_scan2/model/android_options.dart';
 import 'package:barcode_scan2/model/scan_options.dart';
 import 'package:barcode_scan2/platform_wrapper.dart';
 import 'package:fanar_sign/component/main_page_header.dart';
-import 'package:flutter/foundation.dart';
+import 'package:fanar_sign/component/my_app_button.dart';
+import 'package:fanar_sign/page/home_page.dart';
+import 'package:fanar_sign/page/successfully_screen.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
-
 import 'package:flutter/services.dart';
 
-class ActivationCode extends StatefulWidget {
-  const ActivationCode({super.key});
+class ActivationQRCodePage extends StatefulWidget {
+  const ActivationQRCodePage({super.key});
 
   @override
-  State<ActivationCode> createState() => _ActivationCodeState();
+  State<ActivationQRCodePage> createState() => _ActivationQRCodePageState();
 }
 
-class _ActivationCodeState extends State<ActivationCode> {
+class _ActivationQRCodePageState extends State<ActivationQRCodePage> {
 
   final _flashOnController = TextEditingController(text: 'Flash on');
   final _flashOffController = TextEditingController(text: 'Flash off');
@@ -36,6 +35,8 @@ class _ActivationCodeState extends State<ActivationCode> {
   var _autoEnableFlash = false;
 
   ScanResult? scanResult;
+
+  final formKey = GlobalKey<FormState>();
 
   Future<void> _scan() async {
     try {
@@ -71,16 +72,63 @@ class _ActivationCodeState extends State<ActivationCode> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: MyAppButton(pageName: 'ActivationQRCodePage',formKey: formKey,
+      ),
       body: Column(
         children: [
           MainPageHeader(mainPage: false),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 10,),
-          Expanded(
-              flex: 2,
+            height: MediaQuery.of(context).size.height / 5,),
+          Directionality(
+            textDirection: TextDirection.rtl,
+            child: Form(
+              key: formKey,
               child: TextButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                      const Color(0xff1257A2),),
+                    elevation: MaterialStateProperty.all(5),
+                  ),
+                  onPressed: (){
+                    _scan();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return SuccessScreen();
+                        },
+                      ),
+                    );
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(builder: (context) => HomePage(),));
+                  },
+                  child: Text("اسکن QRCode",
+                  style: TextStyle(
+                    color: Colors.white
+                  ),)),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 30,),
+          Directionality(
+            textDirection: TextDirection.rtl,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width / 1.2,
+              child: TextButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                      const Color(0xff1257A2),),
+                    elevation: MaterialStateProperty.all(5),
+                  ),
                   onPressed: _scan,
-                  child: Text("QRCode Scan")))
+                  child: Text("فعال سازی دستی",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                        color: Colors.white
+                    ),)),
+            ),
+          ),
         ],
       ),
     );

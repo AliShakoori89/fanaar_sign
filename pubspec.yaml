@@ -43,6 +43,7 @@ dependencies:
   dropdown_button2: ^2.3.4
   top_snackbar_flutter: ^3.1.0
   barcode_scan2: ^4.2.4
+  flare_flutter: ^3.0.2
 
 dev_dependencies:
   flutter_test:

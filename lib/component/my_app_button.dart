@@ -1,6 +1,7 @@
 import 'package:fanar_sign/const/app_color.dart';
 import 'package:fanar_sign/page/certificate_managment_page.dart';
 import 'package:fanar_sign/page/home_page.dart';
+import 'package:fanar_sign/page/my_certificate_page.dart';
 import 'package:fanar_sign/page/otpcode_page.dart';
 import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -16,6 +17,7 @@ class MyAppButton extends StatelessWidget {
     this.otpCodController,
     this.formKey,
     this.selectedValue,
+    this.index,
     required this.pageName});
 
   TextEditingController? nationalCodeController;
@@ -23,6 +25,7 @@ class MyAppButton extends StatelessWidget {
   TextEditingController? otpCodController;
   GlobalKey<FormState>? formKey;
   String? selectedValue;
+  int? index;
 
   final String pageName;
 
@@ -75,11 +78,33 @@ class MyAppButton extends StatelessWidget {
                 ),
               );
             }
-          }else{
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HomePage()),
+          }else if(pageName == "ActivationQRCodePage"){
+            showTopSnackBar(
+              snackBarPosition: SnackBarPosition.top,
+              Overlay.of(context),
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: CustomSnackBar.success(
+                  backgroundColor: Colors.black26,
+                  message:
+                  "لطفا ORCode مربوطه را اسکن کنید.",
+                ),
+              ),
             );
+
+          }else{
+            if(index == 0){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CertificateManagementPage()),
+              );
+            }else{
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyCertificatePage()),
+              );
+            }
+
           }
         }
         },

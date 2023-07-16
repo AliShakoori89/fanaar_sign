@@ -45,7 +45,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     if(authenticated == true){
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const AuthenticationPage()),
+        MaterialPageRoute(builder: (context) => AuthenticationPage()),
       );
     }
   }

@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import '../component/main_page_header.dart';
 
 class AuthenticationPage extends StatefulWidget {
-  const AuthenticationPage({super.key});
+  AuthenticationPage({super.key, this.index});
+  int? index;
 
   @override
-  State<AuthenticationPage> createState() => _AuthenticationPageState();
+  State<AuthenticationPage> createState() => _AuthenticationPageState(index);
 }
 
 class _AuthenticationPageState extends State<AuthenticationPage> {
@@ -15,6 +16,10 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
   late TextEditingController nationalCodeController = TextEditingController();
   late TextEditingController mobileNumberController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  int? index;
+
+  _AuthenticationPageState(this.index);
+
 
   @override
   void dispose() {
@@ -31,8 +36,9 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
       bottomSheet: MyAppButton(
           nationalCodeController: nationalCodeController,
           mobileNumberController: mobileNumberController,
-          pageName: "AuthenticationPage",
-          formKey: formKey),
+          pageName: "OTPCodePage",
+          formKey: formKey,
+          index : index),
       body: Form(
         key: formKey,
         child: Column(
