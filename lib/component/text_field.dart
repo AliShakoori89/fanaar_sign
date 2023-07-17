@@ -4,12 +4,10 @@ class MyTextField extends StatelessWidget {
   MyTextField({super.key,
     required this.labelText,
     required this.hintText,
-    required this.stringType,
     this.controller});
 
   final String labelText;
   final String hintText;
-  final bool stringType;
   TextEditingController? controller;
 
   String pattern = r'(^\+?09[0-9]{9}$)';
@@ -82,6 +80,12 @@ class MyTextField extends StatelessWidget {
                   }
                 } else {
                   return "لطفا کد احراز هویت را وارد نمایید.";
+                }
+              }if(labelText == "کد کسب و کار"){
+                if(val!.isEmpty){
+                  return "لطفا کد کسب و کار خود را وارد نمایبد.";
+                }else{
+                  return null;
                 }
               }
               return null;

@@ -4,7 +4,11 @@ import 'main_page_card.dart';
 import 'main_page_image.dart';
 
 class MainPageFooter extends StatelessWidget {
-  MainPageFooter({super.key});
+  MainPageFooter({super.key, required this.nationalCode, required this.mobileNumber});
+
+  final String nationalCode;
+  final String mobileNumber;
+
 
   final List cardName = ["سامانه ثبت من","سفته الکترونیکی","سامانه املاک"];
 
@@ -19,7 +23,7 @@ class MainPageFooter extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(width: 15,),
-              MainPageListView()
+              MainPageListView(nationalCode: nationalCode, mobileNumber: mobileNumber,)
             ],
           ),
         ),

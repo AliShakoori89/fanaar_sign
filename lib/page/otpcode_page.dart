@@ -7,17 +7,21 @@ import '../component/text_field.dart';
 
 class OTPCodePage extends StatelessWidget {
 
-  OTPCodePage({super.key, required this.mobileNumber});
+  OTPCodePage({super.key, required this.mobileNumber, required this.nationalCode});
 
   TextEditingController otpCodeController = TextEditingController();
-  final TextEditingController mobileNumber;
+  final String mobileNumber;
+  final String nationalCode;
   final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      bottomSheet: MyAppButton(otpCodController: otpCodeController, pageName: "CheckOTPCodePage", formKey: formKey),
+      bottomSheet: MyAppButton(otpCodController: otpCodeController,
+          mobileNumberController: mobileNumber,
+          nationalCodeController: nationalCode,
+          pageName: "OTPCodePage", formKey: formKey),
       body: Form(
         key: formKey,
         child: Column(
@@ -35,7 +39,6 @@ class OTPCodePage extends StatelessWidget {
                   SizedBox(height: MediaQuery.of(context).size.height / 30),
                   MyTextField(
                     controller: otpCodeController,
-                    stringType: false,
                     hintText: "کد احراز هویت",
                     labelText: "کد احراز هویت",),
                   const EditMobileNumber()

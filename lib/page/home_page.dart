@@ -5,15 +5,22 @@ import 'package:flutter/material.dart';
 import '../component/main_page_footer.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  HomePage({super.key, required this.nationalCode, required this.mobileNumber});
+
+  final String nationalCode;
+  final String mobileNumber;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState(nationalCode, mobileNumber);
 }
 
 class _HomePageState extends State<HomePage> {
 
   var selectedIndex = 2;
+  final String nationalCode;
+  final String mobileNumber;
+
+  _HomePageState(this.nationalCode, this.mobileNumber);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                 child: MainPageHeader(mainPage: true)),
             Expanded(
                 flex: 12,
-                child: MainPageFooter())
+                child: MainPageFooter(nationalCode: nationalCode, mobileNumber: mobileNumber,))
           ],
         ),
       ),

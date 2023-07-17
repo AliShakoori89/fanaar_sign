@@ -34,9 +34,9 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       bottomSheet: MyAppButton(
-          nationalCodeController: nationalCodeController,
-          mobileNumberController: mobileNumberController,
-          pageName: "OTPCodePage",
+          nationalCodeController: nationalCodeController.text,
+          mobileNumberController: mobileNumberController.text,
+          pageName: "AuthenticationPage",
           formKey: formKey,
           index : index),
       body: Form(
@@ -53,13 +53,11 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                   MyTextField(
                       hintText: "کد ملی",
                       labelText: "کد ملی",
-                      stringType: false,
                       controller: nationalCodeController),
                   SizedBox(height: MediaQuery.of(context).size.height / 30),
                   MyTextField(
                       hintText: "شماره موبایل",
                       labelText: "شماره موبایل",
-                      stringType: false,
                       controller: mobileNumberController
                   ),
                 ],

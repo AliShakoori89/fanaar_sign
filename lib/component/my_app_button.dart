@@ -12,16 +12,16 @@ import '../page/input_information_page.dart';
 
 class MyAppButton extends StatelessWidget {
   MyAppButton({super.key,
-    this.nationalCodeController,
-    this.mobileNumberController,
+    required this.nationalCodeController,
+    required this.mobileNumberController,
     this.otpCodController,
     this.formKey,
     this.selectedValue,
     this.index,
     required this.pageName});
 
-  TextEditingController? nationalCodeController;
-  TextEditingController? mobileNumberController;
+  final String nationalCodeController;
+  final String mobileNumberController;
   TextEditingController? otpCodController;
   GlobalKey<FormState>? formKey;
   String? selectedValue;
@@ -59,7 +59,9 @@ class MyAppButton extends StatelessWidget {
           if(pageName == "OTPCodePage"){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => OTPCodePage(mobileNumber: mobileNumberController!)),
+              MaterialPageRoute(builder: (context) => HomePage(
+                  nationalCode: nationalCodeController,
+              mobileNumber: mobileNumberController,)),
             );
           }else if(pageName == "IssuedNewCertificatePage"){
             if(selectedValue != null){
@@ -92,18 +94,27 @@ class MyAppButton extends StatelessWidget {
               ),
             );
 
-          }if(pageName == "CheckOTPCodePage" ){
+          }else if(pageName == "CheckOTPCodePage" ){
             if(index == 0){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CertificateManagementPage()),
+                MaterialPageRoute(builder: (context) => CertificateManagementPage(mobileNumber: mobileNumberController,)),
               );
             }else{
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyCertificatePage()),
+                MaterialPageRoute(builder: (context) => MyCertificatePage(
+                  nationalCode: nationalCodeController,
+                mobileNumber: mobileNumberController,)),
               );
             }
+          }else if(pageName == "AuthenticationPage"){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => OTPCodePage(
+                  mobileNumber: mobileNumberController,
+              nationalCode: nationalCodeController,)),
+            );
           }
         }
         },
