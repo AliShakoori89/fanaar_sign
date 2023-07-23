@@ -1,8 +1,9 @@
+import 'package:fanar_sign/component/main_page_header.dart';
+import 'package:fanar_sign/page/authentication_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:local_auth_android/local_auth_android.dart';
-import 'authentication_page.dart';
 
 class AuthorizationPage extends StatefulWidget {
   const AuthorizationPage({Key? key}) : super(key: key);
@@ -13,89 +14,113 @@ class AuthorizationPage extends StatefulWidget {
 
 class _AuthorizationPageState extends State<AuthorizationPage> {
 
-  final LocalAuthentication auth = LocalAuthentication();
-  bool authenticated = false;
+  final auth = LocalAuthentication();
+  String authorized = " not authorized";
+  bool _canCheckBiometric = false;
+  late List<BiometricType> _availableBiometric;
 
-  Future<void> _authenticateWithBiometrics() async {
+
+
+  Future<void> _checkBiometric() async {
+    bool canCheckBiometric = false;
+
+    try {
+      canCheckBiometric = await auth.canCheckBiometrics;
+    } on PlatformException catch (e) {
+      print(e);
+    }
+
+    if (!mounted) return;
+
+    setState(() {
+      _canCheckBiometric = canCheckBiometric;
+    });
+  }
+
+  Future<void> _authenticate() async {
+    bool authenticated = false;
 
     try {
       authenticated = await auth.authenticate(
-        localizedReason:
-        'لطفا برای احراز هویت از اثر انگشت استفاده نمایید.',
-        authMessages: <AuthMessages>[
-          const AndroidAuthMessages(
-            signInTitle: 'احراز هویت',
-            cancelButton: 'No thanks',
-            biometricHint: "",
-          ),
-        ],
-        options: const AuthenticationOptions(
-          stickyAuth: true,
-          biometricOnly: false,
-          useErrorDialogs: true,
-        ),
+          localizedReason: "لطفا از اثر انگشت برای ورود به اپلیکیشن استفاده نمایید.",
+      authMessages: <AuthMessages>[AndroidAuthMessages(
+        biometricRequiredTitle: "نیاز به احراز هویت",
+        signInTitle: "احراز هویت",
+        biometricHint: "",
+      ),],
       );
     } on PlatformException catch (e) {
-      return;
-    }
-    if (!mounted) {
-      return;
+      print(e);
     }
 
-    if(authenticated == true){
+    setState(() {
+      authorized =
+      authenticated ? "Authorized success" : "Failed to authenticate";
+    });
+
+    if(authorized == "Authorized success"){
       Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => AuthenticationPage()),
-      );
+          context,
+          MaterialPageRoute(builder: (context) => AuthenticationPage()));
     }
   }
+
+  Future _getAvailableBiometric() async {
+    List<BiometricType> availableBiometric = [];
+
+    try {
+      availableBiometric = await auth.getAvailableBiometrics();
+      print("availableBiometric       "+availableBiometric.toString());
+      ;
+    } on PlatformException catch (e) {
+      print(e);
+    }
+
+    setState(() {
+      _availableBiometric = availableBiometric;
+    });
+  }
+
+  @override
+  void initState() {
+    _checkBiometric();
+    _getAvailableBiometric();
+    _authenticate();
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GestureDetector(
-        onTap: _authenticateWithBiometrics,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TweenAnimationBuilder(
-              duration: const Duration(milliseconds: 3000),
-              curve: Curves.bounceOut,
-              tween: Tween(begin: 1.0, end: 0.0),
-              builder: (context, value, child){
-                // horizontal disposition of the widget.
-                return Transform.translate(
-                  offset:  Offset(
-                      value * 500,
-                      0.0
-                  ),
-                  child: child,
-                );
-              },
-              child: Image.asset("assets/logo/icon.png"),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height / 5,),
-            Directionality(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          MainPageHeader(mainPage: false,),
+          Spacer(),
+          Directionality(
               textDirection: TextDirection.rtl,
-              child: Text("لطفا برای وارد شدن به برنامه بر روی اثر انگشت بزنید.",
-                style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.width / 25,
-                  fontWeight: FontWeight.w700
-                ),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 20,
-            ),
-            Center(
-              child: Icon(
-                  Icons.fingerprint,
-                  size: MediaQuery.of(context).size.width / 6,
-                  color: Colors.grey,),
-            ),
-          ],
-        ),
-      ),
+              child: Text("لطفا برای اخراز هویت آیکون زیر زا بفشارید.",
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width / 25,
+                fontWeight: FontWeight.w700
+              ),)),
+          SizedBox(height: MediaQuery.of(context).size.height / 20,),
+          GestureDetector(
+            onTap: (){
+              _checkBiometric();
+              _getAvailableBiometric();
+
+              _authenticate();
+            },
+            child: Icon(Icons.fingerprint,
+              size: MediaQuery.of(context).size.width / 6,),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 3,
+          )
+        ],
+      )
     );
   }
 }
