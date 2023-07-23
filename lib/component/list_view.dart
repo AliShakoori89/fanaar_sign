@@ -4,12 +4,6 @@ import 'package:fanar_sign/page/my_certificate_page.dart';
 import 'package:flutter/material.dart';
 
 class MainPageListView extends StatelessWidget {
-  MainPageListView({super.key,
-    required this.nationalCode,
-  required this.mobileNumber});
-
-  final String nationalCode;
-  final String mobileNumber;
 
   List boxName = ["مدیزیت گواهی امضا","امضای من"];
   List imagePath = ["assets/icon/digital-signature.png", "assets/icon/my-digital-signature-transformed.png"];
@@ -25,17 +19,15 @@ class MainPageListView extends StatelessWidget {
           return GestureDetector(
             onTap: (){
               if(index == 0){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CertificateManagementPage(mobileNumber: mobileNumber)),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => CertificateManagementPage()),
+                // );
               }else{
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyCertificatePage(
-                    nationalCode: nationalCode,
-                  mobileNumber: mobileNumber,)),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => MyCertificatePage()),
+                // );
               }
             },
             child: Container(

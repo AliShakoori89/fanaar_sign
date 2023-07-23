@@ -42,6 +42,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   dropdown_button2: ^2.3.4
   top_snackbar_flutter: ^3.1.0
+  device_preview: ^1.1.0
 #  barcode_scan2: ^4.2.4
   flare_flutter: ^3.0.2
 

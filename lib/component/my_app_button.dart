@@ -59,9 +59,7 @@ class MyAppButton extends StatelessWidget {
           if(pageName == "OTPCodePage"){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomePage(
-                  nationalCode: nationalCodeController,
-              mobileNumber: mobileNumberController,)),
+              MaterialPageRoute(builder: (context) => HomePage()),
             );
           }else if(pageName == "IssuedNewCertificatePage"){
             if(selectedValue != null){

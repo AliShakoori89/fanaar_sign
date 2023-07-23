@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:fanar_sign/page/authentication_page.dart';
 import 'package:fanar_sign/page/authorization_page.dart';
 import 'package:fanar_sign/page/certificate_managment_page.dart';
@@ -8,9 +9,20 @@ import 'package:flutter/services.dart';
 
 void main() {
   runApp(
-      const MyApp()
+    DevicePreview(
+      enabled: true,
+      tools: [
+        ...DevicePreview.defaultTools,
+      ],
+      builder: (context) => const MyApp(),
+    ),
   );
 }
+// void main() {
+//   runApp(
+//       const MyApp()
+//   );
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -27,7 +39,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Fanaar Sign",
       debugShowCheckedModeBanner: false,
-      home: AuthorizationPage(),
+      home: HomePage(),
     );
   }
 }
