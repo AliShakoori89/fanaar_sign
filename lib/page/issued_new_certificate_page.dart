@@ -1,8 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-
-import '../component/main_page_header.dart';
-import '../component/my_app_button.dart';
 import '../const/app_color.dart';
 
 class IssuedNewCertificatePage extends StatefulWidget {
@@ -72,10 +69,23 @@ class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("",
+            style: TextStyle(
+                color: Colors.white
+            )),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: <Color>[Colors.black, Colors.blue]),
+          ),
+        ),
+      ),
       // bottomSheet: MyAppButton(pageName: "IssuedNewCertificatePage", selectedValue: selectedValue, formKey: formKey,),
       body: Column(
         children: [
-          const MainPageHeader(mainPage: false),
           SizedBox(height: MediaQuery.of(context).size.height / 20,),
           Form(
             key: formKey,

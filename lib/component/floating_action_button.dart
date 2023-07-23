@@ -10,14 +10,10 @@ import '../page/issued_new_certificate_page.dart';
 class MYAppFloatingActionButton extends StatelessWidget {
   MYAppFloatingActionButton({super.key,
     required this.buttonName,
-    required this.buttonType,
-    required this.nationalCode,
-  required this.mobileNumber});
+    required this.buttonType});
 
   final String buttonName;
   final String buttonType;
-  final String nationalCode;
-  final String mobileNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +31,7 @@ class MYAppFloatingActionButton extends StatelessWidget {
             }else if(buttonType == "MyCertificatePage"){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ActivationQRCodePage(
-                    nationalCode: nationalCode,
-                mobileNumber: mobileNumber,)),
+                MaterialPageRoute(builder: (context) => ActivationQRCodePage()),
               );
             }
           },

@@ -12,16 +12,16 @@ import '../page/input_information_page.dart';
 
 class MyAppButton extends StatelessWidget {
   MyAppButton({super.key,
-    required this.nationalCodeController,
-    required this.mobileNumberController,
+    this.nationalCodeController,
+    this.mobileNumberController,
     this.otpCodController,
     this.formKey,
     this.selectedValue,
     this.index,
     required this.pageName});
 
-  final String nationalCodeController;
-  final String mobileNumberController;
+  String? nationalCodeController;
+  String? mobileNumberController;
   TextEditingController? otpCodController;
   GlobalKey<FormState>? formKey;
   String? selectedValue;
@@ -96,23 +96,21 @@ class MyAppButton extends StatelessWidget {
             if(index == 0){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CertificateManagementPage(mobileNumber: mobileNumberController,)),
+                MaterialPageRoute(builder: (context) => CertificateManagementPage()),
               );
             }else{
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyCertificatePage(
-                  nationalCode: nationalCodeController,
-                mobileNumber: mobileNumberController,)),
+                MaterialPageRoute(builder: (context) => MyCertificatePage()),
               );
             }
           }else if(pageName == "AuthenticationPage"){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => OTPCodePage(
-                  mobileNumber: mobileNumberController,
-              nationalCode: nationalCodeController,)),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => OTPCodePage(
+            //       mobileNumber: mobileNumberController,
+            //   nationalCode: nationalCodeController,)),
+            // );
           }
         }
         },

@@ -4,11 +4,6 @@ import 'package:fanar_sign/component/main_page_header.dart';
 import 'package:flutter/material.dart';
 
 class MyCertificatePage extends StatelessWidget {
-  MyCertificatePage({super.key,
-    required this.nationalCode, required this.mobileNumber});
-
-  final String nationalCode;
-  final String mobileNumber;
 
   List cardName = ["سرویس خدمات 1","سرویس خدمات 2","سرویس خدمات 3","سرویس خدمات 4"];
 
@@ -17,9 +12,7 @@ class MyCertificatePage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: MYAppFloatingActionButton(
           buttonName: "فعالسازی",
-          buttonType:"MyCertificatePage",
-          mobileNumber: mobileNumber,
-          nationalCode: nationalCode),
+          buttonType:"MyCertificatePage"),
       body: Column(
         children: [
           MainPageHeader(mainPage: false),

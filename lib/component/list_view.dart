@@ -19,15 +19,15 @@ class MainPageListView extends StatelessWidget {
           return GestureDetector(
             onTap: (){
               if(index == 0){
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => CertificateManagementPage()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CertificateManagementPage()),
+                );
               }else{
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => MyCertificatePage()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyCertificatePage()),
+                );
               }
             },
             child: Container(

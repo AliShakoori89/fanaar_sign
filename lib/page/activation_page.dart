@@ -1,35 +1,20 @@
-// import 'package:barcode_scan2/gen/protos/protos.pb.dart';
-// import 'package:barcode_scan2/gen/protos/protos.pbenum.dart';
-// import 'package:barcode_scan2/model/android_options.dart';
-// import 'package:barcode_scan2/model/scan_options.dart';
-// import 'package:barcode_scan2/platform_wrapper.dart';
 import 'package:fanar_sign/component/main_page_header.dart';
 import 'package:fanar_sign/component/my_app_button.dart';
 import 'package:fanar_sign/component/text_field.dart';
-import 'package:fanar_sign/page/home_page.dart';
-import 'package:fanar_sign/page/successfully_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import '../const/app_color.dart';
 
 class ActivationQRCodePage extends StatefulWidget {
-  ActivationQRCodePage({super.key, required this.nationalCode, required this.mobileNumber});
-
-  final String nationalCode;
-  final String mobileNumber;
 
   @override
-  State<ActivationQRCodePage> createState() => _ActivationQRCodePageState(nationalCode, mobileNumber);
+  State<ActivationQRCodePage> createState() => _ActivationQRCodePageState();
 }
 
 class _ActivationQRCodePageState extends State<ActivationQRCodePage> {
 
-  final String nationalCode;
-  final String mobileNumber;
   late TextEditingController jobCodeController = TextEditingController();
 
-  _ActivationQRCodePageState(this.nationalCode, this.mobileNumber);
 
   @override
   void dispose() {
@@ -61,10 +46,7 @@ class _ActivationQRCodePageState extends State<ActivationQRCodePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       bottomSheet: MyAppButton(
-        pageName: 'ActivationQRCodePage', formKey: formKey,
-        mobileNumberController: mobileNumber,
-        nationalCodeController: nationalCode,
-      ),
+        pageName: 'ActivationQRCodePage', formKey: formKey),
       body: Form(
         key: formKey,
         child: Column(
@@ -146,7 +128,7 @@ class _ActivationQRCodePageState extends State<ActivationQRCodePage> {
                             fontSize: MediaQuery.of(context).size.width / 25,
                             fontWeight: FontWeight.w700
                         ),),
-                      Text(nationalCode, style: TextStyle(
+                      Text("1231231231", style: TextStyle(
                           fontSize: MediaQuery.of(context).size.width / 25, fontWeight: FontWeight.w700)),
                     ],
                   ),
