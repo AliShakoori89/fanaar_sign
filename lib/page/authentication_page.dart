@@ -46,6 +46,9 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
       bottomSheet: MyAppButton(
           nationalCodeController: nationalCodeController.text,
           mobileNumberController: mobileNumberController.text,
+          birthdayController: birthdayController.text,
+          nationalCodeSerialController: nationalCodeSerialController.text,
+          postCodeController: postCodeController.text,
           pageName: "AuthenticationPage",
           formKey: formKey,
           index : index),

@@ -18,7 +18,7 @@ class OTPCodePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      bottomSheet: MyAppButton(otpCodController: otpCodeController,
+      bottomSheet: MyAppButton(
           mobileNumberController: mobileNumber,
           nationalCodeController: nationalCode,
           pageName: "OTPCodePage", formKey: formKey),
@@ -35,8 +35,8 @@ class OTPCodePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(height: MediaQuery.of(context).size.height / 4),
-                  OTPCodeText(otpCode: mobileNumber),
-                  SizedBox(height: MediaQuery.of(context).size.height / 40),
+                  // OTPCodeText(otpCode: mobileNumber),
+                  // SizedBox(height: MediaQuery.of(context).size.height / 40),
                   MyTextField(
                     controller: otpCodeController,
                     hintText: "کد احراز هویت",

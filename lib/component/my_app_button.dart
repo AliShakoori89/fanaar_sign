@@ -14,7 +14,9 @@ class MyAppButton extends StatelessWidget {
   MyAppButton({super.key,
     this.nationalCodeController,
     this.mobileNumberController,
-    this.otpCodController,
+    this.birthdayController,
+    this.nationalCodeSerialController,
+    this.postCodeController,
     this.formKey,
     this.selectedValue,
     this.index,
@@ -22,7 +24,9 @@ class MyAppButton extends StatelessWidget {
 
   String? nationalCodeController;
   String? mobileNumberController;
-  TextEditingController? otpCodController;
+  String? birthdayController;
+  String? nationalCodeSerialController;
+  String? postCodeController;
   GlobalKey<FormState>? formKey;
   String? selectedValue;
   int? index;
@@ -56,12 +60,13 @@ class MyAppButton extends StatelessWidget {
         ),
         onTap: (){
         if (formKey!.currentState!.validate()) {
-          if(pageName == "OTPCodePage"){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
-          }else if(pageName == "IssuedNewCertificatePage"){
+          // if(pageName == "OTPCodePage"){
+          //   Navigator.push(
+          //     context,
+          //     MaterialPageRoute(builder: (context) => HomePage()),
+          //   );
+          // }else
+            if(pageName == "IssuedNewCertificatePage"){
             if(selectedValue != null){
               Navigator.push(
                 context,
@@ -92,19 +97,22 @@ class MyAppButton extends StatelessWidget {
               ),
             );
 
-          }else if(pageName == "CheckOTPCodePage" ){
-            if(index == 0){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CertificateManagementPage()),
-              );
-            }else{
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MyCertificatePage()),
-              );
-            }
-          }else if(pageName == "AuthenticationPage"){
+          }
+          // else if(pageName == "CheckOTPCodePage" ){
+          //   if(index == 0){
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(builder: (context) => CertificateManagementPage()),
+          //     );
+          //   }else{
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(builder: (context) => MyCertificatePage()),
+          //     );
+          //   }
+          // }
+          // else
+          if(pageName == "AuthenticationPage"){
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => OTPCodePage(
