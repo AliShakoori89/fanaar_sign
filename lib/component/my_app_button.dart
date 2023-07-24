@@ -105,12 +105,12 @@ class MyAppButton extends StatelessWidget {
               );
             }
           }else if(pageName == "AuthenticationPage"){
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => OTPCodePage(
-            //       mobileNumber: mobileNumberController,
-            //   nationalCode: nationalCodeController,)),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => OTPCodePage(
+                  mobileNumber: mobileNumberController!,
+              nationalCode: nationalCodeController!,)),
+            );
           }
         }
         },

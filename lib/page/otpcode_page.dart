@@ -36,7 +36,7 @@ class OTPCodePage extends StatelessWidget {
                 children: [
                   SizedBox(height: MediaQuery.of(context).size.height / 4),
                   OTPCodeText(otpCode: mobileNumber),
-                  SizedBox(height: MediaQuery.of(context).size.height / 30),
+                  SizedBox(height: MediaQuery.of(context).size.height / 40),
                   MyTextField(
                     controller: otpCodeController,
                     hintText: "کد احراز هویت",

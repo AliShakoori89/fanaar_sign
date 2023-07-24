@@ -26,10 +26,10 @@ class MyTextField extends StatelessWidget {
         child: SizedBox(
           height: MediaQuery.of(context).size.height / 11,
           child: TextFormField(
-            maxLength: labelText == "کد ملی" ? 10 : labelText == "کد احراز هویت" ? 4 : 11,
+            maxLength: labelText == "کد ملی" ? 10 : labelText == "کد احراز هویت" ? 4 : labelText == "شماره موبایل" ? 11 : null,
             textAlignVertical: TextAlignVertical.center,
             controller: controller,
-            keyboardType: TextInputType.number,
+            keyboardType: labelText == "سریال کارت ملی" ? null : TextInputType.number,
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: MediaQuery.of(context).size.width / 20
@@ -62,14 +62,15 @@ class MyTextField extends StatelessWidget {
                   return "لطفا کد ملی خود را وارد نمایید.";
                 }
               } if(labelText == "شماره موبایل"){
-                if (val!.isNotEmpty) {
-                  if(val.length == 11 && regExp.hasMatch(val)){
-                    return null;
-                  }else{
-                    return "شماره موبایل وارد شده صحیح نمی باشد.";
-                  }
-                } else {
+                if (val!.isEmpty) {
                   return "لطفا شماره موبایل خود را وارد نمایید.";
+                } else if(val.length != 11) {
+                  return "***********شماره موبایل وارد شده صحیح نمی باشد.";
+                    // "لطفا شماره موبایل خود را وارد نمایید.";
+                } else if(!regExp.hasMatch(val)){
+                  return "شماره موبایل وارد شده صحیح نمی باشد.";
+                }else{
+                  return null;
                 }
               } if(labelText == "کد احراز هویت"){
                 if (val!.isNotEmpty) {

@@ -1,11 +1,7 @@
-import 'package:fanar_sign/page/certificate_managment_page.dart';
-import 'package:fanar_sign/page/my_certificate_page.dart';
-import 'package:fanar_sign/page/otpcode_page.dart';
 import 'package:flutter/material.dart';
-
 import '../const/app_color.dart';
 import '../page/activation_page.dart';
-import '../page/issued_new_certificate_page.dart';
+import '../page/authentication_page.dart';
 
 class MYAppFloatingActionButton extends StatelessWidget {
   MYAppFloatingActionButton({super.key,
@@ -18,7 +14,7 @@ class MYAppFloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width / 3,
+      width: MediaQuery.of(context).size.width / 2,
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: FloatingActionButton.extended(
@@ -26,7 +22,7 @@ class MYAppFloatingActionButton extends StatelessWidget {
             if(buttonType == "CertificateManagementPage"){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => IssuedNewCertificatePage()),
+                MaterialPageRoute(builder: (context) => AuthenticationPage()),
               );
             }else if(buttonType == "MyCertificatePage"){
               Navigator.push(
@@ -37,7 +33,7 @@ class MYAppFloatingActionButton extends StatelessWidget {
           },
           backgroundColor: AppColors.appbarShadowColor,
           icon: Icon(Icons.add),
-          label: Text(buttonType == "CertificateManagementPage" ? "صدور گواهی" : "فعال سازی",
+          label: Text(buttonType == "CertificateManagementPage" ? "صدور گواهی جدید" : "فعال سازی",
               style: TextStyle(fontWeight: FontWeight.w700)),
         ),
       ),
