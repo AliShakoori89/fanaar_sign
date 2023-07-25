@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:fanar_sign/page/authentication_pages/input_documents_images.dart';
 import 'package:fanar_sign/page/authorization_page.dart';
 import 'package:fanar_sign/page/home_page.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Fanaar Sign",
       debugShowCheckedModeBanner: false,
-      home: AuthorizationPage(),
+      home: InputDocumentsImages(),
     );
   }
 }
