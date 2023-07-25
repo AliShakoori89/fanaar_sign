@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:fanar_sign/component/main_page_header.dart';
 import 'package:flutter/material.dart';
 import '../component/main_page_footer.dart';

@@ -26,7 +26,11 @@ class MyTextField extends StatelessWidget {
         child: SizedBox(
             height: MediaQuery.of(context).size.height / 11,
             child: TextFormField(
-              maxLength: labelText == "کد ملی" ? 10 : labelText == "کد احراز هویت" ? 4 : labelText == "شماره موبایل" ? 11 : null,
+              maxLength: labelText == "کد ملی"
+                  ? 10 : labelText == "کد احراز هویت"
+                  ? 4 : labelText == "شماره موبایل"
+                  ? 11 : labelText == "کد پستی"
+                  ? 10 : null,
               textAlignVertical: TextAlignVertical.center,
               controller: controller,
               keyboardType: labelText == "سریال کارت ملی" ? null : TextInputType.number,
@@ -44,13 +48,14 @@ class MyTextField extends StatelessWidget {
                         counter++;
                       }
                       div = int.parse("${sum % 11}");
+                      counter = 0;
                       if(div < 2){
                         if(val[9] == div.toString()){
                           return null;
                         }else{
                           return "کد ملی وارد شده صحیح نمی باشد.";
                         }
-                      }else if(val[9] == (11-div).toString()){
+                      }else if(val[9] == 11-div){
                         return null;
                       }else{
                         return "کد ملی وارد شده صحیح نمی باشد.";
@@ -65,7 +70,7 @@ class MyTextField extends StatelessWidget {
                   if (val!.isEmpty) {
                     return "لطفا شماره موبایل خود را وارد نمایید.";
                   } else if(val.length != 11) {
-                    return "***********شماره موبایل وارد شده صحیح نمی باشد.";
+                    return "شماره موبایل وارد شده صحیح نمی باشد.";
                     // "لطفا شماره موبایل خود را وارد نمایید.";
                   } else if(!regExp.hasMatch(val)){
                     return "شماره موبایل وارد شده صحیح نمی باشد.";
@@ -74,19 +79,13 @@ class MyTextField extends StatelessWidget {
                   }
                 } if(labelText == "سریال کارت ملی"){
                   if(val!.isEmpty){
-                    return "لطفا سریال کارت ملی خود را وارد نمایبد.";
-                  }else{
-                    return null;
-                  }
-                }if(labelText == "تاریخ تولد"){
-                  if(val!.isEmpty){
-                    return "لطفا تاریخ تولد خود را وارد نمایبد.";
+                    return "لطفا سریال کارت ملی خود را وارد نمایید.";
                   }else{
                     return null;
                   }
                 }if(labelText == "کد پستی"){
                   if(val!.isEmpty){
-                    return "لطفا کد پستی خود را وارد نمایبد.";
+                    return "لطفا کد پستی خود را وارد نمایید.";
                   }else{
                     return null;
                   }
@@ -105,7 +104,6 @@ class MyTextField extends StatelessWidget {
                 labelText: labelText,
               ),
               autocorrect: false,
-
             )
         )
     );

@@ -1,14 +1,9 @@
 import 'package:fanar_sign/const/app_color.dart';
-import 'package:fanar_sign/page/certificate_managment_page.dart';
-import 'package:fanar_sign/page/home_page.dart';
-import 'package:fanar_sign/page/my_certificate_page.dart';
-import 'package:fanar_sign/page/otpcode_page.dart';
 import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
-
-import '../page/authentication_page.dart';
-import '../page/input_information_page.dart';
+import '../page/authentication_pages/input_documents_images.dart';
+import '../page/authentication_pages/input_information_page.dart';
 
 class MyAppButton extends StatelessWidget {
   MyAppButton({super.key,
@@ -70,7 +65,7 @@ class MyAppButton extends StatelessWidget {
             if(selectedValue != null){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AuthenticationPage()),
+                MaterialPageRoute(builder: (context) => InputInformationPage()),
               );
             }else{
               showTopSnackBar(
@@ -112,12 +107,10 @@ class MyAppButton extends StatelessWidget {
           //   }
           // }
           // else
-          if(pageName == "AuthenticationPage"){
+          if(pageName == "InputInformationPage"){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => OTPCodePage(
-                  mobileNumber: mobileNumberController!,
-              nationalCode: nationalCodeController!,)),
+              MaterialPageRoute(builder: (context) => InputDocumentsImages()),
             );
           }
         }

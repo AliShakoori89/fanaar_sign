@@ -1,5 +1,5 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:fanar_sign/page/authentication_page.dart';
+import 'package:fanar_sign/page/authentication_pages/input_information_page.dart';
 import 'package:fanar_sign/page/authorization_page.dart';
 import 'package:fanar_sign/page/certificate_managment_page.dart';
 import 'package:fanar_sign/page/home_page.dart';

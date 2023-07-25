@@ -1,5 +1,5 @@
 import 'package:fanar_sign/component/main_page_header.dart';
-import 'package:fanar_sign/page/authentication_page.dart';
+import 'package:fanar_sign/page/authentication_pages/input_information_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
@@ -61,7 +61,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     if(authorized == "Authorized success"){
       Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => AuthenticationPage()));
+          MaterialPageRoute(builder: (context) => InputInformationPage()));
     }
   }
 

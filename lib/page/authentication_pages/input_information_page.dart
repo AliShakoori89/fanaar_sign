@@ -5,17 +5,17 @@ import 'package:fanar_sign/component/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
-import '../component/main_page_header.dart';
+import '../../component/main_page_header.dart';
 
-class AuthenticationPage extends StatefulWidget {
-  AuthenticationPage({super.key, this.index});
+class InputInformationPage extends StatefulWidget {
+  InputInformationPage({super.key, this.index});
   int? index;
 
   @override
-  State<AuthenticationPage> createState() => _AuthenticationPageState(index);
+  State<InputInformationPage> createState() => _InputInformationPageState(index);
 }
 
-class _AuthenticationPageState extends State<AuthenticationPage> {
+class _InputInformationPageState extends State<InputInformationPage> {
 
   late TextEditingController nationalCodeController = TextEditingController();
   late TextEditingController mobileNumberController = TextEditingController();
@@ -25,7 +25,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
   final formKey = GlobalKey<FormState>();
   int? index;
 
-  _AuthenticationPageState(this.index);
+  _InputInformationPageState(this.index);
 
   @override
   void dispose() {
@@ -78,7 +78,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                       labelText: "تاریخ تولد",
                       controller: birthdayController
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height / 50),
+                  SizedBox(height: MediaQuery.of(context).size.height / 25),
                   MyTextField(
                       hintText: "سریال کارت ملی",
                       labelText: "سریال کارت ملی",

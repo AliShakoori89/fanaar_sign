@@ -1,4 +1,4 @@
-import 'package:fanar_sign/page/authentication_page.dart';
+import 'package:fanar_sign/page/authentication_pages/input_information_page.dart';
 import 'package:fanar_sign/page/certificate_managment_page.dart';
 import 'package:fanar_sign/page/my_certificate_page.dart';
 import 'package:flutter/material.dart';

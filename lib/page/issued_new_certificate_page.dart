@@ -1,6 +1,5 @@
 import 'package:fanar_sign/component/custom_drop_down_button.dart';
 import 'package:flutter/material.dart';
-
 import '../component/base_appbar.dart';
 
 class IssuedNewCertificatePage extends StatefulWidget {

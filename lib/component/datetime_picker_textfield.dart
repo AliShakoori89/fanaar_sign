@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
-import 'package:persian_number_utility/persian_number_utility.dart';
 
 class DateTimePickerTextField extends StatefulWidget {
   DateTimePickerTextField({super.key, required this.labelText,
@@ -40,7 +39,7 @@ class _DateTimePickerTextFieldState extends State<DateTimePickerTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return                   Directionality(
+    return Directionality(
       textDirection: TextDirection.rtl,
       child: TextFormField(
         style: TextStyle(fontSize: 20),
@@ -59,6 +58,13 @@ class _DateTimePickerTextFieldState extends State<DateTimePickerTextField> {
           ),
           labelText: "تاریخ تولد",
         ),
+        validator: (val){
+          if(val!.isEmpty){
+            return "لطفا تاریخ تولد خود را وارد نمایید.";
+          }else{
+            return null;
+          }
+        },
         onTap: () async{
           picked = (await showPersianDatePicker(
             context: context,
@@ -95,7 +101,7 @@ class _DateTimePickerTextFieldState extends State<DateTimePickerTextField> {
             }
           }
 
-          controller!.text = date.toPersianDigit();
+          controller!.text = date;
         },
       ),
     );
