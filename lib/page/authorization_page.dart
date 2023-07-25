@@ -16,16 +16,10 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
 
   final auth = LocalAuthentication();
   String authorized = " not authorized";
-  bool _canCheckBiometric = false;
-  late List<BiometricType> _availableBiometric;
-
-
 
   Future<void> _checkBiometric() async {
-    bool canCheckBiometric = false;
 
     try {
-      canCheckBiometric = await auth.canCheckBiometrics;
     } on PlatformException catch (e) {
       print(e);
     }
@@ -33,7 +27,6 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     if (!mounted) return;
 
     setState(() {
-      _canCheckBiometric = canCheckBiometric;
     });
   }
 
@@ -77,7 +70,6 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
     }
 
     setState(() {
-      _availableBiometric = availableBiometric;
     });
   }
 

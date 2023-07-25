@@ -3,9 +3,6 @@ import 'package:fanar_sign/component/datetime_picker_textfield.dart';
 import 'package:fanar_sign/component/my_app_button.dart';
 import 'package:fanar_sign/component/text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:persian_datetime_picker/persian_datetime_picker.dart';
-import 'package:persian_number_utility/persian_number_utility.dart';
-import '../../component/main_page_header.dart';
 
 class InputInformationPage extends StatefulWidget {
   InputInformationPage({super.key, this.index});
