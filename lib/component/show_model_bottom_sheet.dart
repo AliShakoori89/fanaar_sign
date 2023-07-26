@@ -3,15 +3,21 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class ShowModelBottomSheet extends StatefulWidget {
-  ShowModelBottomSheet({super.key});
+  ShowModelBottomSheet({super.key, this.image});
+
+  File? image;
 
   @override
-  State<ShowModelBottomSheet> createState() => _ShowModelBottomSheetState();
+  State<ShowModelBottomSheet> createState() => _ShowModelBottomSheetState(image);
 }
 
 class _ShowModelBottomSheetState extends State<ShowModelBottomSheet> {
   File? image;
+
+  _ShowModelBottomSheetState(this.image);
 
   Future pickImage() async {
     try {
@@ -21,7 +27,12 @@ class _ShowModelBottomSheetState extends State<ShowModelBottomSheet> {
 
       final imageTemp = File(image.path);
 
-      setState(() => this.image = imageTemp);
+      setState(() async{
+        print(image);
+        this.image = imageTemp;
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('nationalCodeImage', image.path);
+      });
     } on PlatformException catch(e) {
       print('Failed to pick image: $e');
     }
@@ -35,7 +46,12 @@ class _ShowModelBottomSheetState extends State<ShowModelBottomSheet> {
 
       final imageTemp = File(image.path);
 
-      setState(() => this.image = imageTemp);
+      setState(() async{
+        print(image);
+        this.image = imageTemp;
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('behindNationalCodeImage', image.path);
+      });
     } on PlatformException catch(e) {
       print('Failed to pick image: $e');
     }

@@ -4,6 +4,7 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../page/authentication_pages/input_documents_images.dart';
 import '../page/authentication_pages/input_information_page.dart';
+import 'dart:io';
 
 class MyAppButton extends StatelessWidget {
   MyAppButton({super.key,
@@ -15,8 +16,10 @@ class MyAppButton extends StatelessWidget {
     this.formKey,
     this.selectedValue,
     this.index,
+    this.image,
     required this.pageName});
 
+  File? image;
   String? nationalCodeController;
   String? mobileNumberController;
   String? birthdayController;
@@ -110,7 +113,7 @@ class MyAppButton extends StatelessWidget {
           if(pageName == "InputInformationPage"){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => InputDocumentsImages()),
+              MaterialPageRoute(builder: (context) => InputDocumentsImages(image: image,)),
             );
           }
         }
