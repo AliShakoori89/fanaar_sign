@@ -46,7 +46,7 @@ class _InputInformationPageState extends State<InputInformationPage> {
           birthdayController: birthdayController.text,
           nationalCodeSerialController: nationalCodeSerialController.text,
           postCodeController: postCodeController.text,
-          pageName: "AuthenticationPage",
+          pageName: "InputInformationPage",
           formKey: formKey,
           index : index),
       body: Form(

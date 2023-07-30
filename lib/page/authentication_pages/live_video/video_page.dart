@@ -31,17 +31,35 @@ class _VideoPageState extends State<VideoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Preview'),
-        elevation: 0,
-        backgroundColor: Colors.black26,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: <Color>[Colors.black, Colors.blue]),
+          ),
+        ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.check),
-            onPressed: () {
-              print('do something with the file');
-            },
+          Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: EdgeInsets.only(
+                  right: 10
+              ),
+              child: Text('پیش نمایش',
+                  style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width / 20,
+                      color: Colors.white
+                  )),
+            ),
           )
         ],
+        leading: IconButton(
+          icon: const Icon(Icons.check),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       extendBodyBehindAppBar: true,
       body: FutureBuilder(
@@ -50,7 +68,21 @@ class _VideoPageState extends State<VideoPage> {
           if (state.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else {
-            return VideoPlayer(_videoPlayerController);
+            return Center(
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(100)),
+                child: Container(
+                  width: MediaQuery.of(context).size.width / 2.1,
+                  height: MediaQuery.of(context).size.height / 2.5,
+                  decoration: BoxDecoration(
+                    // border: Border.all(width: 2, color: Colors.black),
+                      borderRadius: BorderRadius.circular(100)
+                  ),
+                  // margin: EdgeInsets.only(bottom: 30),
+                  child: VideoPlayer(_videoPlayerController),
+                ),
+              ),
+            );
           }
         },
       ),

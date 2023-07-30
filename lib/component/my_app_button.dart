@@ -113,7 +113,7 @@ class MyAppButton extends StatelessWidget {
           if(pageName == "InputInformationPage"){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => InputDocumentsImages(image: image,)),
+              MaterialPageRoute(builder: (context) => InputDocumentsImages()),
             );
           }
         }

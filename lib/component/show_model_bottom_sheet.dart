@@ -6,18 +6,14 @@ import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ShowModelBottomSheet extends StatefulWidget {
-  ShowModelBottomSheet({super.key, this.image});
-
-  File? image;
 
   @override
-  State<ShowModelBottomSheet> createState() => _ShowModelBottomSheetState(image);
+  State<ShowModelBottomSheet> createState() => _ShowModelBottomSheetState();
 }
 
 class _ShowModelBottomSheetState extends State<ShowModelBottomSheet> {
-  File? image;
 
-  _ShowModelBottomSheetState(this.image);
+  File? image;
 
   Future pickImage() async {
     try {
@@ -28,33 +24,21 @@ class _ShowModelBottomSheetState extends State<ShowModelBottomSheet> {
       final imageTemp = File(image.path);
 
       setState(() async{
-        print(image);
         this.image = imageTemp;
         final SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString('nationalCodeImage', image.path);
+        await prefs.setString('nationalCardImage', image.path);
+        Navigator.pop(context);
       });
     } on PlatformException catch(e) {
       print('Failed to pick image: $e');
     }
   }
 
-  Future pickImageC() async {
-    try {
-      final image = await ImagePicker().pickImage(source: ImageSource.camera);
-
-      if(image == null) return;
-
-      final imageTemp = File(image.path);
-
-      setState(() async{
-        print(image);
-        this.image = imageTemp;
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString('behindNationalCodeImage', image.path);
-      });
-    } on PlatformException catch(e) {
-      print('Failed to pick image: $e');
-    }
+  pickImageC() async {
+    print('Picker is Called');
+    var img = await ImagePicker().pickImage(source: ImageSource.camera);
+    image = File(img!.path);
+    setState(() {});
   }
 
   @override

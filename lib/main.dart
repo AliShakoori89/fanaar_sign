@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Fanaar Sign",
       debugShowCheckedModeBanner: false,
-      home: InputLiveVideo(cameras: cameras),
+      home: InputDocumentsImages(),
     );
   }
 }
