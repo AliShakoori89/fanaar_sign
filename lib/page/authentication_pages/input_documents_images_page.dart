@@ -44,24 +44,24 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
   cameraConnectFromNationalCode() async {
     var img = await ImagePicker().pickImage(source: ImageSource.camera);
     nationalCard = File(img!.path);
-    Navigator.pop(context);
     existImage1 = true;
+    Navigator.pop(context);
     setState(() {});
   }
 
   galleryConnectFromNationalCode() async {
     var img = await ImagePicker().pickImage(source: ImageSource.gallery);
     nationalCard = File(img!.path);
+    existImage1 = true;
     Navigator.pop(context);
-    existImage2 = true;
     setState(() {});
   }
 
   cameraConnectFromBehindNationalCode() async {
     var img = await ImagePicker().pickImage(source: ImageSource.camera);
     behindNationalCard = File(img!.path);
+    existImage2 = true;
     Navigator.pop(context);
-    existImage1 = true;
     setState(() {});
 
   }
@@ -69,8 +69,8 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
   galleryConnectFromBehindNationalCode() async {
     var img = await ImagePicker().pickImage(source: ImageSource.gallery);
     behindNationalCard = File(img!.path);
-    Navigator.pop(context);
     existImage2 = true;
+    Navigator.pop(context);
     setState(() {});
 
   }

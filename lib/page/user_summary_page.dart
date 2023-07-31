@@ -21,12 +21,26 @@ class UserSummaryPage extends StatelessWidget {
       ),
       body: Container(
         margin: EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black, width: 1)
-        ),
         child: Column(
           children: [
-
+            SizedBox(height: MediaQuery.of(context).size.height / 30,),
+            Row(
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: Divider(
+                    thickness: 2,
+                    color: Colors.black26,
+                  ),
+                ),
+                SizedBox(width: MediaQuery.of(context).size.width / 50,),
+                Expanded(
+                    flex: 2,
+                    child: Text("مشخصات محصول", style: TextStyle(
+                        fontWeight: FontWeight.w700
+                    ),)),
+              ],
+            )
           ],
         ),
       ),

@@ -109,10 +109,11 @@ class MyAppButton extends StatelessWidget {
             );
           }
           else if(pageName == "InputDocumentsImagesPage"){
+              print("CCCCCCCC                     "+existImage1.toString());
             if(existImage1 == true && existImage2 == true){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => InputDocumentsImagesPage(
+                MaterialPageRoute(builder: (context) => UserSummaryPage(
                   nationalCodeController: nationalCodeSerialController!,
                   mobileNumberController: mobileNumberController!,
                   birthdayController: birthdayController!,
@@ -134,18 +135,7 @@ class MyAppButton extends StatelessWidget {
                 ),
               );
             }
-          } else if(pageName == "UserSummaryPage"){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => UserSummaryPage(
-                    nationalCodeController: nationalCodeSerialController!,
-                    mobileNumberController: mobileNumberController!,
-                    birthdayController: birthdayController!,
-                    nationalCodeSerialController: nationalCodeSerialController!,
-                    postCodeController: postCodeController!
-                )),
-              );
-            }
+          }
         }
         },
       ),
