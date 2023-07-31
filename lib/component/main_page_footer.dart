@@ -14,7 +14,7 @@ class MainPageFooter extends StatelessWidget {
       children: [
         const SizedBox(height: 20,),
         Expanded(
-          flex: 1,
+          flex: 2,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -25,7 +25,7 @@ class MainPageFooter extends StatelessWidget {
         ),
         const SizedBox(height: 15,),
         Expanded(
-            flex: 1,
+            flex: 2,
             child: Column(
               children: [
                 const SizedBox(height: 15,),
@@ -35,7 +35,7 @@ class MainPageFooter extends StatelessWidget {
               ],
             )),
         Expanded(
-            flex: 3,
+            flex: 4,
             child: Container())
       ],
     );

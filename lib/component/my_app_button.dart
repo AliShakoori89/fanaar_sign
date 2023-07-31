@@ -2,9 +2,13 @@ import 'package:fanar_sign/const/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
-import '../page/authentication_pages/input_documents_images.dart';
+import '../page/authentication_pages/input_documents_images_page.dart';
 import '../page/authentication_pages/input_information_page.dart';
 import 'dart:io';
+
+import '../page/certificate_managment_page.dart';
+import '../page/my_certificate_page.dart';
+import '../page/user_summary_page.dart';
 
 class MyAppButton extends StatelessWidget {
   MyAppButton({super.key,
@@ -17,6 +21,8 @@ class MyAppButton extends StatelessWidget {
     this.selectedValue,
     this.index,
     this.image,
+    this.existImage1,
+    this.existImage2,
     required this.pageName});
 
   File? image;
@@ -28,6 +34,8 @@ class MyAppButton extends StatelessWidget {
   GlobalKey<FormState>? formKey;
   String? selectedValue;
   int? index;
+  bool? existImage1;
+  bool? existImage2;
 
   final String pageName;
 
@@ -58,12 +66,6 @@ class MyAppButton extends StatelessWidget {
         ),
         onTap: (){
         if (formKey!.currentState!.validate()) {
-          // if(pageName == "OTPCodePage"){
-          //   Navigator.push(
-          //     context,
-          //     MaterialPageRoute(builder: (context) => HomePage()),
-          //   );
-          // }else
             if(pageName == "IssuedNewCertificatePage"){
             if(selectedValue != null){
               Navigator.push(
@@ -94,28 +96,56 @@ class MyAppButton extends StatelessWidget {
                 ),
               ),
             );
-
           }
-          // else if(pageName == "CheckOTPCodePage" ){
-          //   if(index == 0){
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(builder: (context) => CertificateManagementPage()),
-          //     );
-          //   }else{
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(builder: (context) => MyCertificatePage()),
-          //     );
-          //   }
-          // }
-          // else
-          if(pageName == "InputInformationPage"){
+          else if(pageName == "InputInformationPage" ){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => InputDocumentsImages()),
+              MaterialPageRoute(builder: (context) => InputDocumentsImagesPage(
+                nationalCodeController: nationalCodeSerialController!,
+                mobileNumberController: mobileNumberController!,
+                birthdayController: birthdayController!,
+                nationalCodeSerialController: nationalCodeSerialController!,
+                postCodeController: postCodeController!,)),
             );
           }
+          else if(pageName == "InputDocumentsImagesPage"){
+            if(existImage1 == true && existImage2 == true){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => InputDocumentsImagesPage(
+                  nationalCodeController: nationalCodeSerialController!,
+                  mobileNumberController: mobileNumberController!,
+                  birthdayController: birthdayController!,
+                  nationalCodeSerialController: nationalCodeSerialController!,
+                  postCodeController: postCodeController!
+                )),
+              );
+            }
+            else{
+              showTopSnackBar(
+                Overlay.of(context),
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: CustomSnackBar.error(
+                    message:
+                    "لطفا عکس موارد خواسته شده را آپلود نمایید.",
+                    backgroundColor: Colors.red.shade300,
+                  ),
+                ),
+              );
+            }
+          } else if(pageName == "UserSummaryPage"){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UserSummaryPage(
+                    nationalCodeController: nationalCodeSerialController!,
+                    mobileNumberController: mobileNumberController!,
+                    birthdayController: birthdayController!,
+                    nationalCodeSerialController: nationalCodeSerialController!,
+                    postCodeController: postCodeController!
+                )),
+              );
+            }
         }
         },
       ),
