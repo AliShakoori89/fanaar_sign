@@ -5,21 +5,28 @@ import '../const/app_color.dart';
 
 class CustomDropDownButton extends StatefulWidget {
 
+  final List<String> itemName;
+  final String dropdownButtonName;
+
+  CustomDropDownButton({super.key, required this.dropdownButtonName,
+    required this.itemName});
+
   @override
-  State<CustomDropDownButton> createState() => _CustomDropDownButtonState();
+  State<CustomDropDownButton> createState() => CustomDropDownButtonState(itemName, dropdownButtonName);
 }
 
-class _CustomDropDownButtonState extends State<CustomDropDownButton> {
-  final List<String> items = [
-    'مرکز میانی فن آوران اعتماد راهبر',
-    'مرکز میانی نماد',
-  ];
+class CustomDropDownButtonState extends State<CustomDropDownButton> {
 
-  String? selectedValue;
+  final List<String> itemName;
+  final String dropdownButtonName;
+  static String? selectIntermediateCAName;
+  static String? selectProduceName;
+
+  CustomDropDownButtonState(this.itemName, this.dropdownButtonName);
 
   List<double> _getCustomItemsHeights() {
     final List<double> itemsHeights = [];
-    for (int i = 0; i < (items.length * 2) - 1; i++) {
+    for (int i = 0; i < (itemName.length * 2) - 1; i++) {
       if (i.isEven) {
         itemsHeights.add(40);
       }
@@ -73,37 +80,41 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
         hint: Center(
           child: Text(
             textAlign: TextAlign.center,
-            'انتخاب مرکز صدور گواهی',
+            dropdownButtonName,
             style: TextStyle(
                 fontSize: MediaQuery.of(context).size.width / 30,
                 color: Colors.white,
                 fontWeight: FontWeight.w700),
           ),
         ),
-        items: _addDividersAfterItems(items),
-        value: selectedValue,
+        items: _addDividersAfterItems(itemName),
+        value: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی" ? selectIntermediateCAName : selectProduceName,
         onChanged: (String? value) {
           setState(() {
-            selectedValue = value!;
+            dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+                ? selectIntermediateCAName = value
+                : selectProduceName = value;
           });
         },
         selectedItemBuilder: (BuildContext context) {
           //<-- SEE HERE
-          return <String>[
-            'مرکز میانی فن آوران اعتماد راهبر',
-            'مرکز میانی نماد',
-            ''
-          ].map((String value) {
+          return itemName.map((String value) {
             return Center(
-              child: Text(
-                selectedValue == null
-                    ? 'انتخاب مرکز صدور گواهی'
-                    : selectedValue!,
+              child: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+                  ? Text(selectIntermediateCAName == null
+                    ? dropdownButtonName
+                    : selectIntermediateCAName!,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: MediaQuery.of(context).size.width / 30,
-                    fontWeight: FontWeight.w700),
-              ),
+                    fontWeight: FontWeight.w700),)
+                  : Text(selectProduceName == null
+                    ? dropdownButtonName
+                    : selectProduceName!,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: MediaQuery.of(context).size.width / 30,
+                      fontWeight: FontWeight.w700))
             );
           }).toList();
         },

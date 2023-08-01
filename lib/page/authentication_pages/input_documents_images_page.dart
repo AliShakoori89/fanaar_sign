@@ -14,12 +14,12 @@ class InputDocumentsImagesPage extends StatefulWidget {
   final String postCodeController;
 
   InputDocumentsImagesPage({super.key, required this.nationalCodeController,
-  required this.mobileNumberController, required this.nationalCodeSerialController,
-  required this.birthdayController, required this.postCodeController});
+  required this.mobileNumberController, required this.birthdayController,
+  required this.nationalCodeSerialController, required this.postCodeController});
 
   @override
   State<InputDocumentsImagesPage> createState() => _InputDocumentsImagesPageState(nationalCodeSerialController,
-  mobileNumberController, nationalCodeSerialController, birthdayController, postCodeController);
+  mobileNumberController, birthdayController, nationalCodeSerialController, postCodeController);
 }
 
 class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
@@ -37,6 +37,7 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
   final String birthdayController;
   final String nationalCodeSerialController;
   final String postCodeController;
+
 
   _InputDocumentsImagesPageState(this.nationalCodeController, this.mobileNumberController, this.birthdayController,
       this.nationalCodeSerialController, this.postCodeController);
@@ -221,7 +222,7 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
         mobileNumberController: mobileNumberController,
         birthdayController: birthdayController,
         nationalCodeSerialController: nationalCodeSerialController,
-        postCodeController: postCodeController,
+        postCodeController: postCodeController
       ),
       appBar: BaseAppBar(
         title: "تصویر مدارک متقاضی",

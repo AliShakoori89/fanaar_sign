@@ -4,6 +4,7 @@ import 'package:fanar_sign/page/authentication_pages/input_documents_images_page
 import 'package:fanar_sign/page/authentication_pages/live_video/input_live_video.dart';
 import 'package:fanar_sign/page/authorization_page.dart';
 import 'package:fanar_sign/page/home_page.dart';
+import 'package:fanar_sign/page/issued_new_certificate_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Fanaar Sign",
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: IssuedNewCertificatePage(),
     );
   }
 }
