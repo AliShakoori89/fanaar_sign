@@ -1,8 +1,9 @@
 import 'package:fanar_sign/component/custom_drop_down_button.dart';
 import 'package:flutter/material.dart';
 import '../component/base_appbar.dart';
+import '../component/my_app_button.dart';
 
-class UserSummaryPage extends StatelessWidget {
+class UserSummaryPage extends StatefulWidget {
 
   final String nationalCodeController;
   final String mobileNumberController;
@@ -10,9 +11,27 @@ class UserSummaryPage extends StatelessWidget {
   final String nationalCodeSerialController;
   final String postCodeController;
 
+
   const UserSummaryPage({super.key, required this.nationalCodeController,
     required this.mobileNumberController, required this.birthdayController,
     required this.nationalCodeSerialController, required this.postCodeController});
+
+  @override
+  State<UserSummaryPage> createState() => _UserSummaryPageState(nationalCodeController, mobileNumberController,
+  birthdayController, nationalCodeSerialController, postCodeController);
+}
+
+class _UserSummaryPageState extends State<UserSummaryPage> {
+
+  _UserSummaryPageState(this.nationalCodeController, this.mobileNumberController, this.birthdayController,
+      this.nationalCodeSerialController, this.postCodeController);
+
+  final String nationalCodeController;
+  final String mobileNumberController;
+  final String birthdayController;
+  final String nationalCodeSerialController;
+  final String postCodeController;
+  bool valueFirst = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +39,10 @@ class UserSummaryPage extends StatelessWidget {
       appBar: BaseAppBar(
         title: "تصویر مدارک متقاضی",
       ),
+      bottomSheet: MyAppButton(
+          pageName: "HomePage",
+          verificationBoolean: valueFirst,
+          ),
       body: Container(
         margin: EdgeInsets.all(15),
         child: Column(
@@ -142,7 +165,7 @@ class UserSummaryPage extends StatelessWidget {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Text(nationalCodeController,
+                          child: Text(widget.nationalCodeController,
                               style: TextStyle(
                                   fontSize: MediaQuery.of(context).size.width / 30,
                                   color: Colors.blue
@@ -151,7 +174,7 @@ class UserSummaryPage extends StatelessWidget {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Text(nationalCodeSerialController,
+                          child: Text(widget.nationalCodeSerialController,
                               style: TextStyle(
                                   fontSize: MediaQuery.of(context).size.width / 30,
                                   color: Colors.blue
@@ -160,7 +183,7 @@ class UserSummaryPage extends StatelessWidget {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Text(birthdayController,
+                          child: Text(widget.birthdayController,
                               style: TextStyle(
                                   fontSize: MediaQuery.of(context).size.width / 30,
                                   color: Colors.blue
@@ -253,7 +276,7 @@ class UserSummaryPage extends StatelessWidget {
                       children: [
                         Expanded(
                           flex: 1,
-                          child: Text(mobileNumberController,
+                          child: Text(widget.mobileNumberController,
                               style: TextStyle(
                                   fontSize: MediaQuery.of(context).size.width / 30,
                                   color: Colors.blue
@@ -262,7 +285,7 @@ class UserSummaryPage extends StatelessWidget {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Text(postCodeController,
+                          child: Text(widget.postCodeController,
                               style: TextStyle(
                                   fontSize: MediaQuery.of(context).size.width / 30,
                                   color: Colors.blue
@@ -298,6 +321,28 @@ class UserSummaryPage extends StatelessWidget {
                 ],
               ),
             ),
+            Row(
+              children: [
+                Expanded(
+                  flex: 6,
+                    child: Text("تمامی اطلاعات فوق را خوانده ام و تایید می کنم.", style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                        color: Colors.black
+                    ),
+                    textDirection: TextDirection.rtl,)),
+                Expanded(
+                  flex: 1,
+                  child: Checkbox(
+                      value: this.valueFirst,
+                      onChanged:  (bool? value) {
+                        setState(() {
+                          this.valueFirst = value!;
+                          print("qqqqqqqqqq              "+this.valueFirst.toString());
+                        });
+                      },),
+                )
+              ],
+            )
           ],
         ),
       ),

@@ -18,7 +18,7 @@ class InputDocumentsImagesPage extends StatefulWidget {
   required this.nationalCodeSerialController, required this.postCodeController});
 
   @override
-  State<InputDocumentsImagesPage> createState() => _InputDocumentsImagesPageState(nationalCodeSerialController,
+  State<InputDocumentsImagesPage> createState() => _InputDocumentsImagesPageState(nationalCodeController,
   mobileNumberController, birthdayController, nationalCodeSerialController, postCodeController);
 }
 

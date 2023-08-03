@@ -6,6 +6,7 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../page/authentication_pages/input_documents_images_page.dart';
 import '../page/authentication_pages/input_information_page.dart';
 import 'dart:io';
+import '../page/home_page.dart';
 import '../page/user_summary_page.dart';
 
 class MyAppButton extends StatelessWidget {
@@ -20,6 +21,7 @@ class MyAppButton extends StatelessWidget {
     this.image,
     this.existImage1,
     this.existImage2,
+    this.verificationBoolean,
     required this.pageName});
 
   File? image;
@@ -32,6 +34,7 @@ class MyAppButton extends StatelessWidget {
   int? index;
   bool? existImage1;
   bool? existImage2;
+  bool? verificationBoolean;
 
   final String pageName;
 
@@ -66,20 +69,26 @@ class MyAppButton extends StatelessWidget {
               showTopSnackBar(
                 snackBarPosition: SnackBarPosition.top,
                 Overlay.of(context),
-                CustomSnackBar.success(
-                  backgroundColor: Colors.black26,
-                  message:
-                  ".لطفا مرکز میانی مورد نظر را انتخاب کنید",
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: CustomSnackBar.success(
+                    backgroundColor: Colors.red.shade300,
+                    message:
+                    "لطفا مرکز میانی مورد نظر را انتخاب کنید.",
+                  ),
                 ),
               );
             } else if(CustomDropDownButtonState.selectProduceName == null){
               showTopSnackBar(
                 snackBarPosition: SnackBarPosition.top,
                 Overlay.of(context),
-                CustomSnackBar.success(
-                  backgroundColor: Colors.black26,
-                  message:
-                  ". لطفا نام محصول مورد نظر را انتخاب کنید",
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: CustomSnackBar.success(
+                    backgroundColor: Colors.red.shade300,
+                    message:
+                    "لطفا نام محصول مورد نظر را انتخاب کنید.",
+                  ),
                 ),
               );
             }else{
@@ -88,13 +97,33 @@ class MyAppButton extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => InputInformationPage()),
               );
             }
+          }else if (pageName == "HomePage") {
+            if(verificationBoolean == true){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => HomePage()),
+              );
+            }else{
+              showTopSnackBar(
+                snackBarPosition: SnackBarPosition.top,
+                Overlay.of(context),
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: CustomSnackBar.success(
+                    backgroundColor: Colors.red.shade300,
+                    message: "لطفا در صورت تایید اطلاعات خود تیک را بفشارید.",
+                  ),
+                ),
+              );
+            }
           }else if (pageName == "InputDocumentsImagesPage") {
             if (existImage1 == true && existImage2 == true) {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => UserSummaryPage(
-                        nationalCodeController: nationalCodeSerialController!,
+                        nationalCodeController: nationalCodeController!,
                         mobileNumberController: mobileNumberController!,
                         birthdayController: birthdayController!,
                         nationalCodeSerialController: nationalCodeSerialController!,
@@ -120,7 +149,7 @@ class MyAppButton extends StatelessWidget {
                 Directionality(
                   textDirection: TextDirection.rtl,
                   child: CustomSnackBar.success(
-                    backgroundColor: Colors.black26,
+                    backgroundColor: Colors.red.shade300,
                     message: "لطفا ORCode مربوطه را اسکن کنید.",
                   ),
                 ),
@@ -130,7 +159,7 @@ class MyAppButton extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => InputDocumentsImagesPage(
-                          nationalCodeController: nationalCodeSerialController!,
+                          nationalCodeController: nationalCodeController!,
                           mobileNumberController: mobileNumberController!,
                           birthdayController: birthdayController!,
                           nationalCodeSerialController: nationalCodeSerialController!,
