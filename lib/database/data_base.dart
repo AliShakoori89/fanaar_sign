@@ -13,10 +13,11 @@ class DatabaseHelper {
   static const certificateTable = 'certificateTable';
 
   static const columnCertificateID = 'id';
-  static const columnCertificateIssuerInterMediateCA = 'columnCertificateIssuerInterMediateCA';
+  static const columnCertificateIssuerInterMediateCAName = 'columnCertificateIssuerInterMediateCAName';
+  static const columnSelectProduceName = 'columnSelectProduceName';
+  static const columnIssuedCertificateDate = 'columnIssuedCertificateDate';
   static const columnCertificateExpirationDate = 'columnCertificateExpirationDate';
-  static const columnCertificateValidityPeriod = 'columnValidityPeriod';
-
+  static const columnCertificateSerialCode = 'columnCertificateSerialCode';
 
 
   DatabaseHelper._privateConstructor();
@@ -38,9 +39,11 @@ class DatabaseHelper {
   Future _onCreate(Database db, int version) async {
     await db.execute('CREATE TABLE $certificateTable ('
         '$columnCertificateID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,'
-        '$columnCertificateIssuerInterMediateCA TEXT,'
+        '$columnCertificateIssuerInterMediateCAName TEXT,'
+        '$columnSelectProduceName TEXT,'
+        '$columnIssuedCertificateDate TEXT,'
         '$columnCertificateExpirationDate TEXT,'
-        '$columnCertificateValidityPeriod TEXT'
+        '$columnCertificateSerialCode TEXT'
         ')'
     );
   }
@@ -51,13 +54,13 @@ class DatabaseHelper {
     return true;
   }
 
-  Future<List<CertificateModel>> getAllCertificate() async {
+  Future<List<CertificateModel>> getAllIncomeItems(String nationalCode) async {
     var dbExpense = await database;
-    var listMap = await dbExpense.rawQuery('SELECT * FROM $certificateTable');
-    var listIncomeItems = <CertificateModel>[];
+    var listMap = await dbExpense.rawQuery('SELECT * FROM $certificateTable WHERE $columnCertificateSerialCode = "$nationalCode"');
+    var listCertificates = <CertificateModel>[];
     for (Map<String, dynamic> m in listMap) {
-      listIncomeItems.add(CertificateModel.fromJson(m));
+      listCertificates.add(CertificateModel.fromJson(m));
     }
-    return listIncomeItems;
+    return listCertificates;
   }
 }

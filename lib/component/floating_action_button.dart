@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../const/app_color.dart';
 import '../page/activation_page.dart';
 import '../page/authentication_pages/input_information_page.dart';
+import '../page/issued_new_certificate_page.dart';
 
 class MYAppFloatingActionButton extends StatelessWidget {
   MYAppFloatingActionButton({super.key,
@@ -22,7 +23,7 @@ class MYAppFloatingActionButton extends StatelessWidget {
             if(buttonType == "CertificateManagementPage"){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => InputInformationPage()),
+                MaterialPageRoute(builder: (context) => IssuedNewCertificatePage()),
               );
             }else if(buttonType == "MyCertificatePage"){
               Navigator.push(

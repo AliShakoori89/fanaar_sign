@@ -1,4 +1,3 @@
-import 'package:bottom_dialog/show_bottom_dialog.dart';
 import 'package:fanar_sign/component/base_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -37,7 +36,6 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
   final String birthdayController;
   final String nationalCodeSerialController;
   final String postCodeController;
-
 
   _InputDocumentsImagesPageState(this.nationalCodeController, this.mobileNumberController, this.birthdayController,
       this.nationalCodeSerialController, this.postCodeController);
@@ -222,7 +220,7 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
         mobileNumberController: mobileNumberController,
         birthdayController: birthdayController,
         nationalCodeSerialController: nationalCodeSerialController,
-        postCodeController: postCodeController
+        postCodeController: postCodeController,
       ),
       appBar: BaseAppBar(
         title: "تصویر مدارک متقاضی",

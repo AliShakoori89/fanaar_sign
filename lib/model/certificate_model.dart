@@ -2,13 +2,17 @@ class CertificateModel {
   int? id;
   String? certificateIssuerInterMediateCA;
   String? certificateExpirationDate;
-  String? certificateValidityPeriod;
+  String? issuedCertificateDate;
+  String? selectProduceName;
+  String? certificateSerialCode;
 
   CertificateModel({
     this.id,
     this.certificateIssuerInterMediateCA,
     this.certificateExpirationDate,
-    this.certificateValidityPeriod
+    this.issuedCertificateDate,
+    this.selectProduceName,
+    this.certificateSerialCode
   });
 
   static const String tableName = "my_table";
@@ -18,7 +22,9 @@ class CertificateModel {
       "id": id,
       "certificateIssuerInterMediateCA": certificateIssuerInterMediateCA,
       "certificateExpirationDate": certificateExpirationDate,
-      "certificateValidityPeriod": certificateValidityPeriod
+      "issuedCertificateDate": issuedCertificateDate,
+      "selectProduceName": selectProduceName,
+      "certificateSerialCode": certificateSerialCode
     };
   }
 
@@ -27,7 +33,9 @@ class CertificateModel {
         id: parsedJson['id'],
         certificateIssuerInterMediateCA: parsedJson['certificateIssuerInterMediateCA'],
         certificateExpirationDate: parsedJson['certificateExpirationDate'],
-        certificateValidityPeriod: parsedJson['certificateValidityPeriod']
+        issuedCertificateDate: parsedJson['issuedCertificateDate'],
+        selectProduceName: parsedJson['selectProduceName'],
+        certificateSerialCode: parsedJson["certificateSerialCode"]
     );
   }
 }

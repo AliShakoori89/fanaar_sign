@@ -6,7 +6,9 @@ import '../component/floating_action_button.dart';
 
 class CertificateManagementPage extends StatelessWidget {
 
-  final List cardList = [];
+  CertificateManagementPage({required this.certList});
+
+  final List certList;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +20,8 @@ class CertificateManagementPage extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height: MediaQuery.of(context).size.height / 25),
-          cardList.isNotEmpty
-              ? MainPageCard(cardList: cardList)
+          certList.isNotEmpty
+              ? MainPageCard(cardList: certList)
               : NoDataPage(),
         ],
       ),

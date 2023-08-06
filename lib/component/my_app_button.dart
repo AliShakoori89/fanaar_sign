@@ -22,6 +22,8 @@ class MyAppButton extends StatelessWidget {
     this.existImage1,
     this.existImage2,
     this.verificationBoolean,
+    this.selectIntermediateCAName,
+    this.selectProduceName,
     required this.pageName});
 
   File? image;
@@ -35,6 +37,8 @@ class MyAppButton extends StatelessWidget {
   bool? existImage1;
   bool? existImage2;
   bool? verificationBoolean;
+  String? selectIntermediateCAName;
+  String? selectProduceName;
 
   final String pageName;
 
@@ -163,8 +167,9 @@ class MyAppButton extends StatelessWidget {
                           mobileNumberController: mobileNumberController!,
                           birthdayController: birthdayController!,
                           nationalCodeSerialController: nationalCodeSerialController!,
-                          postCodeController: postCodeController!,
-                        )),
+                          postCodeController: postCodeController!
+                        )
+                ),
               );
             }
           }

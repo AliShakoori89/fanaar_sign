@@ -1,7 +1,14 @@
+import 'package:fanar_sign/bloc/certificate_store/bloc.dart';
+import 'package:fanar_sign/bloc/certificate_store/state.dart';
 import 'package:fanar_sign/component/custom_drop_down_button.dart';
+import 'package:fanar_sign/model/certificate_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart' as init;
+import '../bloc/certificate_store/event.dart';
 import '../component/base_appbar.dart';
-import '../component/my_app_button.dart';
+import '../const/app_color.dart';
+import 'home_page.dart';
 
 class UserSummaryPage extends StatefulWidget {
 
@@ -11,8 +18,7 @@ class UserSummaryPage extends StatefulWidget {
   final String nationalCodeSerialController;
   final String postCodeController;
 
-
-  const UserSummaryPage({super.key, required this.nationalCodeController,
+  UserSummaryPage({super.key, required this.nationalCodeController,
     required this.mobileNumberController, required this.birthdayController,
     required this.nationalCodeSerialController, required this.postCodeController});
 
@@ -39,10 +45,61 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
       appBar: BaseAppBar(
         title: "تصویر مدارک متقاضی",
       ),
-      bottomSheet: MyAppButton(
-          pageName: "HomePage",
-          verificationBoolean: valueFirst,
-          ),
+      bottomSheet: BlocBuilder<CertificateBloc, CertificateState>(
+        builder: (context, state) {
+          return GestureDetector(
+              onTap: (){
+
+                DateTime now = DateTime.now();
+                String formattedDate = init.DateFormat('yyyy-MM-dd').format(now);
+                String nextYear = DateTime(now.year+1, now.month, now.day).toString();
+
+                late CertificateModel certificateModel = CertificateModel();
+                final certificateBloc = BlocProvider.of<CertificateBloc>(context);
+
+                certificateModel.certificateExpirationDate = nextYear;
+                certificateModel.certificateIssuerInterMediateCA = CustomDropDownButtonState.selectIntermediateCAName!;
+                certificateModel.selectProduceName = CustomDropDownButtonState.selectProduceName!;
+                certificateModel.certificateSerialCode = nationalCodeController;
+                certificateModel.issuedCertificateDate = formattedDate;
+
+                print(certificateModel.certificateExpirationDate);
+                print(certificateModel.certificateIssuerInterMediateCA);
+                print(certificateModel.selectProduceName);
+                print(certificateModel.certificateSerialCode);
+                print(certificateModel.issuedCertificateDate);
+
+                certificateBloc.add(
+                    SaveCertificateToStoreEvent(certificateModel: certificateModel));
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => HomePage()),
+                );
+              },
+              child: Container(
+                margin: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width / 20,
+                    right: MediaQuery.of(context).size.width / 20,
+                    bottom: MediaQuery.of(context).size.width / 20),
+                height: MediaQuery.of(context).size.height / 13,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: AppColors.mainColor,
+                  ),
+                ),
+                child: Center(
+                  child: Text("صدور گواهی",
+                      style: TextStyle(color: Colors.white,
+                          fontSize: MediaQuery.of(context).size.width / 20)),
+                ),
+              )
+          );
+        }),
       body: Container(
         margin: EdgeInsets.all(15),
         child: Column(
@@ -337,7 +394,6 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                       onChanged:  (bool? value) {
                         setState(() {
                           this.valueFirst = value!;
-                          print("qqqqqqqqqq              "+this.valueFirst.toString());
                         });
                       },),
                 )
