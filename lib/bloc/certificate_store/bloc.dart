@@ -17,12 +17,13 @@ class CertificateBloc extends Bloc<CertificateEvent, CertificateState>{
   void _mapSaveCertificateToStore(
       SaveCertificateToStoreEvent event, Emitter<CertificateState> emit) async {
     try {
-      await certificateRepository.saveCertificateRepo(event.certificateModel);
       emit(state.copyWith(status: CertificateStatus.loading));
-
+      await certificateRepository.saveCertificateRepo(event.certificateModel);
+      final List<CertificateModel> certificates = await certificateRepository.getAllCertificates();
       emit(
         state.copyWith(
           status: CertificateStatus.success,
+          storeCertificate: certificates
         ),
       );
     } catch (error) {
@@ -34,7 +35,8 @@ class CertificateBloc extends Bloc<CertificateEvent, CertificateState>{
       FetchAllCertificateEvent event, Emitter<CertificateState> emit) async {
     try{
       emit(state.copyWith(status: CertificateStatus.loading));
-      final List<CertificateModel> certificates = await certificateRepository.getAllCertificates(event.serial);
+      print("%%%%%%%%%%%%%%%%%");
+      final List<CertificateModel> certificates = await certificateRepository.getAllCertificates();
       emit(
         state.copyWith(
             status: CertificateStatus.success,

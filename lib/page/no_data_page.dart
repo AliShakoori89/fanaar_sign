@@ -7,13 +7,14 @@ class NoDataPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: MediaQuery.of(context).size.height / 4),
           Image.asset("assets/icon/my-digital-signature-transformed.png",
               width: MediaQuery.of(context).size.width / 3,
-          opacity: AlwaysStoppedAnimation(.4),
-          alignment: Alignment.center),
-          SizedBox(height: MediaQuery.of(context).size.height / 60,),
+              height: MediaQuery.of(context).size.height / 5,
+              opacity: AlwaysStoppedAnimation(.4),
+              alignment: Alignment.center),
           Directionality(
             textDirection: TextDirection.rtl,
             child: Text(
@@ -26,5 +27,5 @@ class NoDataPage extends StatelessWidget {
           )
         ],
       ),
-    );;}
+    );}
 }

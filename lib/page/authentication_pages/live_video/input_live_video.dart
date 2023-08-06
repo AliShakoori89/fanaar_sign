@@ -140,7 +140,8 @@ class SquareState extends State<Square> {
   late CameraController _cameraController;
   final List<CameraDescription> cameras;
   bool _isRearCameraSelected = true;
-  static bool isRecording = false;
+  bool isRecording = false;
+  static bool isRecord = false;
 
   @override
   void initState() {
@@ -175,11 +176,13 @@ class SquareState extends State<Square> {
         // fullscreenDialog: true,
         builder: (_) => PreviewVideoPage(filePath: file.path),
       );
+      isRecord = true;
       Navigator.push(context, route);
     } else {
       await _cameraController.prepareForVideoRecording();
       await _cameraController.startVideoRecording();
       setState(() => isRecording = true);
+      isRecord = false;
     }
   }
 

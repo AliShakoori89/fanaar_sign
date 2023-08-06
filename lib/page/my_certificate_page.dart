@@ -11,10 +11,6 @@ import '../component/base_appbar.dart';
 
 class MyCertificatePage extends StatelessWidget {
 
-  MyCertificatePage({required this.certList});
-
-  final List certList;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +23,7 @@ class MyCertificatePage extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height: MediaQuery.of(context).size.height / 50,),
-          MainPageCard(cardList: certList)
+           // MainPageCard();
         ],
       ),
     );

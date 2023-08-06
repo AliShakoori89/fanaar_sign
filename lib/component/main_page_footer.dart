@@ -7,7 +7,6 @@ import 'main_page_image.dart';
 class MainPageFooter extends StatelessWidget {
   MainPageFooter({super.key, required this.cameras});
 
-  final List cardName = ["سامانه ثبت من","سفته الکترونیکی","سامانه املاک"];
   final List<CameraDescription> cameras;
 
   @override

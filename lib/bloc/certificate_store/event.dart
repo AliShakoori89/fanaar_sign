@@ -14,12 +14,4 @@ class SaveCertificateToStoreEvent extends CertificateEvent{
   List<Object> get props => [certificateModel];
 }
 
-class FetchAllCertificateEvent extends CertificateEvent {
-  final String serial;
-
-  FetchAllCertificateEvent(
-      {required this.serial});
-
-  @override
-  List<Object> get props => [serial];
-}
+class FetchAllCertificateEvent extends CertificateEvent {}

@@ -126,7 +126,7 @@ class MyAppButton extends StatelessWidget {
               );
             }
           }else if (pageName == "InputLiveVideo") {
-            if(SquareState.isRecording == false){
+            if(SquareState.isRecord == true){
               Navigator.push(
                 context,
                 MaterialPageRoute(

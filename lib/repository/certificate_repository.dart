@@ -9,11 +9,16 @@ class CertificateRepository{
   }
 
   Future<bool> saveCertificateRepo(CertificateModel certificateModel) async{
+    print("saaaaave                      "+certificateModel.certificateSerialCode.toString());
+    print("saaaaave                      "+certificateModel.selectProduceName.toString());
+    print("saaaaave                      "+certificateModel.issuedCertificateDate.toString());
+    print("saaaaave                      "+certificateModel.certificateIssuerInterMediateCA.toString());
+    print(await helper.saveCertificate(certificateModel));
     return await helper.saveCertificate(certificateModel);
   }
 
-  Future<List<CertificateModel>> getAllCertificates (String serialNumber) async{
-    final List<CertificateModel> allCertificates = await helper.getAllIncomeItems(serialNumber);
-    return allCertificates;
+  Future<List<CertificateModel>> getAllCertificates () async{
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    return await helper.getAllIncomeItems();
   }
 }
