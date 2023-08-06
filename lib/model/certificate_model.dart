@@ -1,6 +1,6 @@
 class CertificateModel {
   int? id;
-  String? certificateIssuerInterMediateCA;
+  String? certificateIssuerInterMediateCAName;
   String? certificateExpirationDate;
   String? issuedCertificateDate;
   String? selectProduceName;
@@ -8,7 +8,7 @@ class CertificateModel {
 
   CertificateModel({
     this.id,
-    this.certificateIssuerInterMediateCA,
+    this.certificateIssuerInterMediateCAName,
     this.certificateExpirationDate,
     this.issuedCertificateDate,
     this.selectProduceName,
@@ -20,7 +20,7 @@ class CertificateModel {
   Map<String, dynamic> toJson() {
     return {
       "id": id,
-      "certificateIssuerInterMediateCA": certificateIssuerInterMediateCA,
+      "certificateIssuerInterMediateCAName": certificateIssuerInterMediateCAName,
       "certificateExpirationDate": certificateExpirationDate,
       "issuedCertificateDate": issuedCertificateDate,
       "selectProduceName": selectProduceName,
@@ -31,7 +31,7 @@ class CertificateModel {
   factory CertificateModel.fromJson(Map<String, dynamic> parsedJson) {
     return CertificateModel(
         id: parsedJson['id'],
-        certificateIssuerInterMediateCA: parsedJson['certificateIssuerInterMediateCA'],
+        certificateIssuerInterMediateCAName: parsedJson['certificateIssuerInterMediateCAName'],
         certificateExpirationDate: parsedJson['certificateExpirationDate'],
         issuedCertificateDate: parsedJson['issuedCertificateDate'],
         selectProduceName: parsedJson['selectProduceName'],

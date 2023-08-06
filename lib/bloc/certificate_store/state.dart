@@ -14,18 +14,15 @@ class CertificateState extends Equatable {
 
   const CertificateState({
     this.status = CertificateStatus.initial,
-    String? certificateIssuerInterMediateCA,
     String? certificateIssuerInterMediateCAName,
     String? certificateExpirationDate,
     String? certificateValidityPeriod,
     List<CertificateModel>? storeCertificate,
-  }): certificateIssuerInterMediateCA = certificateIssuerInterMediateCA ?? "",
-        certificateIssuerInterMediateCAName = certificateIssuerInterMediateCAName ?? "",
+  }):certificateIssuerInterMediateCAName = certificateIssuerInterMediateCAName ?? "",
         certificateExpirationDate = certificateExpirationDate ?? "",
         certificateValidityPeriod = certificateValidityPeriod ?? "",
         storeCertificate = storeCertificate ?? const [];
   final CertificateStatus status;
-  final String certificateIssuerInterMediateCA;
   final String certificateIssuerInterMediateCAName;
   final String certificateExpirationDate;
   final String certificateValidityPeriod;
@@ -33,14 +30,13 @@ class CertificateState extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object> get props => [status, certificateIssuerInterMediateCA,
+  List<Object> get props => [status,
     certificateIssuerInterMediateCAName, certificateExpirationDate,
     certificateValidityPeriod, storeCertificate];
 
 
   CertificateState copyWith({
     CertificateStatus? status,
-    String? certificateIssuerInterMediateCA,
     String? certificateIssuerInterMediateCAName,
     String? certificateExpirationDate,
     String? certificateValidityPeriod,
@@ -48,7 +44,6 @@ class CertificateState extends Equatable {
   }) {
     return CertificateState(
       status: status ?? this.status,
-      certificateIssuerInterMediateCA: certificateIssuerInterMediateCA ?? this.certificateIssuerInterMediateCA,
       certificateIssuerInterMediateCAName: certificateIssuerInterMediateCAName ?? this.certificateIssuerInterMediateCAName,
       certificateExpirationDate: certificateExpirationDate ?? this.certificateExpirationDate,
       certificateValidityPeriod: certificateValidityPeriod ?? this.certificateValidityPeriod,

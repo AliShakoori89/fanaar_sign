@@ -62,13 +62,13 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
               final certificateBloc = BlocProvider.of<CertificateBloc>(context);
 
               certificateModel.certificateExpirationDate = nextYear;
-              certificateModel.certificateIssuerInterMediateCA = CustomDropDownButtonState.selectIntermediateCAName!;
+              certificateModel.certificateIssuerInterMediateCAName = CustomDropDownButtonState.selectIntermediateCAName!;
               certificateModel.selectProduceName = CustomDropDownButtonState.selectProduceName!;
               certificateModel.certificateSerialCode = nationalCodeController;
               certificateModel.issuedCertificateDate = formattedDate;
 
               print(certificateModel.certificateExpirationDate);
-              print(certificateModel.certificateIssuerInterMediateCA);
+              print(certificateModel.certificateIssuerInterMediateCAName);
               print(certificateModel.selectProduceName);
               print(certificateModel.certificateSerialCode);
               print(certificateModel.issuedCertificateDate);

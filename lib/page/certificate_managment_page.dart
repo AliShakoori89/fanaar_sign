@@ -13,7 +13,7 @@ import 'certificate_details_page.dart';
 
 class CertificateManagementPage extends StatefulWidget {
 
-  CertificateManagementPage({required this.cameras});
+  CertificateManagementPage({Key? key, required this.cameras}) : super(key: key);
 
   final List<CameraDescription> cameras;
 
@@ -28,7 +28,10 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
 
   @override
   void initState() {
-    BlocProvider.of<CertificateBloc>(context).add(FetchAllCertificateEvent());
+
+    final certificateBloc = BlocProvider.of<CertificateBloc>(context);
+    certificateBloc.add(FetchAllCertificateEvent());
+
     super.initState();
   }
 
@@ -42,69 +45,69 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
         buttonType: 'CertificateManagementPage',
         cameras: widget.cameras),
       body: BlocBuilder<CertificateBloc, CertificateState>(builder: (context, state){
-
-        var certList = state.storeCertificate;
-
-        print(certList.length);
-
         return state.status.isLoading
             ? Center(
             child: CircularProgressIndicator())
             : state.status.isSuccess
-            ? Expanded(
-          flex: 7,
-          child: ListView.builder(
-              itemBuilder: (BuildContext context, int index){
-                return GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => CertificateDetails(certificateName: certList[index].certificateIssuerInterMediateCA!,)),
-                    );
-                  },
-                  child: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: Container(
-                      height: MediaQuery.of(context).size.height / 12,
-                      margin: const EdgeInsets.only(
-                          right: 15,
-                          left: 15,
-                          bottom: 10
+            ? state.storeCertificate.length == 0
+            ? NoDataPage()
+            : ListView.builder(
+            itemCount: state.storeCertificate.length,
+            itemBuilder: (BuildContext context, int index){
+              return GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>
+                        CertificateDetails(certificateName: state.certificateIssuerInterMediateCAName)),
+                  );
+                },
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Container(
+                    height: MediaQuery.of(context).size.height / 12,
+                    margin: const EdgeInsets.only(
+                        right: 15,
+                        left: 15,
+                        bottom: 10
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: [
+                        BoxShadow(color: AppColors.cardShadowColor,
+                          spreadRadius: 1,
+                          blurRadius: 4,
+                          offset: Offset(
+                            0.0, // Move to right 5  horizontally
+                            5.0, // Move to bottom 5 Vertically
+                          ),),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          right: MediaQuery.of(context).size.width / 20
                       ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25),
-                        boxShadow: [
-                          BoxShadow(color: AppColors.cardShadowColor,
-                            spreadRadius: 1,
-                            blurRadius: 4,
-                            offset: Offset(
-                              0.0, // Move to right 5  horizontally
-                              5.0, // Move to bottom 5 Vertically
-                            ),),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            right: MediaQuery.of(context).size.width / 20
-                        ),
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            certList[index].certificateIssuerInterMediateCA!,
-                            style: TextStyle(color: Colors.black,
-                                fontSize: MediaQuery.of(context).size.width / 25,
-                                fontWeight: FontWeight.w700
-                            ),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          state.storeCertificate[index].certificateIssuerInterMediateCAName!,
+                          style: TextStyle(color: Colors.black,
+                              fontSize: MediaQuery.of(context).size.width / 25,
+                              fontWeight: FontWeight.w700
                           ),
                         ),
                       ),
                     ),
                   ),
-                );
-              },
-              itemCount: certList.length),
-        )
+                ),
+              );
+            },
+            )
+            : state.status.isError
+            ? const Center(
+                child: Text('Error'),
+              )
             : NoDataPage();
       }
       )

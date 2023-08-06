@@ -13,11 +13,11 @@ class DatabaseHelper {
   static const certificateTable = 'certificateTable';
 
   static const columnCertificateID = 'id';
-  static const columnCertificateIssuerInterMediateCAName = 'columnCertificateIssuerInterMediateCAName';
-  static const columnSelectProduceName = 'columnSelectProduceName';
-  static const columnIssuedCertificateDate = 'columnIssuedCertificateDate';
-  static const columnCertificateExpirationDate = 'columnCertificateExpirationDate';
-  static const columnCertificateSerialCode = 'columnCertificateSerialCode';
+  static const columnCertificateIssuerInterMediateCAName = 'certificateIssuerInterMediateCAName';
+  static const columnSelectProduceName = 'selectProduceName';
+  static const columnIssuedCertificateDate = 'issuedCertificateDate';
+  static const columnCertificateExpirationDate = 'certificateExpirationDate';
+  static const columnCertificateSerialCode = 'certificateSerialCode';
 
 
   DatabaseHelper._privateConstructor();
@@ -50,7 +50,6 @@ class DatabaseHelper {
 
   Future<bool> saveCertificate(CertificateModel certificateModel) async {
     var dbCert = await database;
-    print("@@@@@@@@@@@@         "+certificateModel.toJson().toString());
     await dbCert.insert(certificateTable, certificateModel.toJson());
     return true;
   }
@@ -59,9 +58,7 @@ class DatabaseHelper {
     var dbCert = await database;
     var listMap = await dbCert.rawQuery('SELECT * FROM $certificateTable');
     var listCertificates = <CertificateModel>[];
-    print("555555555555555555       "+listMap.length.toString());
     for (Map<String, dynamic> m in listMap) {
-      print("##############             "+m.toString());
       listCertificates.add(CertificateModel.fromJson(m));
     }
     return listCertificates;
