@@ -49,15 +49,15 @@ class DatabaseHelper {
   }
 
   Future<bool> saveCertificate(CertificateModel certificateModel) async {
-    var dbExpense = await database;
+    var dbCert = await database;
     print("@@@@@@@@@@@@         "+certificateModel.toJson().toString());
-    await dbExpense.insert(certificateTable, certificateModel.toJson());
+    await dbCert.insert(certificateTable, certificateModel.toJson());
     return true;
   }
 
-  Future<List<CertificateModel>> getAllIncomeItems() async {
-    var dbExpense = await database;
-    var listMap = await dbExpense.rawQuery('SELECT * FROM $certificateTable');
+  Future<List<CertificateModel>> getAllCertificate() async {
+    var dbCert = await database;
+    var listMap = await dbCert.rawQuery('SELECT * FROM $certificateTable');
     var listCertificates = <CertificateModel>[];
     print("555555555555555555       "+listMap.length.toString());
     for (Map<String, dynamic> m in listMap) {

@@ -13,12 +13,11 @@ class CertificateRepository{
     print("saaaaave                      "+certificateModel.selectProduceName.toString());
     print("saaaaave                      "+certificateModel.issuedCertificateDate.toString());
     print("saaaaave                      "+certificateModel.certificateIssuerInterMediateCA.toString());
-    print(await helper.saveCertificate(certificateModel));
     return await helper.saveCertificate(certificateModel);
   }
 
   Future<List<CertificateModel>> getAllCertificates () async{
     print("!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    return await helper.getAllIncomeItems();
+    return await helper.getAllCertificate();
   }
 }

@@ -27,9 +27,13 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
   _CertificateManagementPageState(this.cameras);
 
   @override
-  Widget build(BuildContext context) {
-
+  void initState() {
     BlocProvider.of<CertificateBloc>(context).add(FetchAllCertificateEvent());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: BaseAppBar(title: "مدیریت گواهی امضاء"),
@@ -43,7 +47,10 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
 
         print(certList.length);
 
-        return certList.isNotEmpty
+        return state.status.isLoading
+            ? Center(
+            child: CircularProgressIndicator())
+            : state.status.isSuccess
             ? Expanded(
           flex: 7,
           child: ListView.builder(
