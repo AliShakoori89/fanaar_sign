@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:fanar_sign/component/custom_drop_down_button.dart';
 import 'package:flutter/material.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
@@ -6,8 +7,12 @@ import '../component/my_app_button.dart';
 
 class IssuedNewCertificatePage extends StatefulWidget {
 
+  final List<CameraDescription> cameras;
+
+  IssuedNewCertificatePage({super.key, required this.cameras});
+
   @override
-  State<IssuedNewCertificatePage> createState() => _IssuedNewCertificatePageState();
+  State<IssuedNewCertificatePage> createState() => _IssuedNewCertificatePageState(cameras);
 }
 
 class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
@@ -22,11 +27,18 @@ class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
     'گواهی موبایل برنز حقیقی مستقل'
   ];
 
+  final List<CameraDescription> cameras;
+
+  _IssuedNewCertificatePageState(this.cameras);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(title: 'صدور گواهی جدید'),
-      bottomSheet: MyAppButton(pageName: "IssuedNewCertificatePage"),
+      bottomSheet: MyAppButton(
+        pageName: "IssuedNewCertificatePage",
+        cameras: cameras,
+      ),
       body: Container(
         margin: EdgeInsets.only(
           top: MediaQuery.of(context).size.height / 25,

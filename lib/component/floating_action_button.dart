@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import '../const/app_color.dart';
 import '../page/activation_page.dart';
@@ -7,10 +8,11 @@ import '../page/issued_new_certificate_page.dart';
 class MYAppFloatingActionButton extends StatelessWidget {
   MYAppFloatingActionButton({super.key,
     required this.buttonName,
-    required this.buttonType});
+    required this.buttonType, this.cameras});
 
   final String buttonName;
   final String buttonType;
+  List<CameraDescription>? cameras;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class MYAppFloatingActionButton extends StatelessWidget {
             if(buttonType == "CertificateManagementPage"){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => IssuedNewCertificatePage()),
+                MaterialPageRoute(builder: (context) => IssuedNewCertificatePage(cameras: cameras!)),
               );
             }else if(buttonType == "MyCertificatePage"){
               Navigator.push(

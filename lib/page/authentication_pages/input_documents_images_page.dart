@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:fanar_sign/component/base_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,14 +12,15 @@ class InputDocumentsImagesPage extends StatefulWidget {
   final String birthdayController;
   final String nationalCodeSerialController;
   final String postCodeController;
+  final List<CameraDescription> cameras;
 
   InputDocumentsImagesPage({super.key, required this.nationalCodeController,
   required this.mobileNumberController, required this.birthdayController,
-  required this.nationalCodeSerialController, required this.postCodeController});
+  required this.nationalCodeSerialController, required this.postCodeController, required this.cameras});
 
   @override
   State<InputDocumentsImagesPage> createState() => _InputDocumentsImagesPageState(nationalCodeController,
-  mobileNumberController, birthdayController, nationalCodeSerialController, postCodeController);
+  mobileNumberController, birthdayController, nationalCodeSerialController, postCodeController ,cameras);
 }
 
 class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
@@ -36,9 +38,10 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
   final String birthdayController;
   final String nationalCodeSerialController;
   final String postCodeController;
+  final List<CameraDescription> cameras;
 
   _InputDocumentsImagesPageState(this.nationalCodeController, this.mobileNumberController, this.birthdayController,
-      this.nationalCodeSerialController, this.postCodeController);
+      this.nationalCodeSerialController, this.postCodeController, this.cameras);
 
   cameraConnectFromNationalCode() async {
     var img = await ImagePicker().pickImage(source: ImageSource.camera);
@@ -221,6 +224,7 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
         birthdayController: birthdayController,
         nationalCodeSerialController: nationalCodeSerialController,
         postCodeController: postCodeController,
+        cameras: cameras,
       ),
       appBar: BaseAppBar(
         title: "تصویر مدارک متقاضی",

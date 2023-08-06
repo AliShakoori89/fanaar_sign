@@ -2,16 +2,16 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-class VideoPage extends StatefulWidget {
+class PreviewVideoPage extends StatefulWidget {
   final String filePath;
 
-  const VideoPage({Key? key, required this.filePath}) : super(key: key);
+  const PreviewVideoPage({Key? key, required this.filePath}) : super(key: key);
 
   @override
-  _VideoPageState createState() => _VideoPageState();
+  _PreviewVideoPageState createState() => _PreviewVideoPageState();
 }
 
-class _VideoPageState extends State<VideoPage> {
+class _PreviewVideoPageState extends State<PreviewVideoPage> {
   late VideoPlayerController _videoPlayerController;
 
   @override
@@ -41,7 +41,7 @@ class _VideoPageState extends State<VideoPage> {
         ),
         actions: [
           Align(
-            alignment: Alignment.centerRight,
+            alignment: Alignment.center,
             child: Padding(
               padding: EdgeInsets.only(
                   right: 10

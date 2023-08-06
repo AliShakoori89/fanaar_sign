@@ -1,17 +1,25 @@
 import 'dart:io';
+import 'package:camera/camera.dart';
 import 'package:fanar_sign/component/main_page_header.dart';
 import 'package:flutter/material.dart';
 import '../component/main_page_footer.dart';
 
 class HomePage extends StatefulWidget {
 
+  final List<CameraDescription> cameras;
+
+  HomePage({super.key, required this.cameras});
+
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState(cameras);
 }
 
 class _HomePageState extends State<HomePage> {
 
   var selectedIndex = 2;
+  final List<CameraDescription> cameras;
+
+  _HomePageState(this.cameras);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +33,7 @@ class _HomePageState extends State<HomePage> {
                 child: MainPageHeader(mainPage: true)),
             Expanded(
                 flex: 12,
-                child: MainPageFooter())
+                child: MainPageFooter(cameras: cameras))
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:fanar_sign/bloc/certificate_store/bloc.dart';
 import 'package:fanar_sign/bloc/certificate_store/state.dart';
 import 'package:fanar_sign/component/custom_drop_down_button.dart';
@@ -17,26 +18,28 @@ class UserSummaryPage extends StatefulWidget {
   final String birthdayController;
   final String nationalCodeSerialController;
   final String postCodeController;
+  final List<CameraDescription> cameras;
 
   UserSummaryPage({super.key, required this.nationalCodeController,
     required this.mobileNumberController, required this.birthdayController,
-    required this.nationalCodeSerialController, required this.postCodeController});
+    required this.nationalCodeSerialController, required this.postCodeController, required this.cameras});
 
   @override
-  State<UserSummaryPage> createState() => _UserSummaryPageState(nationalCodeController, mobileNumberController,
-  birthdayController, nationalCodeSerialController, postCodeController);
+  State<UserSummaryPage> createState() => _UserSummaryPageState(nationalCodeController,
+      mobileNumberController, birthdayController, nationalCodeSerialController, postCodeController ,cameras);
 }
 
 class _UserSummaryPageState extends State<UserSummaryPage> {
 
   _UserSummaryPageState(this.nationalCodeController, this.mobileNumberController, this.birthdayController,
-      this.nationalCodeSerialController, this.postCodeController);
+      this.nationalCodeSerialController, this.postCodeController, this.cameras);
 
   final String nationalCodeController;
   final String mobileNumberController;
   final String birthdayController;
   final String nationalCodeSerialController;
   final String postCodeController;
+  final List<CameraDescription> cameras;
   bool valueFirst = false;
 
   @override
@@ -75,7 +78,7 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => HomePage()),
+                      builder: (context) => HomePage(cameras: cameras,)),
                 );
               },
               child: Container(

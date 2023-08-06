@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:fanar_sign/component/base_appbar.dart';
 import 'package:fanar_sign/component/datetime_picker_textfield.dart';
 import 'package:fanar_sign/component/my_app_button.dart';
@@ -5,11 +6,13 @@ import 'package:fanar_sign/component/text_field.dart';
 import 'package:flutter/material.dart';
 
 class InputInformationPage extends StatefulWidget {
-  InputInformationPage({super.key, this.index});
+
+  InputInformationPage({super.key, this.index, required this.cameras});
   int? index;
+  final List<CameraDescription> cameras;
 
   @override
-  State<InputInformationPage> createState() => _InputInformationPageState(index);
+  State<InputInformationPage> createState() => _InputInformationPageState(index, cameras);
 }
 
 class _InputInformationPageState extends State<InputInformationPage> {
@@ -19,10 +22,12 @@ class _InputInformationPageState extends State<InputInformationPage> {
   late TextEditingController birthdayController = TextEditingController();
   late TextEditingController nationalCodeSerialController = TextEditingController();
   late TextEditingController postCodeController = TextEditingController();
+  final List<CameraDescription> cameras;
+
   final formKey = GlobalKey<FormState>();
   int? index;
 
-  _InputInformationPageState(this.index);
+  _InputInformationPageState(this.index, this.cameras);
 
   @override
   void dispose() {
@@ -46,6 +51,7 @@ class _InputInformationPageState extends State<InputInformationPage> {
           birthdayController: birthdayController.text,
           nationalCodeSerialController: nationalCodeSerialController.text,
           postCodeController: postCodeController.text,
+          cameras: cameras,
           pageName: "InputInformationPage",
           formKey: formKey,
           index : index),

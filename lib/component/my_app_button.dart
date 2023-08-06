@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:fanar_sign/component/custom_drop_down_button.dart';
 import 'package:fanar_sign/const/app_color.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../page/authentication_pages/input_documents_images_page.dart';
 import '../page/authentication_pages/input_information_page.dart';
 import 'dart:io';
+import '../page/authentication_pages/live_video/input_live_video.dart';
 import '../page/home_page.dart';
 import '../page/user_summary_page.dart';
 
@@ -24,6 +26,7 @@ class MyAppButton extends StatelessWidget {
     this.verificationBoolean,
     this.selectIntermediateCAName,
     this.selectProduceName,
+    this.cameras,
     required this.pageName});
 
   File? image;
@@ -39,6 +42,7 @@ class MyAppButton extends StatelessWidget {
   bool? verificationBoolean;
   String? selectIntermediateCAName;
   String? selectProduceName;
+  List<CameraDescription>? cameras;
 
   final String pageName;
 
@@ -98,7 +102,7 @@ class MyAppButton extends StatelessWidget {
             }else{
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => InputInformationPage()),
+                MaterialPageRoute(builder: (context) => InputInformationPage(cameras: cameras!)),
               );
             }
           }else if (pageName == "HomePage") {
@@ -106,7 +110,7 @@ class MyAppButton extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => HomePage()),
+                    builder: (context) => HomePage(cameras: cameras!,)),
               );
             }else{
               showTopSnackBar(
@@ -121,17 +125,46 @@ class MyAppButton extends StatelessWidget {
                 ),
               );
             }
+          }else if (pageName == "InputLiveVideo") {
+            if(SquareState.isRecording == false){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => UserSummaryPage(
+                      nationalCodeController: nationalCodeController!,
+                      mobileNumberController: mobileNumberController!,
+                      birthdayController: birthdayController!,
+                      nationalCodeSerialController: nationalCodeSerialController!,
+                      postCodeController: postCodeController!,
+                      cameras: cameras!)),
+              );
+            }else{
+              showTopSnackBar(
+                snackBarPosition: SnackBarPosition.top,
+                Overlay.of(context),
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: CustomSnackBar.success(
+                    backgroundColor: Colors.red.shade300,
+                    message: "لطفا ویدیو خود به همراه جمله ای که باید تکرار کنید قرار دهید.",
+                  ),
+                ),
+              );
+            }
           }else if (pageName == "InputDocumentsImagesPage") {
             if (existImage1 == true && existImage2 == true) {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => UserSummaryPage(
-                        nationalCodeController: nationalCodeController!,
-                        mobileNumberController: mobileNumberController!,
-                        birthdayController: birthdayController!,
-                        nationalCodeSerialController: nationalCodeSerialController!,
-                        postCodeController: postCodeController!)),
+                    builder: (context) => InputLiveVideo(
+                      nationalCodeController: nationalCodeController!,
+                      mobileNumberController: mobileNumberController!,
+                      birthdayController: birthdayController!,
+                      nationalCodeSerialController: nationalCodeSerialController!,
+                      postCodeController: postCodeController!,
+                      cameras: cameras!,
+                    )
+                ),
               );
             } else {
               showTopSnackBar(
@@ -167,7 +200,8 @@ class MyAppButton extends StatelessWidget {
                           mobileNumberController: mobileNumberController!,
                           birthdayController: birthdayController!,
                           nationalCodeSerialController: nationalCodeSerialController!,
-                          postCodeController: postCodeController!
+                          postCodeController: postCodeController!,
+                          cameras: cameras!,
                         )
                 ),
               );

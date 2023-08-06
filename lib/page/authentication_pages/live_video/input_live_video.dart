@@ -1,6 +1,6 @@
 import 'package:fanar_sign/component/base_appbar.dart';
 import 'package:fanar_sign/component/my_app_button.dart';
-import 'package:fanar_sign/page/authentication_pages/live_video/video_page.dart';
+import 'package:fanar_sign/page/authentication_pages/live_video/preview_video_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import "dart:math";
@@ -9,18 +9,33 @@ import 'package:camera/camera.dart';
 
 class InputLiveVideo extends StatefulWidget {
 
-  const InputLiveVideo({required this.cameras, Key? key}) : super(key: key);
+  const InputLiveVideo({super.key, required this.nationalCodeController,
+    required this.mobileNumberController, required this.birthdayController,
+    required this.nationalCodeSerialController, required this.postCodeController, required this.cameras});
+
   final List<CameraDescription> cameras;
+  final String nationalCodeController;
+  final String mobileNumberController;
+  final String birthdayController;
+  final String nationalCodeSerialController;
+  final String postCodeController;
 
   @override
-  State<InputLiveVideo> createState() => _InputLiveVideoState(cameras);
+  State<InputLiveVideo> createState() => _InputLiveVideoState(nationalCodeController,
+      mobileNumberController, birthdayController, nationalCodeSerialController, postCodeController ,cameras);
 }
 
 class _InputLiveVideoState extends State<InputLiveVideo> {
 
   final List<CameraDescription> cameras;
+  final String nationalCodeController;
+  final String mobileNumberController;
+  final String birthdayController;
+  final String nationalCodeSerialController;
+  final String postCodeController;
 
-  _InputLiveVideoState(this.cameras);
+  _InputLiveVideoState(this.nationalCodeController, this.mobileNumberController, this.birthdayController,
+      this.nationalCodeSerialController, this.postCodeController, this.cameras);
 
   var list = [
     'میوه های درخت سیب رسیده است.',
@@ -40,6 +55,12 @@ class _InputLiveVideoState extends State<InputLiveVideo> {
     return Scaffold(
       bottomNavigationBar: MyAppButton(
           pageName: "InputLiveVideo",
+          nationalCodeController: nationalCodeController,
+          mobileNumberController: mobileNumberController,
+          birthdayController: birthdayController,
+          nationalCodeSerialController: nationalCodeSerialController,
+          postCodeController: postCodeController,
+          cameras: cameras,
       ),
       appBar: BaseAppBar(
         title: "ارسال فیلم",
@@ -110,16 +131,16 @@ class Square extends StatefulWidget {
   Square({this.color, this.size, required this.cameras});
 
   @override
-  _SquareState createState() => _SquareState(cameras);
+  SquareState createState() => SquareState(cameras);
 }
 
-class _SquareState extends State<Square> {
+class SquareState extends State<Square> {
 
-  _SquareState(this.cameras);
+  SquareState(this.cameras);
   late CameraController _cameraController;
   final List<CameraDescription> cameras;
   bool _isRearCameraSelected = true;
-  bool _isRecording = false;
+  static bool isRecording = false;
 
   @override
   void initState() {
@@ -147,18 +168,18 @@ class _SquareState extends State<Square> {
   }
 
   _recordVideo() async {
-    if (_isRecording) {
+    if (isRecording) {
       final file = await _cameraController.stopVideoRecording();
-      setState(() => _isRecording = false);
+      setState(() => isRecording = false);
       final route = MaterialPageRoute(
         // fullscreenDialog: true,
-        builder: (_) => VideoPage(filePath: file.path),
+        builder: (_) => PreviewVideoPage(filePath: file.path),
       );
       Navigator.push(context, route);
     } else {
       await _cameraController.prepareForVideoRecording();
       await _cameraController.startVideoRecording();
-      setState(() => _isRecording = true);
+      setState(() => isRecording = true);
     }
   }
 
@@ -208,7 +229,7 @@ class _SquareState extends State<Square> {
                         onPressed: _recordVideo,
                         iconSize: 20,
                         constraints: const BoxConstraints(),
-                        icon: Icon(_isRecording ? Icons.stop : Icons.circle,
+                        icon: Icon(isRecording ? Icons.stop : Icons.circle,
                             color: Colors.white),
                       )),
                       const Spacer(),

@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: "Fanaar Sign",
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: HomePage(cameras: cameras),
       ),
     );
   }

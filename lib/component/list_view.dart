@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:fanar_sign/bloc/certificate_store/bloc.dart';
 import 'package:fanar_sign/bloc/certificate_store/state.dart';
 import 'package:fanar_sign/page/certificate_managment_page.dart';
@@ -9,6 +10,9 @@ class MainPageListView extends StatelessWidget {
 
   List boxName = ["مدیزیت گواهی امضا","امضای من"];
   List imagePath = ["assets/icon/digital-signature.png", "assets/icon/my-digital-signature-transformed.png"];
+  final List<CameraDescription> cameras;
+
+  MainPageListView({super.key, required this.cameras});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class MainPageListView extends StatelessWidget {
                 if(index == 0){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => CertificateManagementPage(certList: certificateList)),
+                    MaterialPageRoute(builder: (context) => CertificateManagementPage(certList: certificateList, cameras: cameras)),
                   );
                 }else{
                   Navigator.push(

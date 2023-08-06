@@ -1,12 +1,14 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'list_view.dart';
 import 'main_page_card.dart';
 import 'main_page_image.dart';
 
 class MainPageFooter extends StatelessWidget {
-  MainPageFooter({super.key});
+  MainPageFooter({super.key, required this.cameras});
 
   final List cardName = ["سامانه ثبت من","سفته الکترونیکی","سامانه املاک"];
+  final List<CameraDescription> cameras;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class MainPageFooter extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(width: 15,),
-              MainPageListView()
+              MainPageListView(cameras: cameras)
             ],
           ),
         ),
