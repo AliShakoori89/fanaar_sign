@@ -1,23 +1,30 @@
 import 'package:fanar_sign/component/main_page_header.dart';
 import 'package:flutter/material.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 
+import '../component/base_appbar.dart';
 import '../const/app_color.dart';
 
 class CertificateDetails extends StatelessWidget {
-  CertificateDetails({super.key, required this.certificateName});
+  CertificateDetails({super.key, required this.certificateExpirationDate,
+  required this.certificateValidityPeriod, required this.selectProduceName});
 
-  final String certificateName;
-  List boxName = ["بطال گواهی","تجدید گواهی","تمدید گواهی"];
+  final String certificateExpirationDate;
+  final String selectProduceName;
+  final String certificateValidityPeriod;
+  List boxName = ["ابطال گواهی","تجدید گواهی","تمدید گواهی"];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: BaseAppBar(
+        title: "مشخصات گواهی",
+      ),
       body: Column(
         children: [
-          MainPageHeader(mainPage: false,),
           SizedBox(height: MediaQuery.of(context).size.height / 20,),
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Container(
               height: MediaQuery.of(context).size.height / 5,
               margin: const EdgeInsets.only(
@@ -44,7 +51,7 @@ class CertificateDetails extends StatelessWidget {
                     flex: 1,
                     child: Image.asset("assets/icon/certificate.png")),
                   Expanded(
-                    flex: 1,
+                    flex: 2,
                     child: Container(
                       margin: EdgeInsets.only(
                           right: MediaQuery.of(context).size.width / 50,
@@ -57,32 +64,60 @@ class CertificateDetails extends StatelessWidget {
                           Expanded(
                             flex: 1,
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Text(certificateName)
+                                Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: Text(selectProduceName,
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: MediaQuery.of(context).size.width / 30,
+                                    ),)),
+                                SizedBox(height: MediaQuery.of(context).size.height / 100,),
+                                Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: Text(certificateExpirationDate.toPersianDigit(), style: TextStyle(
+                                      color: Colors.blue,
+                                        fontWeight: FontWeight.w700,
+                                      fontSize: MediaQuery.of(context).size.width / 25,
+                                    ),)),
+                                SizedBox(height: MediaQuery.of(context).size.height / 150,),
+                                Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: Text(certificateValidityPeriod.toPersianDigit(), style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                      color: Colors.blue,
+                                      fontSize: MediaQuery.of(context).size.width / 25,
+                                    ),)),
                               ],
                             ),
                           ),
                           Expanded(
-                            flex: 2,
+                            flex: 1,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Directionality(
                                     textDirection: TextDirection.rtl,
-                                    child: Text("مرکز صادر کننده :", style: TextStyle(
-                                        fontWeight: FontWeight.w700
+                                    child: Text("نوع گواهی :", style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                      fontSize: MediaQuery.of(context).size.width / 30,
                                     ),)),
                                 SizedBox(height: MediaQuery.of(context).size.height / 100,),
                                 Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Text("تاریخ انقضا :", style: TextStyle(
-                                        fontWeight: FontWeight.w700
+                                        fontWeight: FontWeight.w700,
+                                      fontSize: MediaQuery.of(context).size.width / 30,
                                     ),)),
                                 SizedBox(height: MediaQuery.of(context).size.height / 100,),
                                 Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Text("مدت اعتبار :", style: TextStyle(
-                                        fontWeight: FontWeight.w700
+                                        fontWeight: FontWeight.w700,
+                                      fontSize: MediaQuery.of(context).size.width / 30,
                                     ),)),
                               ],
                             ),
@@ -129,7 +164,8 @@ class CertificateDetails extends StatelessWidget {
                       child: Center(
                         child: Text(boxName[index],
                         style: TextStyle(
-                          fontWeight: FontWeight.w700
+                          fontWeight: FontWeight.w700,
+                          fontSize: MediaQuery.of(context).size.width / 30,
                         )),
                       ),
                     );

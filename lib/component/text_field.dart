@@ -27,6 +27,7 @@ class MyTextField extends StatelessWidget {
             height: MediaQuery.of(context).size.height / 11,
             child: TextFormField(
               maxLength: labelText == "کد ملی"
+                  ? 10 : labelText == "سریال کارت"
                   ? 10 : labelText == "کد احراز هویت"
                   ? 4 : labelText == "شماره موبایل"
                   ? 11 : labelText == "کد پستی"

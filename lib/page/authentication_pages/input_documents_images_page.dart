@@ -107,7 +107,8 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
                         onTap: cameraConnectFromNationalCode,
                         child: Row(
                           children: [
-                            Icon(Icons.camera),
+                            Icon(Icons.camera,
+                            size: MediaQuery.of(context).size.width / 20),
                             SizedBox(width: MediaQuery.of(context).size.width / 20),
                             Text("دوربین", style: TextStyle(
                                 fontSize: MediaQuery.of(context).size.width / 20,
@@ -126,7 +127,8 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
                         onTap: galleryConnectFromNationalCode,
                         child: Row(
                           children: [
-                            Icon(Icons.image),
+                            Icon(Icons.image,
+                                size: MediaQuery.of(context).size.width / 20),
                             SizedBox(width: MediaQuery.of(context).size.width / 20),
                             Text("گالری", style: TextStyle(
                                 fontSize: MediaQuery.of(context).size.width / 20,
@@ -174,7 +176,8 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
                         onTap: cameraConnectFromBehindNationalCode,
                         child: Row(
                           children: [
-                            Icon(Icons.camera),
+                            Icon(Icons.camera,
+                                size: MediaQuery.of(context).size.width / 20),
                             SizedBox(width: MediaQuery.of(context).size.width / 20),
                             Text("دوربین", style: TextStyle(
                                 fontSize: MediaQuery.of(context).size.width / 20,
@@ -193,7 +196,8 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
                         onTap: galleryConnectFromBehindNationalCode,
                         child: Row(
                           children: [
-                            Icon(Icons.image),
+                            Icon(Icons.image,
+                                size: MediaQuery.of(context).size.width / 20),
                             SizedBox(width: MediaQuery.of(context).size.width / 20),
                             Text("گالری", style: TextStyle(
                                 fontSize: MediaQuery.of(context).size.width / 20,

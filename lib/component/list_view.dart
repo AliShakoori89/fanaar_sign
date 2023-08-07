@@ -39,7 +39,7 @@ class MainPageListView extends StatelessWidget {
             },
             child: Container(
               height: MediaQuery.of(context).size.height / 7,
-              width: MediaQuery.of(context).size.width / 3.5,
+              width: MediaQuery.of(context).size.width / 3.1,
               decoration: BoxDecoration(
                 boxShadow: const [
                   BoxShadow(color: Color.fromRGBO(139, 139, 139, 0.4),
@@ -77,7 +77,8 @@ class MainPageListView extends StatelessWidget {
                       color: index/2 == 1 || index/2 == 0 ? Colors.white : Colors.black),
                   SizedBox(height: MediaQuery.of(context).size.height / 100,),
                   Text(boxName[index],
-                    style: TextStyle(color: index/2 == 1 || index/2 == 0 ? Colors.white : Colors.black),)
+                    style: TextStyle(color: index/2 == 1 || index/2 == 0 ? Colors.white : Colors.black,
+                    fontSize: MediaQuery.of(context).size.width / 30),)
                 ],
               ),
             ),

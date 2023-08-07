@@ -16,11 +16,11 @@ Future <void> main() async{
   final cameras =await availableCameras();
   runApp(
     // DevicePreview(
-      // enabled: true,
-      // tools: [
-      //   ...DevicePreview.defaultTools,
-      // ],
-      // builder: (context) =>
+    //   enabled: true,
+    //   tools: [
+    //     ...DevicePreview.defaultTools,
+    //   ],
+    //   builder: (context) =>
           MyApp(cameras: cameras),
     // ),
   );

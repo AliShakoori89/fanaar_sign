@@ -3,6 +3,7 @@ import 'package:fanar_sign/component/my_app_button.dart';
 import 'package:fanar_sign/component/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../component/base_appbar.dart';
 import '../const/app_color.dart';
 
 class ActivationQRCodePage extends StatefulWidget {
@@ -44,6 +45,7 @@ class _ActivationQRCodePageState extends State<ActivationQRCodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: BaseAppBar(title: 'فعالسازی گواهی جدید'),
       resizeToAvoidBottomInset: false,
       bottomSheet: MyAppButton(
         pageName: 'ActivationQRCodePage', formKey: formKey),
@@ -51,7 +53,6 @@ class _ActivationQRCodePageState extends State<ActivationQRCodePage> {
         key: formKey,
         child: Column(
           children: [
-            MainPageHeader(mainPage: false),
             SizedBox(height: MediaQuery.of(context).size.height / 15,),
             Container(
               width: MediaQuery.of(context).size.width / 3,

@@ -18,6 +18,7 @@ class MYAppFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 2,
+      height: MediaQuery.of(context).size.height / 15,
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: FloatingActionButton.extended(
@@ -35,9 +36,10 @@ class MYAppFloatingActionButton extends StatelessWidget {
             }
           },
           backgroundColor: AppColors.appbarShadowColor,
-          icon: Icon(Icons.add),
+          icon: Icon(Icons.add, size: MediaQuery.of(context).size.width / 30),
           label: Text(buttonType == "CertificateManagementPage" ? "صدور گواهی جدید" : "فعال سازی",
-              style: TextStyle(fontWeight: FontWeight.w700)),
+              style: TextStyle(fontWeight: FontWeight.w700,
+              fontSize: MediaQuery.of(context).size.width / 30,)),
         ),
       ),
     );

@@ -17,6 +17,7 @@ class DatabaseHelper {
   static const columnSelectProduceName = 'selectProduceName';
   static const columnIssuedCertificateDate = 'issuedCertificateDate';
   static const columnCertificateExpirationDate = 'certificateExpirationDate';
+  static const columnCertificateValidityPeriod = 'certificateValidityPeriod';
   static const columnCertificateSerialCode = 'certificateSerialCode';
 
 
@@ -43,6 +44,7 @@ class DatabaseHelper {
         '$columnSelectProduceName TEXT,'
         '$columnIssuedCertificateDate TEXT,'
         '$columnCertificateExpirationDate TEXT,'
+        '$columnCertificateValidityPeriod TEXT,'
         '$columnCertificateSerialCode TEXT'
         ')'
     );

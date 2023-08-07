@@ -59,7 +59,10 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) =>
-                        CertificateDetails(certificateName: state.certificateIssuerInterMediateCAName)),
+                        CertificateDetails(
+                        selectProduceName: state.storeCertificate[index].selectProduceName!,
+                        certificateExpirationDate: state.storeCertificate[index].certificateExpirationDate!,
+                        certificateValidityPeriod: state.storeCertificate[index].certificateValidityPeriod!,)),
                   );
                 },
                 child: Directionality(
@@ -67,9 +70,10 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
                   child: Container(
                     height: MediaQuery.of(context).size.height / 12,
                     margin: const EdgeInsets.only(
-                        right: 15,
-                        left: 15,
-                        bottom: 10
+                      top: 20,
+                      right: 15,
+                      left: 15,
+                      bottom: 10
                     ),
                     decoration: BoxDecoration(
                       color: Colors.white,

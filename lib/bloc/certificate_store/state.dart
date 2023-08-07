@@ -17,22 +17,29 @@ class CertificateState extends Equatable {
     String? certificateIssuerInterMediateCAName,
     String? certificateExpirationDate,
     String? certificateValidityPeriod,
+    String? issuedCertificateDate,
+    String? selectProduceName,
     List<CertificateModel>? storeCertificate,
   }):certificateIssuerInterMediateCAName = certificateIssuerInterMediateCAName ?? "",
         certificateExpirationDate = certificateExpirationDate ?? "",
         certificateValidityPeriod = certificateValidityPeriod ?? "",
+        issuedCertificateDate = issuedCertificateDate ?? "",
+        selectProduceName = selectProduceName ?? "",
         storeCertificate = storeCertificate ?? const [];
   final CertificateStatus status;
   final String certificateIssuerInterMediateCAName;
   final String certificateExpirationDate;
   final String certificateValidityPeriod;
+  final String issuedCertificateDate;
+  final String selectProduceName;
   final List<CertificateModel> storeCertificate;
 
   @override
   // TODO: implement props
   List<Object> get props => [status,
     certificateIssuerInterMediateCAName, certificateExpirationDate,
-    certificateValidityPeriod, storeCertificate];
+    certificateValidityPeriod, storeCertificate, issuedCertificateDate,
+    selectProduceName];
 
 
   CertificateState copyWith({
@@ -40,6 +47,8 @@ class CertificateState extends Equatable {
     String? certificateIssuerInterMediateCAName,
     String? certificateExpirationDate,
     String? certificateValidityPeriod,
+    String? issuedCertificateDate,
+    String? selectProduceName,
     List<CertificateModel>? storeCertificate,
   }) {
     return CertificateState(
@@ -47,6 +56,8 @@ class CertificateState extends Equatable {
       certificateIssuerInterMediateCAName: certificateIssuerInterMediateCAName ?? this.certificateIssuerInterMediateCAName,
       certificateExpirationDate: certificateExpirationDate ?? this.certificateExpirationDate,
       certificateValidityPeriod: certificateValidityPeriod ?? this.certificateValidityPeriod,
+      issuedCertificateDate: issuedCertificateDate ?? this.issuedCertificateDate,
+      selectProduceName: selectProduceName ?? this.selectProduceName,
       storeCertificate: storeCertificate ?? this.storeCertificate
     );
   }

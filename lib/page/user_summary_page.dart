@@ -48,7 +48,7 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
-        title: "تصویر مدارک متقاضی",
+        title: "شخصات متقاضی",
       ),
       bottomSheet: GestureDetector(
           onTap: (){
@@ -56,7 +56,7 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
             if(valueFirst){
               DateTime now = DateTime.now();
               String formattedDate = init.DateFormat('yyyy-MM-dd').format(now);
-              String nextYear = DateTime(now.year+1, now.month, now.day).toString();
+              String nextYear = init.DateFormat('yyyy-MM-dd').format(DateTime(now.year+1, now.month, now.day));
 
               late CertificateModel certificateModel = CertificateModel();
               final certificateBloc = BlocProvider.of<CertificateBloc>(context);
@@ -66,15 +66,23 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
               certificateModel.selectProduceName = CustomDropDownButtonState.selectProduceName!;
               certificateModel.certificateSerialCode = nationalCodeController;
               certificateModel.issuedCertificateDate = formattedDate;
-
-              print(certificateModel.certificateExpirationDate);
-              print(certificateModel.certificateIssuerInterMediateCAName);
-              print(certificateModel.selectProduceName);
-              print(certificateModel.certificateSerialCode);
-              print(certificateModel.issuedCertificateDate);
+              certificateModel.certificateValidityPeriod = '1';
+              certificateModel.certificateSerialCode = nationalCodeController;
 
               certificateBloc.add(
                   SaveCertificateToStoreEvent(certificateModel: certificateModel));
+
+              showTopSnackBar(
+                snackBarPosition: SnackBarPosition.top,
+                Overlay.of(context),
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: CustomSnackBar.success(
+                    backgroundColor: Colors.green.shade300,
+                    message: "گواهی با موفقیت صادر گردید.",
+                  ),
+                ),
+              );
 
               Navigator.push(
                 context,
@@ -116,306 +124,329 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
             ),
           )
       ),
-      body: Container(
-        margin: EdgeInsets.all(15),
-        child: Column(
-          children: [
-            Text("تایید و ثبت مشخصات", style: TextStyle(
-                fontWeight: FontWeight.w700
-            )),
-            SizedBox(height: MediaQuery.of(context).size.height / 60,),
-            Row(
-              children: [
-                Expanded(
-                  flex: 5,
-                  child: Divider(
-                    thickness: 2,
-                    color: Colors.black26,
-                  ),
-                ),
-                SizedBox(width: MediaQuery.of(context).size.width / 50,),
-                Expanded(
-                    flex: 2,
-                    child: Text("مشخصات محصول", style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                      color: Colors.blue
-                    ),)),
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                right: MediaQuery.of(context).size.width / 20,
-                left: MediaQuery.of(context).size.width / 20,
-                top: MediaQuery.of(context).size.height / 40
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Container(
+          margin: EdgeInsets.only(
+              top: MediaQuery.of(context).size.height / 30,
+              left: MediaQuery.of(context).size.width / 30,
+              right: MediaQuery.of(context).size.width / 30,
+              bottom: MediaQuery.of(context).size.height / 8),
+          child: Column(
+            children: [
+              Text("تایید و ثبت مشخصات", style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: MediaQuery.of(context).size.width / 30
+              )),
+              SizedBox(height: MediaQuery.of(context).size.height / 60,),
+              Row(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(CustomDropDownButtonState.selectIntermediateCAName!,
-                          style: TextStyle(
-                              fontSize: MediaQuery.of(context).size.width / 30,
-                              color: Colors.blue
-                          )),
-                      SizedBox(height: MediaQuery.of(context).size.height / 50,),
-                      Text(CustomDropDownButtonState.selectProduceName!,
-                          style: TextStyle(
-                              fontSize: MediaQuery.of(context).size.width / 30,
-                              color: Colors.blue
-                          ))
-                    ],
+                  Expanded(
+                    flex: 5,
+                    child: Divider(
+                      thickness: 2,
+                      color: Colors.black26,
+                    ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text("نام مرکز میانی صادر کننده",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700
-                      )),
-                      SizedBox(height: MediaQuery.of(context).size.height / 50,),
-                      Text("نام محصول",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700
-                          ))
-                    ],
-                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width / 50,),
+                  Expanded(
+                      flex: 2,
+                      child: Text("مشخصات محصول", style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                        color: Colors.blue,
+                          fontSize: MediaQuery.of(context).size.width / 35
+                      ),)),
                 ],
               ),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height / 60,),
-            Row(
-              children: [
-                Expanded(
-                  flex: 5,
-                  child: Divider(
-                    thickness: 2,
-                    color: Colors.black26,
-                  ),
-                ),
-                SizedBox(width: MediaQuery.of(context).size.width / 50,),
-                Expanded(
-                    flex: 3,
-                    child: Text("اطلاعات هویتی متقاضی", style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Colors.blue
-                    ),)),
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.only(
+              Container(
+                margin: EdgeInsets.only(
                   right: MediaQuery.of(context).size.width / 20,
                   left: MediaQuery.of(context).size.width / 20,
                   top: MediaQuery.of(context).size.height / 40
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width / 3,
-                    height: MediaQuery.of(context).size.height / 4,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Text("علی اکبر",
-                              style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.width / 30,
-                                  color: Colors.blue
-                              )
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text("تعالی",
-                              style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.width / 30,
-                                  color: Colors.blue
-                              )
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(widget.nationalCodeController,
-                              style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.width / 30,
-                                  color: Colors.blue
-                              )
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(widget.nationalCodeSerialController,
-                              style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.width / 30,
-                                  color: Colors.blue
-                              )
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(widget.birthdayController,
-                              style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.width / 30,
-                                  color: Colors.blue
-                              )
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width / 3,
-                    height: MediaQuery.of(context).size.height / 4,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Text("نام",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700
-                              )),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text("نام خانوادگی",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700
-                              )),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text("کد ملی",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700
-                              )),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text("سریال کارت ملی",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700
-                              )),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text("تاریخ تولد",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700
-                              )),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height / 60,),
-            Row(
-              children: [
-                Expanded(
-                  flex: 5,
-                  child: Divider(
-                    thickness: 2,
-                    color: Colors.black26,
-                  ),
                 ),
-                SizedBox(width: MediaQuery.of(context).size.width / 50,),
-                Expanded(
-                    flex: 3,
-                    child: Text("اطلاعات تکمیلی متقاضی", style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Colors.blue
-                    ),)),
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                  right: MediaQuery.of(context).size.width / 20,
-                  left: MediaQuery.of(context).size.width / 20,
-                  top: MediaQuery.of(context).size.height / 40
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(CustomDropDownButtonState.selectIntermediateCAName!,
+                            style: TextStyle(
+                                fontSize: MediaQuery.of(context).size.width / 35,
+                                color: Colors.blue
+                            )),
+                        SizedBox(height: MediaQuery.of(context).size.height / 50,),
+                        Text(CustomDropDownButtonState.selectProduceName!,
+                            style: TextStyle(
+                                fontSize: MediaQuery.of(context).size.width / 35,
+                                color: Colors.blue
+                            ))
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text("نام مرکز میانی صادر کننده",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                            fontSize: MediaQuery.of(context).size.width / 35
+                        )),
+                        SizedBox(height: MediaQuery.of(context).size.height / 50,),
+                        Text("نام محصول",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: MediaQuery.of(context).size.width / 35
+                            ))
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              SizedBox(height: MediaQuery.of(context).size.height / 60,),
+              Row(
                 children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width / 3,
-                    height: MediaQuery.of(context).size.height / 8,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Text(widget.mobileNumberController,
-                              style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.width / 30,
-                                  color: Colors.blue
-                              )
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(widget.postCodeController,
-                              style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.width / 30,
-                                  color: Colors.blue
-                              )
-                          ),
-                        ),
-                      ],
+                  Expanded(
+                    flex: 5,
+                    child: Divider(
+                      thickness: 2,
+                      color: Colors.black26,
                     ),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width / 3,
-                    height: MediaQuery.of(context).size.height / 8,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Text("تلفن تماس",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700
-                              )),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text("کد پستی",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700
-                              )),
-                        ),
-                      ],
-                    ),
-                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width / 50,),
+                  Expanded(
+                      flex: 3,
+                      child: Text("اطلاعات هویتی متقاضی", style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Colors.blue,
+                          fontSize: MediaQuery.of(context).size.width / 35
+                      ),)),
                 ],
               ),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  flex: 6,
-                    child: Text("تمامی اطلاعات فوق را خوانده ام و تایید می کنم.", style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                        color: Colors.black
+              Container(
+                margin: EdgeInsets.only(
+                    right: MediaQuery.of(context).size.width / 20,
+                    left: MediaQuery.of(context).size.width / 20,
+                    top: MediaQuery.of(context).size.height / 40
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      height: MediaQuery.of(context).size.height / 4,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text("علی اکبر",
+                                style: TextStyle(
+                                    fontSize: MediaQuery.of(context).size.width / 35,
+                                    color: Colors.blue
+                                )
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text("تعالی",
+                                style: TextStyle(
+                                    fontSize: MediaQuery.of(context).size.width / 35,
+                                    color: Colors.blue
+                                )
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(widget.nationalCodeController,
+                                style: TextStyle(
+                                    fontSize: MediaQuery.of(context).size.width / 35,
+                                    color: Colors.blue
+                                )
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(widget.nationalCodeSerialController,
+                                style: TextStyle(
+                                    fontSize: MediaQuery.of(context).size.width / 35,
+                                    color: Colors.blue
+                                )
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(widget.birthdayController,
+                                style: TextStyle(
+                                    fontSize: MediaQuery.of(context).size.width / 35,
+                                    color: Colors.blue
+                                )
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    textDirection: TextDirection.rtl,)),
-                Expanded(
-                  flex: 1,
-                  child: Checkbox(
-                      value: this.valueFirst,
-                      onChanged:  (bool? value) {
-                        setState(() {
-                          this.valueFirst = value!;
-                        });
-                      },),
-                )
-              ],
-            )
-          ],
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      height: MediaQuery.of(context).size.height / 4,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text("نام",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: MediaQuery.of(context).size.width / 35
+                                )),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text("نام خانوادگی",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: MediaQuery.of(context).size.width / 35
+                                )),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text("کد ملی",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: MediaQuery.of(context).size.width / 35
+                                )),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text("سریال کارت ملی",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: MediaQuery.of(context).size.width / 35
+                                )),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text("تاریخ تولد",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: MediaQuery.of(context).size.width / 35
+                                )),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height / 60,),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: Divider(
+                      thickness: 2,
+                      color: Colors.black26,
+                    ),
+                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width / 50,),
+                  Expanded(
+                      flex: 3,
+                      child: Text("اطلاعات تکمیلی متقاضی", style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Colors.blue,
+                          fontSize: MediaQuery.of(context).size.width / 35
+                      ),)),
+                ],
+              ),
+              Container(
+                margin: EdgeInsets.only(
+                    right: MediaQuery.of(context).size.width / 20,
+                    left: MediaQuery.of(context).size.width / 20,
+                    top: MediaQuery.of(context).size.height / 40
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      height: MediaQuery.of(context).size.height / 8,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(widget.mobileNumberController,
+                                style: TextStyle(
+                                    fontSize: MediaQuery.of(context).size.width / 35,
+                                    color: Colors.blue
+                                )
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(widget.postCodeController,
+                                style: TextStyle(
+                                    fontSize: MediaQuery.of(context).size.width / 35,
+                                    color: Colors.blue
+                                )
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      height: MediaQuery.of(context).size.height / 8,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text("تلفن تماس",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: MediaQuery.of(context).size.width / 35
+                                )),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text("کد پستی",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: MediaQuery.of(context).size.width / 35
+                                )),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 6,
+                      child: Text("تمامی اطلاعات فوق را خوانده ام و تایید می کنم.", style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width / 35
+                      ),
+                      textDirection: TextDirection.rtl,)),
+                  Expanded(
+                    flex: 1,
+                    child: Transform.scale(
+                      scale: 1,
+                      child: Checkbox(
+                          value: this.valueFirst,
+                          onChanged:  (bool? value) {
+                            setState(() {
+                              this.valueFirst = value!;
+                            });
+                          },),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

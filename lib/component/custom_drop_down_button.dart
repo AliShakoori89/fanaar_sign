@@ -46,16 +46,24 @@ class CustomDropDownButtonState extends State<CustomDropDownButton> {
           DropdownMenuItem<String>(
             value: item,
             alignment: Alignment.center,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                textAlign: TextAlign.right,
-                item,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.black,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 1.0),
+                  child: Text(
+                    textAlign: TextAlign.right,
+                    item,
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width / 30,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
-              ),
+                Divider(
+                  color: Colors.grey,
+                  thickness: 1,
+                )
+              ],
             ),
           ),
           //If it's last item, we will not add Divider after it.
@@ -82,7 +90,7 @@ class CustomDropDownButtonState extends State<CustomDropDownButton> {
             textAlign: TextAlign.center,
             dropdownButtonName,
             style: TextStyle(
-                fontSize: MediaQuery.of(context).size.width / 30,
+                fontSize: MediaQuery.of(context).size.width / 35,
                 color: Colors.white,
                 fontWeight: FontWeight.w700),
           ),
@@ -106,46 +114,35 @@ class CustomDropDownButtonState extends State<CustomDropDownButton> {
                     : selectIntermediateCAName!,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: MediaQuery.of(context).size.width / 30,
+                    fontSize: MediaQuery.of(context).size.width / 35,
                     fontWeight: FontWeight.w700),)
                   : Text(selectProduceName == null
                     ? dropdownButtonName
                     : selectProduceName!,
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: MediaQuery.of(context).size.width / 30,
+                      fontSize: MediaQuery.of(context).size.width / 35,
                       fontWeight: FontWeight.w700))
             );
           }).toList();
         },
-        buttonStyleData: ButtonStyleData(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            height: 50,
-            width: MediaQuery.of(context).size.width / 1.5,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: AppColors.mainColor,
-              ),
-            )),
-        dropdownStyleData: DropdownStyleData(
-            maxHeight: MediaQuery.of(context).size.height / 10,
-            decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(15))),
-        menuItemStyleData: MenuItemStyleData(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          customHeights: _getCustomItemsHeights(),
+        buttonDecoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height / 50,),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: AppColors.mainColor,
+          ),
         ),
-        // style: TextStyle(
-        //   color: Colors.white,
-        // ),
+        buttonHeight: MediaQuery.of(context).size.height / 15,
+        buttonWidth: MediaQuery.of(context).size.width / 1.5,
+        dropdownScrollPadding: const EdgeInsets.symmetric(vertical: 0.0),
+        dropdownMaxHeight: MediaQuery.of(context).size.width / 5,
+        dropdownDecoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+        icon: Icon(Icons.arrow_drop_down, color: Colors.white,
+        size: MediaQuery.of(context).size.height / 30,),
+          iconEnabledColor: Colors.white),
 
-        iconStyleData: const IconStyleData(
-            openMenuIcon: Icon(Icons.arrow_drop_up, color: Colors.white),
-            iconEnabledColor: Colors.white),
-      ),
     );
   }
 }

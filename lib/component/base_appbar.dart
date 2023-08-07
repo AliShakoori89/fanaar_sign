@@ -8,6 +8,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return AppBar(
       actions: [
         Align(
@@ -18,7 +19,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             child: Text(title,
                 style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width / 20,
+                    fontSize: MediaQuery.of(context).size.width / 25,
                     color: Colors.white
                 )),
           ),
@@ -37,5 +38,5 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => Size.fromHeight(50.0);
+  Size get preferredSize => Size.fromHeight(50);
 }

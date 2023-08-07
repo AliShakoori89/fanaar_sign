@@ -219,7 +219,8 @@ class SquareState extends State<Square> {
                             _isRearCameraSelected
                                 ? CupertinoIcons.switch_camera
                                 : CupertinoIcons.switch_camera_solid,
-                            color: Colors.white),
+                            color: Colors.white,
+                          size: MediaQuery.of(context).size.width / 30,),
                         onPressed: () {
                           setState(() =>
                               _isRearCameraSelected = !_isRearCameraSelected);
@@ -233,7 +234,8 @@ class SquareState extends State<Square> {
                         iconSize: 20,
                         constraints: const BoxConstraints(),
                         icon: Icon(isRecording ? Icons.stop : Icons.circle,
-                            color: Colors.white),
+                            color: Colors.white,
+                            size: MediaQuery.of(context).size.width / 30),
                       )),
                       const Spacer(),
                     ]),
