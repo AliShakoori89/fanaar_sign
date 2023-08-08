@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_linear_datepicker/flutter_datepicker.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 
 class DateTimePickerTextField extends StatefulWidget {
@@ -23,9 +24,7 @@ class _DateTimePickerTextFieldState extends State<DateTimePickerTextField> {
 
   _DateTimePickerTextFieldState(this.labelText, this.hintText, this.controller);
 
-  Jalali picked = Jalali.now();
-
-  String selectedDate = "";
+  static String selectedDate = "";
 
   String label = '';
 
@@ -66,44 +65,64 @@ class _DateTimePickerTextFieldState extends State<DateTimePickerTextField> {
           }
         },
         onTap: () async{
-          picked = (await showPersianDatePicker(
-            context: context,
-            initialDate: Jalali.now(),
-            firstDate: Jalali(1385, 8),
-            lastDate: Jalali(1450, 9),
-            builder: (context, child) {
-              return child!;
-            },
-          ))!;
-          if (picked != selectedDate) {
-            setState(() {
-              label = picked.toJalaliDateTime();
-            });
-          }
 
-          if (!mounted) return;
-
-          if(picked.month.toString().length != 1){
-            if(picked.day.toString().length != 1){
-              month = "${picked.year}-${picked.month}";
-              date = "${picked.year}-${picked.month}-${picked.day}";
-            }else{
-              month = "${picked.year}-${picked.month}";
-              date = "${picked.year}-${picked.month}-0${picked.day}";
-            }
-          }else{
-            if(picked.day.toString().length != 1){
-              month = "${picked.year}-0${picked.month}";
-              date = "${picked.year}-0${picked.month}-${picked.day}";
-            }else{
-              month = "${picked.year}-0${picked.month}";
-              date = "${picked.year}-0${picked.month}-0${picked.day}";
-            }
-          }
-
-          controller!.text = date;
+          showDialog(
+              context: context,
+              builder: (_) =>
+                  AlertDialog(
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("انتخاب")),
+              ],
+              title: Text(
+                'تاریخ تولد خود را انتخاب کنید.',
+                textDirection: TextDirection.rtl,
+                style:
+                    TextStyle(fontSize: MediaQuery.of(context).size.width / 25),
+              ),
+              content: LinearDatePicker(
+                startDate: "1300/01/01",
+                endDate: "1402/01/01",
+                initialDate: "1400/01/01",
+                addLeadingZero: true,
+                dateChangeListener: (String selectDate) {
+                  setState(() {
+                    selectedDate = selectDate;
+                    controller!.text = selectedDate;
+                  });
+                },
+                showDay: true,
+                labelStyle: TextStyle(
+                  fontFamily: 'iran',
+                  fontSize: MediaQuery.of(context).size.width / 30,
+                  color: Colors.black,
+                ),
+                selectedRowStyle: TextStyle(
+                  fontFamily: 'iran',
+                  fontSize: MediaQuery.of(context).size.width / 30,
+                  color: Colors.deepOrange,
+                ),
+                unselectedRowStyle: TextStyle(
+                  fontFamily: 'iran',
+                  fontSize: MediaQuery.of(context).size.width / 30,
+                  color: Colors.blueGrey,
+                ),
+                yearText: "سال",
+                monthText: "ماه",
+                dayText: "روز",
+                showLabels: true,
+                columnWidth: MediaQuery.of(context).size.width / 6,
+                showMonthName: true,
+                isJalaali: true,
+              ),
+            ),
+            );
         },
       ),
     );
   }
+
 }

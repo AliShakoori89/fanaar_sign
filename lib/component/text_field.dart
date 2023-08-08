@@ -27,7 +27,7 @@ class MyTextField extends StatelessWidget {
             height: MediaQuery.of(context).size.height / 11,
             child: TextFormField(
               maxLength: labelText == "کد ملی"
-                  ? 10 : labelText == "سریال کارت"
+                  ? 10 : labelText == "سریال کارت ملی"
                   ? 10 : labelText == "کد احراز هویت"
                   ? 4 : labelText == "شماره موبایل"
                   ? 11 : labelText == "کد پستی"
@@ -47,16 +47,19 @@ class MyTextField extends StatelessWidget {
                       for(int i = 10; i > 1; i--){
                         sum += (i)*int.parse(val[counter]);
                         counter++;
+                        print("+++++++++++++        "+sum.toString());
                       }
                       div = int.parse("${sum % 11}");
+                      print("%%%%%%%%%%%%%     "+div.toString());
                       counter = 0;
                       if(div < 2){
                         if(val[9] == div.toString()){
                           return null;
-                        }else{
-                          return "کد ملی وارد شده صحیح نمی باشد.";
                         }
-                      }else if(val[9] == 11-div){
+                        // else if (val[9] == 11 - div)else{
+                        //   return "کد ملی وارد شده صحیح نمی باشد.";
+                        // }
+                      }else if(val[9] == (11-div).toString()){
                         return null;
                       }else{
                         return "کد ملی وارد شده صحیح نمی باشد.";

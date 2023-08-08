@@ -54,6 +54,7 @@ dependencies:
   flare_flutter: ^3.0.2
   bottom_dialog: ^1.0.3
   path_provider: ^2.0.15
+  flutter_linear_datepicker: ^2.0.5
 
 dev_dependencies:
   flutter_test:
