@@ -19,8 +19,7 @@ class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
 
   final List<String> intermediateCAName = [
     'مرکز میانی فن آوران اعتماد راهبر',
-    'مرکز میانی نماد',
-    ""
+    'مرکز میانی نماد'
   ];
 
   final List<String> produceName = [
@@ -55,7 +54,9 @@ class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
                 fontSize: MediaQuery.of(context).size.width / 30,),),
             ),
             SizedBox(height: MediaQuery.of(context).size.height / 100,),
-            Center(child: CustomDropDownButton(dropdownButtonName: "انتخاب مرکز میانی صدور گواهی", itemName: intermediateCAName)),
+            Center(child: CustomDropDownButton(
+                dropdownButtonName: "انتخاب مرکز میانی صدور گواهی",
+                itemName: intermediateCAName)),
             SizedBox(height: MediaQuery.of(context).size.height / 25,),
             Align(
               alignment: Alignment.centerRight,

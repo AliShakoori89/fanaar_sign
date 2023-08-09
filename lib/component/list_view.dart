@@ -11,7 +11,7 @@ class MainPageListView extends StatelessWidget {
 
   MainPageListView({super.key, required this.cameras});
 
-  List boxName = ["مدیزیت گواهی امضا","امضای من"];
+  List boxName = ["مدیریت گواهی امضاء","امضای من"];
   final List<CameraDescription> cameras;
   List imagePath = ["assets/icon/digital-signature.png", "assets/icon/my-digital-signature-transformed.png"];
 

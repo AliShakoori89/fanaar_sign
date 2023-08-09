@@ -17,7 +17,8 @@ class DateTimeNow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Icon(Icons.calendar_today, color: Colors.white, size: 20),
+        Icon(Icons.calendar_today, color: Colors.white,
+            size: MediaQuery.of(context).size.width / 20),
         SizedBox(width: 10,),
         Text(date.toPersianDigit(),
           style: TextStyle(

@@ -48,32 +48,24 @@ class CustomDropDownButtonState extends State<CustomDropDownButton> {
             alignment: Alignment.center,
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 1.0),
-                  child: Text(
-                    textAlign: TextAlign.right,
-                    item,
-                    style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width / 30,
-                      color: Colors.black,
-                    ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 100
+                ),
+                Text(
+                  textAlign: TextAlign.right,
+                  item,
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width / 30,
+                    color: Colors.black,
                   ),
                 ),
                 Divider(
-                  color: Colors.grey,
+                  color: Colors.grey[300],
                   thickness: 1,
                 )
               ],
             ),
           ),
-          //If it's last item, we will not add Divider after it.
-          if (item != items.last)
-            DropdownMenuItem<String>(
-              enabled: false,
-              child: Divider(
-                height: 5,
-              ),
-            ),
         ],
       );
     }
@@ -84,6 +76,7 @@ class CustomDropDownButtonState extends State<CustomDropDownButton> {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButton2<String>(
+        isDense: false,
         isExpanded: true,
         hint: Center(
           child: Text(
@@ -96,7 +89,9 @@ class CustomDropDownButtonState extends State<CustomDropDownButton> {
           ),
         ),
         items: _addDividersAfterItems(itemName),
-        value: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی" ? selectIntermediateCAName : selectProduceName,
+        value: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+            ? selectIntermediateCAName
+            : selectProduceName,
         onChanged: (String? value) {
           setState(() {
             dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
@@ -136,8 +131,8 @@ class CustomDropDownButtonState extends State<CustomDropDownButton> {
         ),
         buttonHeight: MediaQuery.of(context).size.height / 15,
         buttonWidth: MediaQuery.of(context).size.width / 1.5,
-        dropdownScrollPadding: const EdgeInsets.symmetric(vertical: 0.0),
-        dropdownMaxHeight: MediaQuery.of(context).size.width / 5,
+        // dropdownScrollPadding: const EdgeInsets.symmetric(vertical: 0.0),
+
         dropdownDecoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
         icon: Icon(Icons.arrow_drop_down, color: Colors.white,
         size: MediaQuery.of(context).size.height / 30,),
