@@ -33,7 +33,7 @@ class CertificateBloc extends Bloc<CertificateEvent, CertificateState>{
       FetchAllCertificateEvent event, Emitter<CertificateState> emit) async {
     try{
       emit(state.copyWith(status: CertificateStatus.loading));
-      final List<CertificateModel> certificates = await certificateRepository.getAllCertificates();
+      final List<CertificateDetailsModel> certificates = await certificateRepository.getAllCertificates();
       emit(
         state.copyWith(
             status: CertificateStatus.success,

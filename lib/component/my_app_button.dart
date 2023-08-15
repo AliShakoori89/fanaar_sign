@@ -2,14 +2,13 @@ import 'package:camera/camera.dart';
 import 'package:fanar_sign/component/custom_drop_down_button.dart';
 import 'package:fanar_sign/const/app_color.dart';
 import 'package:flutter/material.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../page/authentication_pages/input_documents_images_page.dart';
 import '../page/authentication_pages/input_information_page.dart';
 import 'dart:io';
 import '../page/authentication_pages/live_video/input_live_video.dart';
 import '../page/home_page.dart';
 import '../page/user_summary_page.dart';
+import 'costom_snackbar.dart';
 
 class MyAppButton extends StatelessWidget {
   MyAppButton({super.key,
@@ -74,31 +73,9 @@ class MyAppButton extends StatelessWidget {
         onTap: (){
           if(pageName == "IssuedNewCertificatePage"){
             if(CustomDropDownButtonState.selectIntermediateCAName == null){
-              showTopSnackBar(
-                snackBarPosition: SnackBarPosition.top,
-                Overlay.of(context),
-                Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: CustomSnackBar.success(
-                    backgroundColor: Colors.red.shade300,
-                    message:
-                    "لطفا مرکز میانی مورد نظر را انتخاب کنید.",
-                  ),
-                ),
-              );
+              CustomWidgets.buildErrorSnackbar(context,"لطفا مرکز میانی مورد نظر را انتخاب کنید.");
             } else if(CustomDropDownButtonState.selectProduceName == null){
-              showTopSnackBar(
-                snackBarPosition: SnackBarPosition.top,
-                Overlay.of(context),
-                Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: CustomSnackBar.success(
-                    backgroundColor: Colors.red.shade300,
-                    message:
-                    "لطفا نام محصول مورد نظر را انتخاب کنید.",
-                  ),
-                ),
-              );
+              CustomWidgets.buildErrorSnackbar(context,"لطفا نام محصول مورد نظر را انتخاب کنید.");
             }else{
               Navigator.push(
                 context,
@@ -113,17 +90,7 @@ class MyAppButton extends StatelessWidget {
                     builder: (context) => HomePage(cameras: cameras!,)),
               );
             }else{
-              showTopSnackBar(
-                snackBarPosition: SnackBarPosition.top,
-                Overlay.of(context),
-                Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: CustomSnackBar.success(
-                    backgroundColor: Colors.red.shade300,
-                    message: "لطفا در صورت تایید اطلاعات خود تیک را بفشارید.",
-                  ),
-                ),
-              );
+              CustomWidgets.buildErrorSnackbar(context,"لطفا در صورت تایید اطلاعات خود تیک مورد نظر را بفشارید.");
             }
           }else if (pageName == "InputLiveVideo") {
             if(SquareState.isRecord == true){
@@ -139,17 +106,7 @@ class MyAppButton extends StatelessWidget {
                       cameras: cameras!)),
               );
             }else{
-              showTopSnackBar(
-                snackBarPosition: SnackBarPosition.top,
-                Overlay.of(context),
-                Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: CustomSnackBar.success(
-                    backgroundColor: Colors.red.shade300,
-                    message: "لطفا ویدیو خود به همراه جمله ای که باید تکرار کنید قرار دهید.",
-                  ),
-                ),
-              );
+              CustomWidgets.buildErrorSnackbar(context,"لطفا ویدیو خود به همراه جمله ای که باید تکرار کنید آپلود نمایید.");
             }
           }else if (pageName == "InputDocumentsImagesPage") {
             if (existImage1 == true && existImage2 == true) {
@@ -167,30 +124,11 @@ class MyAppButton extends StatelessWidget {
                 ),
               );
             } else {
-              showTopSnackBar(
-                Overlay.of(context),
-                Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: CustomSnackBar.error(
-                    message: "لطفا عکس موارد خواسته شده را آپلود نمایید.",
-                    backgroundColor: Colors.red.shade300,
-                  ),
-                ),
-              );
+              CustomWidgets.buildErrorSnackbar(context,"لطفا عکس موارد خواسته شده را آپلود نمایید.");
             }
           } else if (formKey!.currentState!.validate()) {
             if (pageName == "ActivationQRCodePage") {
-              showTopSnackBar(
-                snackBarPosition: SnackBarPosition.top,
-                Overlay.of(context),
-                Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: CustomSnackBar.success(
-                    backgroundColor: Colors.red.shade300,
-                    message: "لطفا ORCode مربوطه را اسکن کنید.",
-                  ),
-                ),
-              );
+              CustomWidgets.buildErrorSnackbar(context,"لطفا ORCode مربوطه را اسکن کنید.");
             } else if (pageName == "InputInformationPage") {
               Navigator.push(
                 context,

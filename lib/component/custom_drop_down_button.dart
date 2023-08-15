@@ -28,7 +28,7 @@ class CustomDropDownButtonState extends State<CustomDropDownButton> {
     final List<double> itemsHeights = [];
     for (int i = 0; i < (itemName.length * 2) - 1; i++) {
       if (i.isEven) {
-        itemsHeights.add(40);
+        itemsHeights.add(100);
       }
       //Dividers indexes will be the odd indexes
       if (i.isOdd) {
@@ -51,18 +51,27 @@ class CustomDropDownButtonState extends State<CustomDropDownButton> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 100
                 ),
-                Text(
-                  textAlign: TextAlign.right,
-                  item,
-                  style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width / 30,
-                    color: Colors.black,
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    textAlign: TextAlign.right,
+                    item,
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width / 30,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-                Divider(
-                  color: Colors.grey[300],
-                  thickness: 1,
-                )
+                SizedBox(
+                    height: MediaQuery.of(context).size.height / 100
+                ),
+                item != itemName.last ? Expanded(
+                  flex: 1,
+                  child: Divider(
+                    color: Colors.grey[600],
+                    thickness: 1,
+                  ),
+                ) : Container()
               ],
             ),
           ),
@@ -76,6 +85,7 @@ class CustomDropDownButtonState extends State<CustomDropDownButton> {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButton2<String>(
+        itemHeight: MediaQuery.of(context).size.width / 8,
         isDense: false,
         isExpanded: true,
         hint: Center(
@@ -135,8 +145,8 @@ class CustomDropDownButtonState extends State<CustomDropDownButton> {
 
         dropdownDecoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
         icon: Icon(Icons.arrow_drop_down, color: Colors.white,
-        size: MediaQuery.of(context).size.height / 30,),
-          iconEnabledColor: Colors.white),
+          size: MediaQuery.of(context).size.height / 30,),
+        iconEnabledColor: Colors.white),
 
     );
   }

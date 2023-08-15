@@ -50,18 +50,18 @@ class DatabaseHelper {
     );
   }
 
-  Future<bool> saveCertificate(CertificateModel certificateModel) async {
+  Future<bool> saveCertificate(CertificateDetailsModel certificateModel) async {
     var dbCert = await database;
     await dbCert.insert(certificateTable, certificateModel.toJson());
     return true;
   }
 
-  Future<List<CertificateModel>> getAllCertificate() async {
+  Future<List<CertificateDetailsModel>> getAllCertificate() async {
     var dbCert = await database;
     var listMap = await dbCert.rawQuery('SELECT * FROM $certificateTable');
-    var listCertificates = <CertificateModel>[];
+    var listCertificates = <CertificateDetailsModel>[];
     for (Map<String, dynamic> m in listMap) {
-      listCertificates.add(CertificateModel.fromJson(m));
+      listCertificates.add(CertificateDetailsModel.fromJson(m));
     }
     return listCertificates;
   }

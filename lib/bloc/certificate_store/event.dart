@@ -5,7 +5,7 @@ abstract class CertificateEvent{
 }
 
 class SaveCertificateToStoreEvent extends CertificateEvent{
-  final CertificateModel certificateModel;
+  final CertificateDetailsModel certificateModel;
 
   SaveCertificateToStoreEvent(
       {required this.certificateModel});

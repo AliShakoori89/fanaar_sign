@@ -19,7 +19,7 @@ class CertificateState extends Equatable {
     String? certificateValidityPeriod,
     String? issuedCertificateDate,
     String? selectProduceName,
-    List<CertificateModel>? storeCertificate,
+    List<CertificateDetailsModel>? storeCertificate,
   }):certificateIssuerInterMediateCAName = certificateIssuerInterMediateCAName ?? "",
         certificateExpirationDate = certificateExpirationDate ?? "",
         certificateValidityPeriod = certificateValidityPeriod ?? "",
@@ -32,7 +32,7 @@ class CertificateState extends Equatable {
   final String certificateValidityPeriod;
   final String issuedCertificateDate;
   final String selectProduceName;
-  final List<CertificateModel> storeCertificate;
+  final List<CertificateDetailsModel> storeCertificate;
 
   @override
   // TODO: implement props
@@ -49,7 +49,7 @@ class CertificateState extends Equatable {
     String? certificateValidityPeriod,
     String? issuedCertificateDate,
     String? selectProduceName,
-    List<CertificateModel>? storeCertificate,
+    List<CertificateDetailsModel>? storeCertificate,
   }) {
     return CertificateState(
       status: status ?? this.status,

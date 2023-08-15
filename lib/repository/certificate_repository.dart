@@ -8,11 +8,11 @@ class CertificateRepository{
     helper = DatabaseHelper();
   }
 
-  Future<bool> saveCertificateRepo(CertificateModel certificateModel) async{
+  Future<bool> saveCertificateRepo(CertificateDetailsModel certificateModel) async{
     return await helper.saveCertificate(certificateModel);
   }
 
-  Future<List<CertificateModel>> getAllCertificates () async{
+  Future<List<CertificateDetailsModel>> getAllCertificates () async{
     return await helper.getAllCertificate();
   }
 }
