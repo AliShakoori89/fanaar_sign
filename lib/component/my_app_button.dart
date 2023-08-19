@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:fanar_sign/component/custom_drop_down_button.dart';
 import 'package:fanar_sign/const/app_color.dart';
+import 'package:fanar_sign/page/authentication_pages/live_video/description_page.dart';
 import 'package:flutter/material.dart';
 import '../page/authentication_pages/input_documents_images_page.dart';
 import '../page/authentication_pages/input_information_page.dart';
@@ -53,9 +54,8 @@ class MyAppButton extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.only(
               left: MediaQuery.of(context).size.width / 20,
-              right: MediaQuery.of(context).size.width / 20,
-              bottom: MediaQuery.of(context).size.width / 20),
-          height: MediaQuery.of(context).size.height / 13,
+              right: MediaQuery.of(context).size.width / 20),
+          height: MediaQuery.of(context).size.height / 15,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
             gradient: const LinearGradient(
@@ -113,7 +113,7 @@ class MyAppButton extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => InputLiveVideo(
+                    builder: (context) => DescriptionPage(
                       nationalCodeController: nationalCodeController!,
                       mobileNumberController: mobileNumberController!,
                       birthdayController: birthdayController!,

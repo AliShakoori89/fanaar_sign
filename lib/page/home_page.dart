@@ -26,15 +26,23 @@ class _HomePageState extends State<HomePage> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        body: Column(
-          children: [
-            Expanded(
-              flex: 4,
-                child: MainPageHeader(mainPage: true)),
-            Expanded(
-                flex: 12,
-                child: MainPageFooter(cameras: cameras))
-          ],
+        body: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/image/fanaar background image.png"),
+                  fit: BoxFit.fill,
+                  opacity: 0.05)
+          ),
+          child: Column(
+            children: [
+              Expanded(
+                flex: 4,
+                  child: MainPageHeader(mainPage: true)),
+              Expanded(
+                  flex: 12,
+                  child: MainPageFooter(cameras: cameras))
+            ],
+          ),
         ),
       ),
     );

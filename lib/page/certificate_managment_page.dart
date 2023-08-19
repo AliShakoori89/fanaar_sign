@@ -44,76 +44,84 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
         buttonName: 'صدور گواهی جدید',
         buttonType: 'CertificateManagementPage',
         cameras: widget.cameras),
-      body: BlocBuilder<CertificateBloc, CertificateState>(builder: (context, state){
-        return state.status.isLoading
-            ? Center(
-            child: CircularProgressIndicator())
-            : state.status.isSuccess
-            ? state.storeCertificate.length == 0
-            ? NoDataPage()
-            : ListView.builder(
-            itemCount: state.storeCertificate.length,
-            itemBuilder: (BuildContext context, int index){
-              return GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) =>
-                        CertificateDetails(
-                        selectProduceName: state.storeCertificate[index].selectProduceName!,
-                        certificateExpirationDate: state.storeCertificate[index].certificateExpirationDate!,
-                        certificateValidityPeriod: state.storeCertificate[index].certificateValidityPeriod!,)),
-                  );
-                },
-                child: Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: Container(
-                    height: MediaQuery.of(context).size.height / 12,
-                    margin: const EdgeInsets.only(
-                      top: 20,
-                      right: 15,
-                      left: 15,
-                      bottom: 10
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(25),
-                      boxShadow: [
-                        BoxShadow(color: AppColors.cardShadowColor,
-                          spreadRadius: 1,
-                          blurRadius: 4,
-                          offset: Offset(
-                            0.0, // Move to right 5  horizontally
-                            5.0, // Move to bottom 5 Vertically
-                          ),),
-                      ],
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          right: MediaQuery.of(context).size.width / 20
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/image/fanaar background image.png"),
+                fit: BoxFit.fill,
+                opacity: 0.05)
+        ),
+        child: BlocBuilder<CertificateBloc, CertificateState>(builder: (context, state){
+          return state.status.isLoading
+              ? Center(
+              child: CircularProgressIndicator())
+              : state.status.isSuccess
+              ? state.storeCertificate.length == 0
+              ? NoDataPage()
+              : ListView.builder(
+              itemCount: state.storeCertificate.length,
+              itemBuilder: (BuildContext context, int index){
+                return GestureDetector(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>
+                          CertificateDetails(
+                          selectProduceName: state.storeCertificate[index].selectProduceName!,
+                          certificateExpirationDate: state.storeCertificate[index].certificateExpirationDate!,
+                          certificateValidityPeriod: state.storeCertificate[index].certificateValidityPeriod!,)),
+                    );
+                  },
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Container(
+                      height: MediaQuery.of(context).size.height / 12,
+                      margin: const EdgeInsets.only(
+                        top: 20,
+                        right: 15,
+                        left: 15,
+                        bottom: 10
                       ),
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          state.storeCertificate[index].certificateIssuerInterMediateCAName!,
-                          style: TextStyle(color: Colors.black,
-                              fontSize: MediaQuery.of(context).size.width / 25,
-                              fontWeight: FontWeight.w700
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: [
+                          BoxShadow(color: AppColors.cardShadowColor,
+                            spreadRadius: 1,
+                            blurRadius: 4,
+                            offset: Offset(
+                              0.0, // Move to right 5  horizontally
+                              5.0, // Move to bottom 5 Vertically
+                            ),),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            right: MediaQuery.of(context).size.width / 20
+                        ),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            state.storeCertificate[index].certificateIssuerInterMediateCAName!,
+                            style: TextStyle(color: Colors.black,
+                                fontSize: MediaQuery.of(context).size.width / 25,
+                                fontWeight: FontWeight.w700
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              );
-            },
-            )
-            : state.status.isError
-            ? const Center(
-                child: Text('Error'),
+                );
+              },
               )
-            : NoDataPage();
-      }
+              : state.status.isError
+              ? const Center(
+                  child: Text('Error'),
+                )
+              : NoDataPage();
+        }
+        ),
       )
     );
   }

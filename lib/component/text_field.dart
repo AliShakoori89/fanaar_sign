@@ -28,8 +28,7 @@ class MyTextField extends StatelessWidget {
             child: TextFormField(
               maxLength: labelText == "کد ملی"
                   ? 10 : labelText == "سریال کارت ملی"
-                  ? 10 : labelText == "کد احراز هویت"
-                  ? 4 : labelText == "شماره موبایل"
+                  ? 10 : labelText == "شماره موبایل"
                   ? 11 : labelText == "کد پستی"
                   ? 10 : null,
               textAlignVertical: TextAlignVertical.center,
@@ -106,6 +105,14 @@ class MyTextField extends StatelessWidget {
                     borderRadius: BorderRadius.circular(25)
                 ),
                 labelText: labelText,
+                hintText: labelText == "کد ملی"
+                    ? "0011515740" : labelText == "سریال کارت ملی"
+                    ? "3G43454654" : labelText == "شماره موبایل"
+                    ? "09122344567" : labelText == "کد پستی"
+                    ? "1425561221" : null,
+                hintStyle: TextStyle(
+                  color: Colors.grey[400]
+                )
               ),
               autocorrect: false,
             )
