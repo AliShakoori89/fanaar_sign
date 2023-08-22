@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
               image: DecorationImage(
                   image: AssetImage("assets/image/fanaar background image.png"),
                   fit: BoxFit.fill,
-                  opacity: 0.05)
+                  opacity: 0.15)
           ),
           child: Column(
             children: [

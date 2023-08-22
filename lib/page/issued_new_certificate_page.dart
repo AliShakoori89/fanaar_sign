@@ -45,7 +45,7 @@ class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
             image: DecorationImage(
                 image: AssetImage("assets/image/fanaar background image.png"),
                 fit: BoxFit.cover,
-                opacity: 0.05)
+                opacity: 0.15)
         ),
         child: Container(
           margin: EdgeInsets.only(

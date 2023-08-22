@@ -49,7 +49,7 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
             image: DecorationImage(
                 image: AssetImage("assets/image/fanaar background image.png"),
                 fit: BoxFit.fill,
-                opacity: 0.05)
+                opacity: 0.15)
         ),
         child: BlocBuilder<CertificateBloc, CertificateState>(builder: (context, state){
           return state.status.isLoading
@@ -77,7 +77,7 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
                     child: Container(
                       height: MediaQuery.of(context).size.height / 12,
                       margin: const EdgeInsets.only(
-                        top: 20,
+                        top: 10,
                         right: 15,
                         left: 15,
                         bottom: 10

@@ -2,11 +2,12 @@ import 'package:camera/camera.dart';
 import 'package:fanar_sign/component/custom_drop_down_button.dart';
 import 'package:fanar_sign/const/app_color.dart';
 import 'package:fanar_sign/page/authentication_pages/live_video/description_page.dart';
+import 'package:fanar_sign/page/issued_certificate_page.dart';
 import 'package:flutter/material.dart';
 import '../page/authentication_pages/input_documents_images_page.dart';
 import '../page/authentication_pages/input_information_page.dart';
 import 'dart:io';
-import '../page/authentication_pages/live_video/input_live_video.dart';
+import '../page/authentication_pages/live_video/input_live_video_page.dart';
 import '../page/home_page.dart';
 import '../page/user_summary_page.dart';
 import 'costom_snackbar.dart';
@@ -55,7 +56,7 @@ class MyAppButton extends StatelessWidget {
           margin: EdgeInsets.only(
               left: MediaQuery.of(context).size.width / 20,
               right: MediaQuery.of(context).size.width / 20),
-          height: MediaQuery.of(context).size.height / 15,
+          height: MediaQuery.of(context).size.height / 20,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
             gradient: const LinearGradient(
@@ -126,6 +127,34 @@ class MyAppButton extends StatelessWidget {
             } else {
               CustomWidgets.buildErrorSnackbar(context,"لطفا عکس موارد خواسته شده را آپلود نمایید.");
             }
+          } else if (pageName == "UserSummaryPage") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => IssuedCertificatePage(
+                    nationalCodeController: nationalCodeController!,
+                    mobileNumberController: mobileNumberController!,
+                    birthdayController: birthdayController!,
+                    nationalCodeSerialController: nationalCodeSerialController!,
+                    postCodeController: postCodeController!,
+                    cameras: cameras!,
+                  )
+              ),
+            );
+          }else if (pageName == "DescriptionPage") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => InputLiveVideo(
+                    nationalCodeController: nationalCodeController!,
+                    mobileNumberController: mobileNumberController!,
+                    birthdayController: birthdayController!,
+                    nationalCodeSerialController: nationalCodeSerialController!,
+                    postCodeController: postCodeController!,
+                    cameras: cameras!,
+                  )
+              ),
+            );
           } else if (formKey!.currentState!.validate()) {
             if (pageName == "ActivationQRCodePage") {
               CustomWidgets.buildErrorSnackbar(context,"لطفا ORCode مربوطه را اسکن کنید.");

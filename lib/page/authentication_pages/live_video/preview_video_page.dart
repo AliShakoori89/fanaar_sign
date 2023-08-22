@@ -62,29 +62,37 @@ class _PreviewVideoPageState extends State<PreviewVideoPage> {
         ),
       ),
       extendBodyBehindAppBar: true,
-      body: FutureBuilder(
-        future: _initVideoPlayer(),
-        builder: (context, state) {
-          if (state.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else {
-            return Center(
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(100)),
-                child: Container(
-                  width: MediaQuery.of(context).size.width / 2.1,
-                  height: MediaQuery.of(context).size.height / 2.5,
-                  decoration: BoxDecoration(
-                    // border: Border.all(width: 2, color: Colors.black),
-                      borderRadius: BorderRadius.circular(100)
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/image/fanaar background image.png"),
+                fit: BoxFit.fill,
+                opacity: 0.15)
+        ),
+        child: FutureBuilder(
+          future: _initVideoPlayer(),
+          builder: (context, state) {
+            if (state.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return Center(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(100)),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width / 2.1,
+                    height: MediaQuery.of(context).size.height / 2.5,
+                    decoration: BoxDecoration(
+                      // border: Border.all(width: 2, color: Colors.black),
+                        borderRadius: BorderRadius.circular(100)
+                    ),
+                    // margin: EdgeInsets.only(bottom: 30),
+                    child: VideoPlayer(_videoPlayerController),
                   ),
-                  // margin: EdgeInsets.only(bottom: 30),
-                  child: VideoPlayer(_videoPlayerController),
                 ),
-              ),
-            );
-          }
-        },
+              );
+            }
+          },
+        ),
       ),
     );
   }

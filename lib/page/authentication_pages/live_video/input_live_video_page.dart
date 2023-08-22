@@ -53,37 +53,47 @@ class _InputLiveVideoState extends State<InputLiveVideo> {
     var element = list[_random.nextInt(list.length)];
 
     return Scaffold(
-      bottomNavigationBar: MyAppButton(
-          pageName: "InputLiveVideo",
+      floatingActionButtonLocation:
+      FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: MyAppButton(
           nationalCodeController: nationalCodeController,
           mobileNumberController: mobileNumberController,
           birthdayController: birthdayController,
           nationalCodeSerialController: nationalCodeSerialController,
           postCodeController: postCodeController,
           cameras: cameras,
+          pageName: "InputLiveVideo"
       ),
       appBar: BaseAppBar(
         title: "ارسال فیلم",
       ),
-      body: Column(
-        children: [
-          SizedBox(height: MediaQuery.of(context).size.height / 30,),
-          Text("لطفا ویدیو خود را همراه با تکرار جمله ذیل ارسال نمایید.",
-            style: TextStyle(
-                fontSize: MediaQuery.of(context).size.width / 24,
-                fontWeight: FontWeight.w700
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/image/fanaar background image.png"),
+                fit: BoxFit.fill,
+                opacity: 0.15)
+        ),
+        child: Column(
+          children: [
+            SizedBox(height: MediaQuery.of(context).size.height / 30,),
+            Text("لطفا ویدیو خود را همراه با تکرار جمله ذیل ارسال نمایید.",
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width / 24,
+                  fontWeight: FontWeight.w700
+              ),
+            textDirection: TextDirection.rtl,),
+            SizedBox(height: MediaQuery.of(context).size.height / 30,),
+            Text(element, textDirection: TextDirection.rtl,
+            style: TextStyle(color: Colors.red, fontSize: MediaQuery.of(context).size.width / 25,
+                fontWeight: FontWeight.w700),),
+            SizedBox(height: MediaQuery.of(context).size.height / 20,),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Container(child: Demo(cameras: cameras))
             ),
-          textDirection: TextDirection.rtl,),
-          SizedBox(height: MediaQuery.of(context).size.height / 30,),
-          Text(element, textDirection: TextDirection.rtl,
-          style: TextStyle(color: Colors.red, fontSize: MediaQuery.of(context).size.width / 25,
-              fontWeight: FontWeight.w700),),
-          SizedBox(height: MediaQuery.of(context).size.height / 20,),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Container(child: Demo(cameras: cameras))
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

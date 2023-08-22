@@ -62,7 +62,7 @@ class _InputInformationPageState extends State<InputInformationPage> {
             image: DecorationImage(
                 image: AssetImage("assets/image/fanaar background image.png"),
                 fit: BoxFit.cover,
-                opacity: 0.05)
+                opacity: 0.15)
         ),
         child: Form(
           key: formKey,

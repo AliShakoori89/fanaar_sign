@@ -218,7 +218,9 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: MyAppButton(
+      floatingActionButtonLocation:
+      FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: MyAppButton(
         pageName: "InputDocumentsImagesPage",
         formKey: formKey,
         existImage1: existImage1,
@@ -234,185 +236,193 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
         title: "تصویر مدارک متقاضی",
       ),
       body: Container(
-        alignment: Alignment.centerRight,
-        margin: EdgeInsets.only(
-            top: MediaQuery.of(context).size.height / 30,
-            right: MediaQuery.of(context).size.width / 30,
-            left: MediaQuery.of(context).size.width / 30
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/image/fanaar background image.png"),
+                fit: BoxFit.cover,
+                opacity: 0.15)
         ),
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Text("لطفا عکس کارت ملی خود را آپلود نمایید.",
-                  textDirection: TextDirection.rtl,
-                  style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width / 25,
-                      fontWeight: FontWeight.w700
-                  ),),
-              ),
-              Expanded(
-                  flex: 8,
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        right: MediaQuery.of(context).size.width / 50,
-                        left: MediaQuery.of(context).size.width / 50,
-                        top: MediaQuery.of(context).size.height / 100,
-                        bottom: MediaQuery.of(context).size.height / 50
-                    ),
-                    decoration: BoxDecoration(
-                      boxShadow: const [
-                        BoxShadow(color: Color.fromRGBO(139, 139, 139, 0.4),
-                          spreadRadius: 1,
-                          blurRadius: 4,
-                          offset: Offset(
-                            0.0, // Move to right 5  horizontally
-                            5.0, // Move to bottom 5 Vertically
-                          ),),
-                      ],
-                    ),
-                    child: nationalCard == null
-                        ? Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/image/image not found.png"),
-                            fit: BoxFit.fill
-                          ),
-                          boxShadow: const [
-                            BoxShadow(color: Color.fromRGBO(139, 139, 139, 0.4),
-                              spreadRadius: 1,
-                              blurRadius: 4,
-                              offset: Offset(
-                                0.0, // Move to right 5  horizontally
-                                5.0, // Move to bottom 5 Vertically
-                              ),),
-                          ],
-                        )
-                    )
-                        : Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: FileImage(nationalCard!),
-                              fit: BoxFit.fill
-                          ),
-                          boxShadow: const [
-                            BoxShadow(color: Color.fromRGBO(139, 139, 139, 0.4),
-                              spreadRadius: 1,
-                              blurRadius: 4,
-                              offset: Offset(
-                                0.0, // Move to right 5  horizontally
-                                5.0, // Move to bottom 5 Vertically
-                              ),),
-                          ],
-                        )
-                    )
-                  )
-              ),
-              Expanded(
-                flex: 2,
-                child: Center(
-                  child: TextButton(
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue)
-                      ),
-                      onPressed: (){
-                        _showDialogForNationalCode();
-                      },
-                      child: Text('آپلود عکس',
-                        style: TextStyle(
-                            color: Colors.white,
-                          fontSize: MediaQuery.of(context).size.width / 27
-                        ),)),
+        child: Container(
+          alignment: Alignment.centerRight,
+          margin: EdgeInsets.only(
+              top: MediaQuery.of(context).size.height / 30,
+              right: MediaQuery.of(context).size.width / 30,
+              left: MediaQuery.of(context).size.width / 30
+          ),
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Text("لطفا عکس کارت ملی خود را آپلود نمایید.",
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width / 25,
+                        fontWeight: FontWeight.w700
+                    ),),
                 ),
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height / 50,),
-              Expanded(
-                flex: 1,
-                child: Text("لطفا عکس پشت کارت ملی خود را آپلود نمایید.",
-                  textDirection: TextDirection.rtl,
-                  style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width / 25,
-                      fontWeight: FontWeight.w700
-                  ),),
-              ),
-              Expanded(
-                  flex: 8,
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        right: MediaQuery.of(context).size.width / 50,
-                        left: MediaQuery.of(context).size.width / 50,
-                        top: MediaQuery.of(context).size.height / 100,
-                        bottom: MediaQuery.of(context).size.height / 50
-                    ),
-                    decoration: BoxDecoration(
-                      boxShadow: const [
-                        BoxShadow(color: Color.fromRGBO(139, 139, 139, 0.4),
-                          spreadRadius: 1,
-                          blurRadius: 4,
-                          offset: Offset(
-                            0.0, // Move to right 5  horizontally
-                            5.0, // Move to bottom 5 Vertically
-                          ),),
-                      ],
-                    ),
-                    child: behindNationalCard == null
-                        ? Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
+                Expanded(
+                    flex: 8,
+                    child: Container(
+                      margin: EdgeInsets.only(
+                          right: MediaQuery.of(context).size.width / 50,
+                          left: MediaQuery.of(context).size.width / 50,
+                          top: MediaQuery.of(context).size.height / 100,
+                          bottom: MediaQuery.of(context).size.height / 50
+                      ),
+                      decoration: BoxDecoration(
+                        boxShadow: const [
+                          BoxShadow(color: Color.fromRGBO(139, 139, 139, 0.4),
+                            spreadRadius: 1,
+                            blurRadius: 4,
+                            offset: Offset(
+                              0.0, // Move to right 5  horizontally
+                              5.0, // Move to bottom 5 Vertically
+                            ),),
+                        ],
+                      ),
+                      child: nationalCard == null
+                          ? Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
                               image: AssetImage("assets/image/image not found.png"),
                               fit: BoxFit.fill
-                          ),
-                          boxShadow: const [
-                            BoxShadow(color: Color.fromRGBO(139, 139, 139, 0.4),
-                              spreadRadius: 1,
-                              blurRadius: 4,
-                              offset: Offset(
-                                0.0, // Move to right 5  horizontally
-                                5.0, // Move to bottom 5 Vertically
-                              ),),
-                          ],
-                        )
+                            ),
+                            boxShadow: const [
+                              BoxShadow(color: Color.fromRGBO(139, 139, 139, 0.4),
+                                spreadRadius: 1,
+                                blurRadius: 4,
+                                offset: Offset(
+                                  0.0, // Move to right 5  horizontally
+                                  5.0, // Move to bottom 5 Vertically
+                                ),),
+                            ],
+                          )
+                      )
+                          : Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: FileImage(nationalCard!),
+                                fit: BoxFit.fill
+                            ),
+                            boxShadow: const [
+                              BoxShadow(color: Color.fromRGBO(139, 139, 139, 0.4),
+                                spreadRadius: 1,
+                                blurRadius: 4,
+                                offset: Offset(
+                                  0.0, // Move to right 5  horizontally
+                                  5.0, // Move to bottom 5 Vertically
+                                ),),
+                            ],
+                          )
+                      )
                     )
-                        : Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: FileImage(behindNationalCard!),
-                              fit: BoxFit.fill
-                          ),
-                          boxShadow: const [
-                            BoxShadow(color: Color.fromRGBO(139, 139, 139, 0.4),
-                              spreadRadius: 1,
-                              blurRadius: 4,
-                              offset: Offset(
-                                0.0, // Move to right 5  horizontally
-                                5.0, // Move to bottom 5 Vertically
-                              ),),
-                          ],
-                        )
-                    )
-                  ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Center(
-                  child: TextButton(
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue)
-                      ),
-                      onPressed: (){
-                        _showDialogForBehindNationalCode();
-                      },
-                      child: Text('آپلود عکس',
-                        style: TextStyle(
-                            color: Colors.white,
-                          fontSize: MediaQuery.of(context).size.width / 27
-                        ),)),
                 ),
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height / 8,)
-            ],
+                Expanded(
+                  flex: 2,
+                  child: Center(
+                    child: TextButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue)
+                        ),
+                        onPressed: (){
+                          _showDialogForNationalCode();
+                        },
+                        child: Text('آپلود عکس',
+                          style: TextStyle(
+                              color: Colors.white,
+                            fontSize: MediaQuery.of(context).size.width / 27
+                          ),)),
+                  ),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height / 50,),
+                Expanded(
+                  flex: 1,
+                  child: Text("لطفا عکس پشت کارت ملی خود را آپلود نمایید.",
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width / 25,
+                        fontWeight: FontWeight.w700
+                    ),),
+                ),
+                Expanded(
+                    flex: 8,
+                    child: Container(
+                      margin: EdgeInsets.only(
+                          right: MediaQuery.of(context).size.width / 50,
+                          left: MediaQuery.of(context).size.width / 50,
+                          top: MediaQuery.of(context).size.height / 100,
+                          bottom: MediaQuery.of(context).size.height / 50
+                      ),
+                      decoration: BoxDecoration(
+                        boxShadow: const [
+                          BoxShadow(color: Color.fromRGBO(139, 139, 139, 0.4),
+                            spreadRadius: 1,
+                            blurRadius: 4,
+                            offset: Offset(
+                              0.0, // Move to right 5  horizontally
+                              5.0, // Move to bottom 5 Vertically
+                            ),),
+                        ],
+                      ),
+                      child: behindNationalCard == null
+                          ? Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/image/image not found.png"),
+                                fit: BoxFit.fill
+                            ),
+                            boxShadow: const [
+                              BoxShadow(color: Color.fromRGBO(139, 139, 139, 0.4),
+                                spreadRadius: 1,
+                                blurRadius: 4,
+                                offset: Offset(
+                                  0.0, // Move to right 5  horizontally
+                                  5.0, // Move to bottom 5 Vertically
+                                ),),
+                            ],
+                          )
+                      )
+                          : Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: FileImage(behindNationalCard!),
+                                fit: BoxFit.fill
+                            ),
+                            boxShadow: const [
+                              BoxShadow(color: Color.fromRGBO(139, 139, 139, 0.4),
+                                spreadRadius: 1,
+                                blurRadius: 4,
+                                offset: Offset(
+                                  0.0, // Move to right 5  horizontally
+                                  5.0, // Move to bottom 5 Vertically
+                                ),),
+                            ],
+                          )
+                      )
+                    ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Center(
+                    child: TextButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue)
+                        ),
+                        onPressed: (){
+                          _showDialogForBehindNationalCode();
+                        },
+                        child: Text('آپلود عکس',
+                          style: TextStyle(
+                              color: Colors.white,
+                            fontSize: MediaQuery.of(context).size.width / 27
+                          ),)),
+                  ),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height / 8,)
+              ],
+            ),
           ),
         ),
       ),
