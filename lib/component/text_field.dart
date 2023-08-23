@@ -46,18 +46,13 @@ class MyTextField extends StatelessWidget {
                       for(int i = 10; i > 1; i--){
                         sum += (i)*int.parse(val[counter]);
                         counter++;
-                        print("+++++++++++++        "+sum.toString());
                       }
                       div = int.parse("${sum % 11}");
-                      print("%%%%%%%%%%%%%     "+div.toString());
                       counter = 0;
                       if(div < 2){
                         if(val[9] == div.toString()){
                           return null;
                         }
-                        // else if (val[9] == 11 - div)else{
-                        //   return "کد ملی وارد شده صحیح نمی باشد.";
-                        // }
                       }else if(val[9] == (11-div).toString()){
                         return null;
                       }else{
@@ -111,7 +106,7 @@ class MyTextField extends StatelessWidget {
                     ? "09122344567" : labelText == "کد پستی"
                     ? "1425561221" : null,
                 hintStyle: TextStyle(
-                  color: Colors.grey[400]
+                  color: Colors.grey[500]
                 )
               ),
               autocorrect: false,

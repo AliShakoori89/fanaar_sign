@@ -21,20 +21,23 @@ class UserSummaryPage extends StatefulWidget {
   final String nationalCodeSerialController;
   final String postCodeController;
   final List<CameraDescription> cameras;
+  bool? isRecorde;
 
   UserSummaryPage({super.key, required this.nationalCodeController,
     required this.mobileNumberController, required this.birthdayController,
-    required this.nationalCodeSerialController, required this.postCodeController, required this.cameras});
+    required this.nationalCodeSerialController, required this.postCodeController,
+    required this.cameras, this.isRecorde});
 
   @override
   State<UserSummaryPage> createState() => _UserSummaryPageState(nationalCodeController,
-      mobileNumberController, birthdayController, nationalCodeSerialController, postCodeController ,cameras);
+      mobileNumberController, birthdayController, nationalCodeSerialController,
+      postCodeController ,cameras, isRecorde!);
 }
 
 class _UserSummaryPageState extends State<UserSummaryPage> {
 
   _UserSummaryPageState(this.nationalCodeController, this.mobileNumberController, this.birthdayController,
-      this.nationalCodeSerialController, this.postCodeController, this.cameras);
+      this.nationalCodeSerialController, this.postCodeController, this.cameras, this.isRecorde);
 
   final String nationalCodeController;
   final String mobileNumberController;
@@ -42,7 +45,14 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
   final String nationalCodeSerialController;
   final String postCodeController;
   final List<CameraDescription> cameras;
+  bool isRecorde;
   bool valueFirst = false;
+
+  @override
+  void initState() {
+    isRecorde = false;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +72,11 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
           pageName: "UserSummaryPage"
       ),
       body: Container(
+        height: double.infinity,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/image/fanaar background image.png"),
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
                 opacity: 0.15)
         ),
         child: SingleChildScrollView(
@@ -74,8 +85,7 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
             margin: EdgeInsets.only(
                 top: MediaQuery.of(context).size.height / 30,
                 left: MediaQuery.of(context).size.width / 30,
-                right: MediaQuery.of(context).size.width / 30,
-                bottom: MediaQuery.of(context).size.height / 8),
+                right: MediaQuery.of(context).size.width / 30),
             child: Column(
               children: [
                 Text("تایید و ثبت مشخصات", style: TextStyle(
@@ -94,7 +104,7 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                     Text("مشخصات محصول", style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Colors.blue,
-                        fontSize: MediaQuery.of(context).size.width / 25
+                        fontSize: MediaQuery.of(context).size.width / 22
                     ),),
                   ],
                 ),
@@ -112,13 +122,13 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                         children: [
                           Text(CustomDropDownButtonState.selectIntermediateCAName!,
                               style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.width / 30,
+                                  fontSize: MediaQuery.of(context).size.width / 25,
                                   color: Colors.blue
                               )),
                           SizedBox(height: MediaQuery.of(context).size.height / 50,),
                           Text(CustomDropDownButtonState.selectProduceName!,
                               style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.width / 30,
+                                  fontSize: MediaQuery.of(context).size.width / 25,
                                   color: Colors.blue
                               ))
                         ],
@@ -129,13 +139,13 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                           Text("نام مرکز میانی صادر کننده",
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
-                              fontSize: MediaQuery.of(context).size.width / 30
+                              fontSize: MediaQuery.of(context).size.width / 25
                           )),
                           SizedBox(height: MediaQuery.of(context).size.height / 50,),
                           Text("نام محصول",
                               style: TextStyle(
                                   fontWeight: FontWeight.w700,
-                                  fontSize: MediaQuery.of(context).size.width / 30
+                                  fontSize: MediaQuery.of(context).size.width / 25
                               ))
                         ],
                       ),
@@ -154,7 +164,7 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                     Text("اطلاعات هویتی متقاضی", style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Colors.blue,
-                        fontSize: MediaQuery.of(context).size.width / 25
+                        fontSize: MediaQuery.of(context).size.width / 22
                     ),)
                   ],
                 ),
@@ -173,21 +183,21 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                           children: [
                             Text(widget.nationalCodeController,
                                 style: TextStyle(
-                                    fontSize: MediaQuery.of(context).size.width / 30,
+                                    fontSize: MediaQuery.of(context).size.width / 25,
                                     color: Colors.blue
                                 )
                             ),
-                            SizedBox(height: MediaQuery.of(context).size.height / 50,),
+                            SizedBox(height: MediaQuery.of(context).size.height / 40,),
                             Text(widget.nationalCodeSerialController,
                                 style: TextStyle(
-                                    fontSize: MediaQuery.of(context).size.width / 30,
+                                    fontSize: MediaQuery.of(context).size.width / 25,
                                     color: Colors.blue
                                 )
                             ),
-                            SizedBox(height: MediaQuery.of(context).size.height / 50,),
+                            SizedBox(height: MediaQuery.of(context).size.height / 40,),
                             Text(widget.birthdayController,
                                 style: TextStyle(
-                                    fontSize: MediaQuery.of(context).size.width / 30,
+                                    fontSize: MediaQuery.of(context).size.width / 25,
                                     color: Colors.blue
                                 )
                             ),
@@ -201,19 +211,19 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                             Text("کد ملی",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w700,
-                                    fontSize: MediaQuery.of(context).size.width / 30
+                                    fontSize: MediaQuery.of(context).size.width / 25
                                 )),
                             SizedBox(height: MediaQuery.of(context).size.height / 50,),
                             Text("سریال کارت ملی",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w700,
-                                    fontSize: MediaQuery.of(context).size.width / 30
+                                    fontSize: MediaQuery.of(context).size.width / 25
                                 )),
                             SizedBox(height: MediaQuery.of(context).size.height / 50,),
                             Text("تاریخ تولد",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w700,
-                                    fontSize: MediaQuery.of(context).size.width / 30
+                                    fontSize: MediaQuery.of(context).size.width / 25
                                 )),
                           ],
                         ),
@@ -233,7 +243,7 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                     Text("اطلاعات تکمیلی متقاضی", style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Colors.blue,
-                        fontSize: MediaQuery.of(context).size.width / 25
+                        fontSize: MediaQuery.of(context).size.width / 22
                     ),),
                   ],
                 ),
@@ -252,14 +262,14 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                           children: [
                             Text(widget.mobileNumberController,
                                 style: TextStyle(
-                                    fontSize: MediaQuery.of(context).size.width / 30,
+                                    fontSize: MediaQuery.of(context).size.width / 25,
                                     color: Colors.blue
                                 )
                             ),
                             SizedBox(height: MediaQuery.of(context).size.height / 50,),
                             Text(widget.postCodeController,
                                 style: TextStyle(
-                                    fontSize: MediaQuery.of(context).size.width / 30,
+                                    fontSize: MediaQuery.of(context).size.width / 25,
                                     color: Colors.blue
                                 )
                             ),
@@ -273,13 +283,13 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                             Text("تلفن تماس",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w700,
-                                    fontSize: MediaQuery.of(context).size.width / 30
+                                    fontSize: MediaQuery.of(context).size.width / 25
                                 )),
                             SizedBox(height: MediaQuery.of(context).size.height / 50,),
                             Text("کد پستی",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w700,
-                                    fontSize: MediaQuery.of(context).size.width / 30
+                                    fontSize: MediaQuery.of(context).size.width / 25
                                 )),
                           ],
                         ),
@@ -287,19 +297,19 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height / 15),
+                SizedBox(height: MediaQuery.of(context).size.height / 6),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text("تمامی اطلاعات فوق را خوانده ام و تایید می کنم.", style: TextStyle(
                         color: Colors.black,
                         fontSize: MediaQuery.of(context).size.width / 25,
-
+                      fontWeight: FontWeight.w700,
                     ),
                       textDirection: TextDirection.rtl,),
-                    SizedBox(width: MediaQuery.of(context).size.width / 50,),
+                    SizedBox(width: MediaQuery.of(context).size.width / 100,),
                     Transform.scale(
-                      scale: MediaQuery.of(context).size.width / 500,
+                      scale: MediaQuery.of(context).size.width / 400,
                       child: Checkbox(
                         value: this.valueFirst,
                         onChanged:  (bool? value) {

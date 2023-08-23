@@ -28,6 +28,7 @@ class MyAppButton extends StatelessWidget {
     this.selectIntermediateCAName,
     this.selectProduceName,
     this.cameras,
+    this.isRecord,
     required this.pageName});
 
   File? image;
@@ -44,6 +45,7 @@ class MyAppButton extends StatelessWidget {
   String? selectIntermediateCAName;
   String? selectProduceName;
   List<CameraDescription>? cameras;
+  bool? isRecord;
 
   final String pageName;
 

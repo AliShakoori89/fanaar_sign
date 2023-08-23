@@ -62,6 +62,7 @@ class _InputLiveVideoState extends State<InputLiveVideo> {
           nationalCodeSerialController: nationalCodeSerialController,
           postCodeController: postCodeController,
           cameras: cameras,
+          isRecord: SquareState.isRecord,
           pageName: "InputLiveVideo"
       ),
       appBar: BaseAppBar(
@@ -224,7 +225,7 @@ class SquareState extends State<Square> {
                     children: [
                       Expanded(
                           child: IconButton(
-                        iconSize: 20,
+                        iconSize: MediaQuery.of(context).size.width / 30,
                         icon: Icon(
                             _isRearCameraSelected
                                 ? CupertinoIcons.switch_camera
@@ -241,11 +242,11 @@ class SquareState extends State<Square> {
                       Expanded(
                           child: IconButton(
                         onPressed: _recordVideo,
-                        iconSize: 20,
+                        iconSize: MediaQuery.of(context).size.width / 25,
                         constraints: const BoxConstraints(),
-                        icon: Icon(isRecording ? Icons.stop : Icons.circle,
+                        icon: Icon(isRecording ? Icons.stop : Icons.not_started_outlined,
                             color: Colors.white,
-                            size: MediaQuery.of(context).size.width / 30),
+                            size: MediaQuery.of(context).size.width / 25),
                       )),
                       const Spacer(),
                     ]),

@@ -53,7 +53,26 @@ class _IssuedCertificatePageState extends State<IssuedCertificatePage> {
       FloatingActionButtonLocation.centerFloat,
       floatingActionButton: GestureDetector(
           onTap: (){
+            late CertificateDetailsModel certificate = CertificateDetailsModel();
+            final setDateBloc = BlocProvider.of<CertificateBloc>(context);
 
+            DateTime issuedDate = DateTime.now();
+            final f = new init.DateFormat('yyyy-MM-dd');
+            
+            DateTime expireDate = DateTime(issuedDate.year+1 , issuedDate.month, issuedDate.day);
+
+            certificate.certificateIssuerInterMediateCAName = CustomDropDownButtonState.selectIntermediateCAName;
+            certificate.selectProduceName = CustomDropDownButtonState.selectProduceName;
+            certificate.certificateSerialCode = nationalCodeController;
+            certificate.certificateExpirationDate = f.format(issuedDate);
+            certificate.certificateIssuedDate = f.format(expireDate);
+            
+            setDateBloc.add(SaveCertificateToStoreEvent(certificateModel: certificate));
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage(cameras: cameras)),
+            );
           },
           child: Container(
             margin: EdgeInsets.only(
@@ -94,18 +113,21 @@ class _IssuedCertificatePageState extends State<IssuedCertificatePage> {
           ),
           child: Column(
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height / 15,),
+              SizedBox(height: MediaQuery.of(context).size.height / 30,),
               Directionality(
                   textDirection: TextDirection.rtl,
                   child: Text("مراحل ثبت نام و تصدیق هویت شما، با موفقیت پایان یافته است. اکنون می توانید"
                       " برای دریافت گواهی نامه، بر روی گزینه صدور گواهی کلیک کنید.",
                       textAlign:TextAlign.justify,
                       style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width / 28,
+                          fontSize: MediaQuery.of(context).size.width / 22,
+                          fontWeight: FontWeight.w700
                       )
                   )
               ),
-              SizedBox(height: MediaQuery.of(context).size.height / 50,),
+              SizedBox(height: MediaQuery.of(context).size.height / 10,),
+              Image.asset("assets/image/issued image.png",
+              fit: BoxFit.fitWidth,)
             ],
           ),
         ),

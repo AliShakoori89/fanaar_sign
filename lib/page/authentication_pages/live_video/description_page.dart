@@ -36,10 +36,11 @@ class DescriptionPage extends StatelessWidget {
         title: "توضیحات",
       ),
       body: Container(
+        height: double.infinity,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/image/fanaar background image.png"),
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
             opacity: 0.15)
         ),
         child: Container(
@@ -47,40 +48,48 @@ class DescriptionPage extends StatelessWidget {
               right: 10,
               left: 20,
               top: 10,
-              bottom: 10
           ),
-          child: Column(
+          child: Wrap(
             children: [
               SizedBox(height: MediaQuery.of(context).size.height / 15,),
               Center(
-                  child: Text("احراز هویت تغییر چهره",
+                  child: Text("احراز هویت چهره",
                     style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width / 20
+                        fontSize: MediaQuery.of(context).size.width / 18,
+                      fontWeight: FontWeight.w800
                     ),)),
               Divider(color: Colors.grey[400], thickness: 2),
               SizedBox(height: MediaQuery.of(context).size.height / 50,),
               Directionality(
                   textDirection: TextDirection.rtl,
-                  child: Text("آخرین مرحله پیش از صدور گواهی، تصدیق چهره متقاضی است که با کلیک بر روی گزینه احراز هویت چهره، فرایند آن آغاز می شود.\n"
-                      "توصیه می شود قیل از شروع فرآیند تصدیق چهره شما به طور کامل در کادر مشخص شده قرار گیرد :",
+                  child: Text("آخرین مرحله پیش از صدور گواهی، تصدیق چهره متقاضی است که با کلیک بر روی گزینه احراز هویت چهره، فرایند آن آغاز می شود.",
                       textAlign:TextAlign.justify,
                       style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width / 28,
+                          fontSize: MediaQuery.of(context).size.width / 22,
+                        color: Colors.black,
                       )
                   )
               ),
-              SizedBox(height: MediaQuery.of(context).size.height / 50,),
+              Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Text("توصیه می شود قیل از شروع فرآیند تصدیق چهره شما به طور کامل در کادر مشخص شده قرار گیرد :",
+                      textAlign:TextAlign.justify,
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width / 22,
+                      )
+                  )
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height / 10,),
               Directionality(
                   textDirection: TextDirection.rtl,
                   child: Text("1".toPersianDigit()+ "- شئونات اسلامی را رعایت نموده و"
                       " از داشتن ماسک و عینک خودداری نمایید.",
                       textAlign:TextAlign.justify,
                       style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width / 28
+                          fontSize: MediaQuery.of(context).size.width / 22,
                       )
                   )
               ),
-              SizedBox(height: MediaQuery.of(context).size.height / 100,),
               Directionality(
                   textDirection: TextDirection.rtl,
                   child: Text("2".toPersianDigit()+ "- دوربین تلفن همراه را به گونه ای در"
@@ -88,22 +97,20 @@ class DescriptionPage extends StatelessWidget {
                       " به طور کامل در کادر مشخص شده قرار بگیرد.",
                       textAlign:TextAlign.justify,
                       style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width / 28
+                          fontSize: MediaQuery.of(context).size.width / 22,
                       )
                   )
               ),
-              SizedBox(height: MediaQuery.of(context).size.height / 100,),
               Directionality(
                   textDirection: TextDirection.rtl,
                   child: Text("3".toPersianDigit()+ "- مواردی که حین فرآیند تصدیق چهره از شما"
                       " درخواست می شود را بدرستی انجام دهید.",
                       textAlign:TextAlign.justify,
                       style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width / 28
+                          fontSize: MediaQuery.of(context).size.width / 22,
                       )
                   )
               ),
-              SizedBox(height: MediaQuery.of(context).size.height / 100,),
               Directionality(
                   textDirection: TextDirection.rtl,
                   child: Text("4".toPersianDigit()+ "- پس از اتمام اسکن تصویر چهره،"
@@ -111,7 +118,7 @@ class DescriptionPage extends StatelessWidget {
                       " و به صفحه اصلی بازگردانده شوید.",
                       textAlign:TextAlign.justify,
                       style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width / 28,
+                        fontSize: MediaQuery.of(context).size.width / 22,
                       )
                   )
               ),

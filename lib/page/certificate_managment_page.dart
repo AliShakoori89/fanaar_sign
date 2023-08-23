@@ -72,45 +72,146 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
                           certificateValidityPeriod: state.storeCertificate[index].certificateValidityPeriod!,)),
                     );
                   },
-                  child: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: Container(
-                      height: MediaQuery.of(context).size.height / 12,
-                      margin: const EdgeInsets.only(
-                        top: 10,
-                        right: 15,
-                        left: 15,
-                        bottom: 10
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25),
-                        boxShadow: [
-                          BoxShadow(color: AppColors.cardShadowColor,
-                            spreadRadius: 1,
-                            blurRadius: 4,
-                            offset: Offset(
-                              0.0, // Move to right 5  horizontally
-                              5.0, // Move to bottom 5 Vertically
-                            ),),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            right: MediaQuery.of(context).size.width / 20
-                        ),
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            state.storeCertificate[index].certificateIssuerInterMediateCAName!,
-                            style: TextStyle(color: Colors.black,
-                                fontSize: MediaQuery.of(context).size.width / 25,
-                                fontWeight: FontWeight.w700
+                  child: Column(
+                    children: [
+                      Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: Container(
+                          height: MediaQuery.of(context).size.height / 5,
+                          margin: const EdgeInsets.only(
+                            top: 10,
+                            right: 15,
+                            left: 15,
+                            bottom: 10
+                          ),
+                          decoration: BoxDecoration(
+                            // color: Colors.white,
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                right: MediaQuery.of(context).size.width / 20
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height / 40,
+                                    ),
+                                    Text(
+                                      "نام مرکز صادر کننده :",
+                                      style: TextStyle(color: Colors.black,
+                                          fontSize: MediaQuery.of(context).size.width / 25,
+                                          fontWeight: FontWeight.w700
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height / 100,
+                                    ),
+                                    Text(
+                                      "نوع گواهی :",
+                                      style: TextStyle(color: Colors.black,
+                                        fontSize: MediaQuery.of(context).size.width / 27,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height / 100,
+                                    ),
+                                    Text(
+                                      "تاریخ صدور :",
+                                      style: TextStyle(color: Colors.black,
+                                        fontSize: MediaQuery.of(context).size.width / 27,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height / 100,
+                                    ),
+                                    Text(
+                                      "تاریخ انقضا :",
+                                      style: TextStyle(color: Colors.black,
+                                        fontSize: MediaQuery.of(context).size.width / 27,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height / 100,
+                                    ),
+                                    Text(
+                                      "سریال گواهی :",
+                                      style: TextStyle(color: Colors.black,
+                                        fontSize: MediaQuery.of(context).size.width / 27,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height / 40,
+                                    ),
+                                    Text(
+                                      state.storeCertificate[index].certificateIssuerInterMediateCAName!,
+                                      style: TextStyle(color: Colors.black,
+                                          fontSize: MediaQuery.of(context).size.width / 25,
+                                          fontWeight: FontWeight.w700
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height / 100,
+                                    ),
+                                    Text(
+                                      state.storeCertificate[index].selectProduceName!,
+                                      style: TextStyle(color: Colors.black,
+                                        fontSize: MediaQuery.of(context).size.width / 27,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height / 60,
+                                    ),
+                                    Text(
+                                      state.storeCertificate[index].certificateIssuedDate!,
+                                      style: TextStyle(color: Colors.black,
+                                        fontSize: MediaQuery.of(context).size.width / 27,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height / 60,
+                                    ),
+                                    Text(
+                                      state.storeCertificate[index]. certificateExpirationDate!,
+                                      style: TextStyle(color: Colors.black,
+                                        fontSize: MediaQuery.of(context).size.width / 27,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height / 60,
+                                    ),
+                                    Text(
+                                      state.storeCertificate[index].certificateSerialCode!,
+                                      style: TextStyle(color: Colors.black,
+                                        fontSize: MediaQuery.of(context).size.width / 27,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
                             ),
                           ),
                         ),
                       ),
-                    ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width / 20,
+                          right: MediaQuery.of(context).size.width / 20,
+                        ),
+                        child: Divider(
+                          thickness: 1,
+                          color: Colors.black,
+                        ),
+                      )
+                    ],
                   ),
                 );
               },
