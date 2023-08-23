@@ -91,13 +91,17 @@ class MyTextField extends StatelessWidget {
                 return null;
               },
               decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: const BorderSide(color: Colors.black, width: 1.2),
+                ),
                 contentPadding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height / 50,
                   bottom: MediaQuery.of(context).size.height / 50,
                   right: MediaQuery.of(context).size.width / 50,
                 ),
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25)
+                    borderRadius: BorderRadius.circular(15)
                 ),
                 labelText: labelText,
                 hintText: labelText == "کد ملی"
@@ -105,6 +109,9 @@ class MyTextField extends StatelessWidget {
                     ? "3G43454654" : labelText == "شماره موبایل"
                     ? "09122344567" : labelText == "کد پستی"
                     ? "1425561221" : null,
+                labelStyle: TextStyle(
+                  color: Colors.black,
+                ),
                 hintStyle: TextStyle(
                   color: Colors.grey[500]
                 )

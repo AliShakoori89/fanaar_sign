@@ -53,9 +53,20 @@ class _DateTimePickerTextFieldState extends State<DateTimePickerTextField> {
             left: MediaQuery.of(context).size.width / 50,
           ),
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(25)
+              borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(color: Colors.black, width: 1.2),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(color: Colors.black, width: 1.2),
           ),
           labelText: "تاریخ تولد",
+            labelStyle: TextStyle(
+              color: Colors.black,
+            ),
+            hintStyle: TextStyle(
+                color: Colors.grey[500]
+            )
         ),
         validator: (val){
           if(val!.isEmpty){
