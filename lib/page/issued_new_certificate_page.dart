@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:fanar_sign/component/custom_drop_down_button.dart';
 import 'package:flutter/material.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
+import '../component/background_image.dart';
 import '../component/base_appbar.dart';
 import '../component/my_app_button.dart';
 
@@ -41,12 +42,7 @@ class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
       ),
       appBar: BaseAppBar(title: 'صدور گواهی جدید'),
       body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/image/fanaar background image.png"),
-                fit: BoxFit.cover,
-                opacity: 0.15)
-        ),
+        decoration: baseBackgroundDecoration,
         child: Container(
           margin: EdgeInsets.only(
             top: MediaQuery.of(context).size.height / 25,

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:fanar_sign/component/main_page_header.dart';
 import 'package:flutter/material.dart';
+import '../component/background_image.dart';
 import '../component/main_page_footer.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,12 +28,7 @@ class _HomePageState extends State<HomePage> {
       onWillPop: _onWillPop,
       child: Scaffold(
         body: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/image/fanaar background image.png"),
-                  fit: BoxFit.fill,
-                  opacity: 0.15)
-          ),
+          decoration: baseBackgroundDecoration,
           child: Column(
             children: [
               Expanded(

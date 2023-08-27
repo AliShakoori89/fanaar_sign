@@ -8,6 +8,7 @@ import 'package:intl/intl.dart' as init;
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../bloc/certificate_store/event.dart';
+import '../component/background_image.dart';
 import '../component/base_appbar.dart';
 import '../component/my_app_button.dart';
 import '../const/app_color.dart';
@@ -21,23 +22,22 @@ class UserSummaryPage extends StatefulWidget {
   final String nationalCodeSerialController;
   final String postCodeController;
   final List<CameraDescription> cameras;
-  bool? isRecorde;
 
   UserSummaryPage({super.key, required this.nationalCodeController,
     required this.mobileNumberController, required this.birthdayController,
     required this.nationalCodeSerialController, required this.postCodeController,
-    required this.cameras, this.isRecorde});
+    required this.cameras});
 
   @override
   State<UserSummaryPage> createState() => _UserSummaryPageState(nationalCodeController,
       mobileNumberController, birthdayController, nationalCodeSerialController,
-      postCodeController ,cameras, isRecorde!);
+      postCodeController ,cameras);
 }
 
 class _UserSummaryPageState extends State<UserSummaryPage> {
 
   _UserSummaryPageState(this.nationalCodeController, this.mobileNumberController, this.birthdayController,
-      this.nationalCodeSerialController, this.postCodeController, this.cameras, this.isRecorde);
+      this.nationalCodeSerialController, this.postCodeController, this.cameras);
 
   final String nationalCodeController;
   final String mobileNumberController;
@@ -45,14 +45,7 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
   final String nationalCodeSerialController;
   final String postCodeController;
   final List<CameraDescription> cameras;
-  bool isRecorde;
   bool valueFirst = false;
-
-  @override
-  void initState() {
-    isRecorde = false;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,12 +66,7 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
       ),
       body: Container(
         height: double.infinity,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/image/fanaar background image.png"),
-                fit: BoxFit.cover,
-                opacity: 0.15)
-        ),
+        decoration: baseBackgroundDecoration,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Container(

@@ -9,6 +9,7 @@ import 'package:intl/intl.dart' as init;
 import '../../../component/my_app_button.dart';
 import '../bloc/certificate_store/bloc.dart';
 import '../bloc/certificate_store/event.dart';
+import '../component/background_image.dart';
 import '../component/custom_drop_down_button.dart';
 import '../const/app_color.dart';
 import '../model/certificate_model.dart';
@@ -98,12 +99,7 @@ class _IssuedCertificatePageState extends State<IssuedCertificatePage> {
         title: "صدور گواهینامه الکترونیکی",
       ),
       body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/image/fanaar background image.png"),
-                fit: BoxFit.fill,
-                opacity: 0.15)
-        ),
+        decoration: baseBackgroundDecoration,
         child: Container(
           margin: EdgeInsets.only(
               right: 10,

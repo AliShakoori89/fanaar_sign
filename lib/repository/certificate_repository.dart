@@ -15,4 +15,8 @@ class CertificateRepository{
   Future<List<CertificateDetailsModel>> getAllCertificates () async{
     return await helper.getAllCertificate();
   }
+
+  Future<bool> existCertificate (String nationalCode, String selectProduceName) async{
+    return await helper.existCertificate(nationalCode, selectProduceName);
+  }
 }

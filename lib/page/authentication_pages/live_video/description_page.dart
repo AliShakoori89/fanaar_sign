@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
+import '../../../component/background_image.dart';
 import '../../../component/base_appbar.dart';
 import '../../../component/my_app_button.dart';
 
@@ -37,12 +38,7 @@ class DescriptionPage extends StatelessWidget {
       ),
       body: Container(
         height: double.infinity,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/image/fanaar background image.png"),
-                fit: BoxFit.cover,
-            opacity: 0.15)
-        ),
+        decoration: baseBackgroundDecoration,
         child: Container(
           margin: EdgeInsets.only(
               right: 10,

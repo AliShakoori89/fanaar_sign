@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/certificate_store/bloc.dart';
 import '../bloc/certificate_store/state.dart';
+import '../component/background_image.dart';
 import '../component/base_appbar.dart';
 import '../component/floating_action_button.dart';
 import '../const/app_color.dart';
@@ -45,12 +46,7 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
         buttonType: 'CertificateManagementPage',
         cameras: widget.cameras),
       body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/image/fanaar background image.png"),
-                fit: BoxFit.fill,
-                opacity: 0.15)
-        ),
+        decoration: baseBackgroundDecoration,
         child: BlocBuilder<CertificateBloc, CertificateState>(builder: (context, state){
           return state.status.isLoading
               ? Center(

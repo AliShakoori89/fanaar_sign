@@ -19,12 +19,14 @@ class CertificateState extends Equatable {
     String? certificateValidityPeriod,
     String? issuedCertificateDate,
     String? selectProduceName,
+    bool? existCertificate,
     List<CertificateDetailsModel>? storeCertificate,
   }):certificateIssuerInterMediateCAName = certificateIssuerInterMediateCAName ?? "",
         certificateExpirationDate = certificateExpirationDate ?? "",
         certificateValidityPeriod = certificateValidityPeriod ?? "",
         issuedCertificateDate = issuedCertificateDate ?? "",
         selectProduceName = selectProduceName ?? "",
+        existCertificate = existCertificate ?? true,
         storeCertificate = storeCertificate ?? const [];
   final CertificateStatus status;
   final String certificateIssuerInterMediateCAName;
@@ -32,6 +34,7 @@ class CertificateState extends Equatable {
   final String certificateValidityPeriod;
   final String issuedCertificateDate;
   final String selectProduceName;
+  final bool existCertificate;
   final List<CertificateDetailsModel> storeCertificate;
 
   @override
@@ -39,7 +42,7 @@ class CertificateState extends Equatable {
   List<Object> get props => [status,
     certificateIssuerInterMediateCAName, certificateExpirationDate,
     certificateValidityPeriod, storeCertificate, issuedCertificateDate,
-    selectProduceName];
+    existCertificate, selectProduceName];
 
 
   CertificateState copyWith({
@@ -49,6 +52,7 @@ class CertificateState extends Equatable {
     String? certificateValidityPeriod,
     String? issuedCertificateDate,
     String? selectProduceName,
+    bool? existCertificate,
     List<CertificateDetailsModel>? storeCertificate,
   }) {
     return CertificateState(
@@ -58,6 +62,7 @@ class CertificateState extends Equatable {
       certificateValidityPeriod: certificateValidityPeriod ?? this.certificateValidityPeriod,
       issuedCertificateDate: issuedCertificateDate ?? this.issuedCertificateDate,
       selectProduceName: selectProduceName ?? this.selectProduceName,
+      existCertificate: existCertificate ?? this.existCertificate,
       storeCertificate: storeCertificate ?? this.storeCertificate
     );
   }

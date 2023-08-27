@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import "dart:math";
 import 'package:camera/camera.dart';
 
+import '../../../component/background_image.dart';
+
 
 class InputLiveVideo extends StatefulWidget {
 
@@ -69,12 +71,7 @@ class _InputLiveVideoState extends State<InputLiveVideo> {
         title: "ارسال فیلم",
       ),
       body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/image/fanaar background image.png"),
-                fit: BoxFit.fill,
-                opacity: 0.15)
-        ),
+        decoration: baseBackgroundDecoration,
         child: Column(
           children: [
             SizedBox(height: MediaQuery.of(context).size.height / 30,),

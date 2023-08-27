@@ -65,4 +65,16 @@ class DatabaseHelper {
     }
     return listCertificates;
   }
+
+  Future<bool> existCertificate(String nationalCode, String selectProduceName) async {
+    var dbCert = await database;
+    var listMap = await dbCert.rawQuery('SELECT * FROM $certificateTable WHERE '
+        '$columnCertificateSerialCode = $nationalCode AND '
+        '$columnSelectProduceName = $selectProduceName');
+    if(listMap.isEmpty){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }

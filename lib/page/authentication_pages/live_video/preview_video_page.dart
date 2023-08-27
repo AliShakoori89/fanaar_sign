@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../component/background_image.dart';
+
 class PreviewVideoPage extends StatefulWidget {
   final String filePath;
 
@@ -63,12 +65,7 @@ class _PreviewVideoPageState extends State<PreviewVideoPage> {
       ),
       extendBodyBehindAppBar: true,
       body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/image/fanaar background image.png"),
-                fit: BoxFit.fill,
-                opacity: 0.15)
-        ),
+        decoration: baseBackgroundDecoration,
         child: FutureBuilder(
           future: _initVideoPlayer(),
           builder: (context, state) {

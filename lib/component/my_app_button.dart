@@ -29,6 +29,7 @@ class MyAppButton extends StatelessWidget {
     this.selectProduceName,
     this.cameras,
     this.isRecord,
+    this.stateStatus,
     required this.pageName});
 
   File? image;
@@ -46,6 +47,7 @@ class MyAppButton extends StatelessWidget {
   String? selectProduceName;
   List<CameraDescription>? cameras;
   bool? isRecord;
+  bool? stateStatus;
 
   final String pageName;
 
@@ -161,7 +163,9 @@ class MyAppButton extends StatelessWidget {
             if (pageName == "ActivationQRCodePage") {
               CustomWidgets.buildErrorSnackbar(context,"لطفا ORCode مربوطه را اسکن کنید.");
             } else if (pageName == "InputInformationPage") {
-              Navigator.push(
+
+              stateStatus == true
+                  ? Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => InputDocumentsImagesPage(
@@ -173,7 +177,8 @@ class MyAppButton extends StatelessWidget {
                           cameras: cameras!,
                         )
                 ),
-              );
+              )
+                  : CustomWidgets.buildErrorSnackbar(context,"برای این کد ملی قبلا گواهی صادر شده است.");
             }
           }
         },

@@ -12,6 +12,7 @@ class CertificateBloc extends Bloc<CertificateEvent, CertificateState>{
     const CertificateState()){
     on<SaveCertificateToStoreEvent>(_mapSaveCertificateToStore);
     on<FetchAllCertificateEvent>(_mapFetchAllCertificate);
+    on<ExistCertificateEvent>(_mapExistCertificate);
   }
 
   void _mapSaveCertificateToStore(
@@ -38,6 +39,22 @@ class CertificateBloc extends Bloc<CertificateEvent, CertificateState>{
         state.copyWith(
             status: CertificateStatus.success,
             storeCertificate: certificates
+        ),
+      );
+    }catch (error) {
+      emit(state.copyWith(status: CertificateStatus.error));
+    }
+  }
+
+  void _mapExistCertificate(
+      ExistCertificateEvent event, Emitter<CertificateState> emit) async {
+    try{
+      emit(state.copyWith(status: CertificateStatus.loading));
+      final bool existCertificate = await certificateRepository.existCertificate(event.nationalCode, event.selectProduceName);
+      emit(
+        state.copyWith(
+            status: CertificateStatus.success,
+            existCertificate: existCertificate
         ),
       );
     }catch (error) {

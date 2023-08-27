@@ -75,12 +75,13 @@ class _DateTimePickerTextFieldState extends State<DateTimePickerTextField> {
             return null;
           }
         },
-        onTap: () async{
+        onTap: (){
 
           showDialog(
+            barrierDismissible: true,
               context: context,
-              builder: (_) =>
-                  AlertDialog(
+              builder: (context) {
+                  return AlertDialog(
               actions: [
                 TextButton(
                     onPressed: () {
@@ -96,7 +97,7 @@ class _DateTimePickerTextFieldState extends State<DateTimePickerTextField> {
               ),
               content: LinearDatePicker(
                 startDate: "1300/01/01",
-                endDate: "1402/01/01",
+                endDate: "1402/12/29",
                 initialDate: "1400/01/01",
                 addLeadingZero: true,
                 dateChangeListener: (String selectDate) {
@@ -129,7 +130,7 @@ class _DateTimePickerTextFieldState extends State<DateTimePickerTextField> {
                 showMonthName: true,
                 isJalaali: true,
               ),
-            ),
+            );}
             );
         },
       ),

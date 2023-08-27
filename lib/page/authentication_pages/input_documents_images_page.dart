@@ -3,6 +3,7 @@ import 'package:fanar_sign/component/base_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import '../../component/background_image.dart';
 import '../../component/my_app_button.dart';
 
 class InputDocumentsImagesPage extends StatefulWidget {
@@ -236,12 +237,7 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
         title: "تصویر مدارک متقاضی",
       ),
       body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/image/fanaar background image.png"),
-                fit: BoxFit.cover,
-                opacity: 0.15)
-        ),
+        decoration: baseBackgroundDecoration,
         child: Container(
           alignment: Alignment.centerRight,
           margin: EdgeInsets.only(
