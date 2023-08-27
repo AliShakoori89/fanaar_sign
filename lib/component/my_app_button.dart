@@ -164,8 +164,10 @@ class MyAppButton extends StatelessWidget {
               CustomWidgets.buildErrorSnackbar(context,"لطفا ORCode مربوطه را اسکن کنید.");
             } else if (pageName == "InputInformationPage") {
 
+              print("222222222222222222       "+stateStatus.toString());
               stateStatus == true
-                  ? Navigator.push(
+                  ?
+          Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => InputDocumentsImagesPage(

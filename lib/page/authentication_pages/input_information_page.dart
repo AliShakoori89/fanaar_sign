@@ -38,13 +38,6 @@ class _InputInformationPageState extends State<InputInformationPage> {
   _InputInformationPageState(this.index, this.cameras);
 
   @override
-  void initState() {
-    final certificateBloc = BlocProvider.of<CertificateBloc>(context);
-    certificateBloc.add(ExistCertificateEvent(nationalCode: nationalCodeController.text, selectProduceName: CustomDropDownButtonState.selectProduceName!));
-    super.initState();
-  }
-
-  @override
   void dispose() {
     nationalCodeController.dispose();
     mobileNumberController.dispose();
@@ -56,6 +49,10 @@ class _InputInformationPageState extends State<InputInformationPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    BlocProvider.of<CertificateBloc>(context).add(ExistCertificateEvent(nationalCode: nationalCodeController.text, selectProduceName: CustomDropDownButtonState.selectProduceName!));
+
+
     return BlocBuilder<CertificateBloc, CertificateState>(builder: (context, state){
       return Scaffold(
       appBar: BaseAppBar(title: 'مشخصات متقاضی'),
@@ -75,6 +72,7 @@ class _InputInformationPageState extends State<InputInformationPage> {
           cameras: cameras,
           pageName: "InputInformationPage",
           formKey: formKey,
+          stateStatus: state.existCertificate,
           index : index),
           // : CustomWidgets.buildErrorSnackbar(context,"برای این کد ملی قبلا گواهی صادر شده است."),
       body: Container(

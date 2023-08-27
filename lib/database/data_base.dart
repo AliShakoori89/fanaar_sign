@@ -68,10 +68,12 @@ class DatabaseHelper {
 
   Future<bool> existCertificate(String nationalCode, String selectProduceName) async {
     var dbCert = await database;
+    print("55555555        "+ nationalCode);
+    print("6666666666        "+selectProduceName);
     var listMap = await dbCert.rawQuery('SELECT * FROM $certificateTable WHERE '
         '$columnCertificateSerialCode = $nationalCode AND '
         '$columnSelectProduceName = $selectProduceName');
-    if(listMap.isEmpty){
+    if(listMap.length == 0){
       return true;
     }else{
       return false;

@@ -50,6 +50,8 @@ class CertificateBloc extends Bloc<CertificateEvent, CertificateState>{
       ExistCertificateEvent event, Emitter<CertificateState> emit) async {
     try{
       emit(state.copyWith(status: CertificateStatus.loading));
+      print("333333333333     "+event.nationalCode);
+      print("44444444444444444      "+event.selectProduceName);
       final bool existCertificate = await certificateRepository.existCertificate(event.nationalCode, event.selectProduceName);
       emit(
         state.copyWith(
