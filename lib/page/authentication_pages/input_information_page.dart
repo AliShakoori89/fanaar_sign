@@ -1,17 +1,13 @@
 import 'package:camera/camera.dart';
-import 'package:fanar_sign/bloc/certificate_store/event.dart';
 import 'package:fanar_sign/component/base_appbar.dart';
 import 'package:fanar_sign/component/datetime_picker_textfield.dart';
 import 'package:fanar_sign/component/my_app_button.dart';
 import 'package:fanar_sign/component/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../bloc/certificate_store/bloc.dart';
 import '../../bloc/certificate_store/state.dart';
 import '../../component/background_image.dart';
-import '../../component/costom_snackbar.dart';
-import '../../component/custom_drop_down_button.dart';
 
 class InputInformationPage extends StatefulWidget {
 
@@ -50,8 +46,6 @@ class _InputInformationPageState extends State<InputInformationPage> {
   @override
   Widget build(BuildContext context) {
 
-    BlocProvider.of<CertificateBloc>(context).add(ExistCertificateEvent(nationalCode: nationalCodeController.text, selectProduceName: CustomDropDownButtonState.selectProduceName!));
-
 
     return BlocBuilder<CertificateBloc, CertificateState>(builder: (context, state){
       return Scaffold(
@@ -61,8 +55,6 @@ class _InputInformationPageState extends State<InputInformationPage> {
       floatingActionButtonLocation:
       FloatingActionButtonLocation.centerFloat,
       floatingActionButton:
-      // state.existCertificate == true
-          // ?
       MyAppButton(
           nationalCodeController: nationalCodeController.text,
           mobileNumberController: mobileNumberController.text,
@@ -74,7 +66,6 @@ class _InputInformationPageState extends State<InputInformationPage> {
           formKey: formKey,
           stateStatus: state.existCertificate,
           index : index),
-          // : CustomWidgets.buildErrorSnackbar(context,"برای این کد ملی قبلا گواهی صادر شده است."),
       body: Container(
         decoration: baseBackgroundDecoration,
         child: Form(

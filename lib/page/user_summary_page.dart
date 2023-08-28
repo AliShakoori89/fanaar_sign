@@ -1,18 +1,8 @@
 import 'package:camera/camera.dart';
-import 'package:fanar_sign/bloc/certificate_store/bloc.dart';
-import 'package:fanar_sign/component/custom_drop_down_button.dart';
-import 'package:fanar_sign/model/certificate_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart' as init;
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
-import '../bloc/certificate_store/event.dart';
 import '../component/background_image.dart';
 import '../component/base_appbar.dart';
 import '../component/my_app_button.dart';
-import '../const/app_color.dart';
-import 'home_page.dart';
 
 class UserSummaryPage extends StatefulWidget {
 
@@ -21,31 +11,37 @@ class UserSummaryPage extends StatefulWidget {
   final String birthdayController;
   final String nationalCodeSerialController;
   final String postCodeController;
+  final String selectIntermediateCAName;
+  final String selectProduceName;
   final List<CameraDescription> cameras;
 
   UserSummaryPage({super.key, required this.nationalCodeController,
     required this.mobileNumberController, required this.birthdayController,
     required this.nationalCodeSerialController, required this.postCodeController,
+    required this.selectIntermediateCAName, required this.selectProduceName,
     required this.cameras});
 
   @override
   State<UserSummaryPage> createState() => _UserSummaryPageState(nationalCodeController,
       mobileNumberController, birthdayController, nationalCodeSerialController,
-      postCodeController ,cameras);
+      postCodeController ,selectIntermediateCAName ,selectProduceName ,cameras);
 }
 
 class _UserSummaryPageState extends State<UserSummaryPage> {
 
   _UserSummaryPageState(this.nationalCodeController, this.mobileNumberController, this.birthdayController,
-      this.nationalCodeSerialController, this.postCodeController, this.cameras);
+      this.nationalCodeSerialController, this.postCodeController, this.selectIntermediateCAName,
+      this.selectProduceName, this.cameras);
 
   final String nationalCodeController;
   final String mobileNumberController;
   final String birthdayController;
   final String nationalCodeSerialController;
   final String postCodeController;
+  final String selectIntermediateCAName;
+  final String selectProduceName;
   final List<CameraDescription> cameras;
-  bool valueFirst = false;
+  bool checkBox = false;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +58,7 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
           nationalCodeSerialController: nationalCodeSerialController,
           postCodeController: postCodeController,
           cameras: cameras,
+          checkBox: checkBox,
           pageName: "UserSummaryPage"
       ),
       body: Container(
@@ -108,13 +105,13 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(CustomDropDownButtonState.selectIntermediateCAName!,
+                          Text(selectIntermediateCAName,
                               style: TextStyle(
                                   fontSize: MediaQuery.of(context).size.width / 25,
                                   color: Colors.blue
                               )),
                           SizedBox(height: MediaQuery.of(context).size.height / 50,),
-                          Text(CustomDropDownButtonState.selectProduceName!,
+                          Text(selectProduceName,
                               style: TextStyle(
                                   fontSize: MediaQuery.of(context).size.width / 25,
                                   color: Colors.blue
@@ -299,10 +296,10 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                     Transform.scale(
                       scale: MediaQuery.of(context).size.width / 400,
                       child: Checkbox(
-                        value: this.valueFirst,
+                        value: this.checkBox,
                         onChanged:  (bool? value) {
                           setState(() {
-                            this.valueFirst = value!;
+                            this.checkBox = value!;
                           });
                         },),
                     )

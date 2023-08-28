@@ -70,13 +70,14 @@ class DatabaseHelper {
     var dbCert = await database;
     print("55555555        "+ nationalCode);
     print("6666666666        "+selectProduceName);
-    var listMap = await dbCert.rawQuery('SELECT * FROM $certificateTable WHERE '
-        '$columnCertificateSerialCode = $nationalCode AND '
-        '$columnSelectProduceName = $selectProduceName');
+    var listMap = await dbCert.rawQuery('SELECT * FROM $certificateTable WHERE $columnCertificateSerialCode = "$nationalCode" AND $columnSelectProduceName = "$selectProduceName"');
+    print("777777777       "+listMap.toString());
     if(listMap.length == 0){
-      return true;
-    }else{
+      print("                                                            false");
       return false;
+    }else{
+      print("                                                            true");
+      return true;
     }
   }
 }

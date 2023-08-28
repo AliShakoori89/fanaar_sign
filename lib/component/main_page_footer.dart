@@ -8,6 +8,8 @@ class MainPageFooter extends StatelessWidget {
   MainPageFooter({super.key, required this.cameras});
 
   final List<CameraDescription> cameras;
+  late String selectIntermediateCAName;
+  late String selectProduceName;
 
   @override
   Widget build(BuildContext context) {

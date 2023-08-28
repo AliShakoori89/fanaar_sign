@@ -26,7 +26,7 @@ class CertificateState extends Equatable {
         certificateValidityPeriod = certificateValidityPeriod ?? "",
         issuedCertificateDate = issuedCertificateDate ?? "",
         selectProduceName = selectProduceName ?? "",
-        existCertificate = existCertificate ?? true,
+        existCertificate = existCertificate ?? false,
         storeCertificate = storeCertificate ?? const [];
   final CertificateStatus status;
   final String certificateIssuerInterMediateCAName;

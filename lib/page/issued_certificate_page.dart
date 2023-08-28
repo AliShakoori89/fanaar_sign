@@ -1,16 +1,13 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:persian_number_utility/persian_number_utility.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../../../component/base_appbar.dart';
 import 'package:intl/intl.dart' as init;
-import '../../../component/my_app_button.dart';
 import '../bloc/certificate_store/bloc.dart';
 import '../bloc/certificate_store/event.dart';
+import '../bloc/certificate_store/state.dart';
 import '../component/background_image.dart';
-import '../component/custom_drop_down_button.dart';
+import '../component/costom_snackbar.dart';
 import '../const/app_color.dart';
 import '../model/certificate_model.dart';
 import 'home_page.dart';
@@ -22,58 +19,82 @@ class IssuedCertificatePage extends StatefulWidget {
   final String birthdayController;
   final String nationalCodeSerialController;
   final String postCodeController;
+  final String selectIntermediateCAName;
+  final String selectProduceName;
   final List<CameraDescription> cameras;
 
   const IssuedCertificatePage({super.key, required this.nationalCodeController,
     required this.mobileNumberController, required this.birthdayController,
     required this.nationalCodeSerialController, required this.postCodeController,
+    required this.selectIntermediateCAName, required this.selectProduceName,
     required this.cameras});
 
   @override
   State<IssuedCertificatePage> createState() => _IssuedCertificatePageState(nationalCodeController,
-      mobileNumberController, birthdayController, nationalCodeSerialController, postCodeController ,cameras);
+      mobileNumberController, birthdayController, nationalCodeSerialController, postCodeController,
+      selectIntermediateCAName, selectProduceName, cameras);
 }
 
 class _IssuedCertificatePageState extends State<IssuedCertificatePage> {
 
   _IssuedCertificatePageState(this.nationalCodeController, this.mobileNumberController, this.birthdayController,
-      this.nationalCodeSerialController, this.postCodeController, this.cameras);
+      this.nationalCodeSerialController, this.postCodeController, this.selectIntermediateCAName, this.selectProduceName, this.cameras);
 
   final String nationalCodeController;
   final String mobileNumberController;
   final String birthdayController;
   final String nationalCodeSerialController;
   final String postCodeController;
+  final String selectIntermediateCAName;
+  final String selectProduceName;
   final List<CameraDescription> cameras;
   bool valueFirst = false;
 
   @override
+  void initState() {
+    BlocProvider.of<CertificateBloc>(context).add(
+        ExistCertificateEvent(
+            nationalCode: nationalCodeController,
+            selectProduceName: selectProduceName));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocBuilder<CertificateBloc, CertificateState>(builder: (context, state){
+      return Scaffold(
       floatingActionButtonLocation:
       FloatingActionButtonLocation.centerFloat,
       floatingActionButton: GestureDetector(
           onTap: (){
-            late CertificateDetailsModel certificate = CertificateDetailsModel();
-            final setDateBloc = BlocProvider.of<CertificateBloc>(context);
+            if(state.existCertificate == true){
+              CustomWidgets.buildErrorSnackbar(context,"برای این کد ملی، قبلا گواهی صادر شده است.");
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage(cameras: cameras)),
+              );
+            }else{
+              late CertificateDetailsModel certificate = CertificateDetailsModel();
+              final setDateBloc = BlocProvider.of<CertificateBloc>(context);
 
-            DateTime issuedDate = DateTime.now();
-            final f = new init.DateFormat('yyyy-MM-dd');
-            
-            DateTime expireDate = DateTime(issuedDate.year+1 , issuedDate.month, issuedDate.day);
+              DateTime issuedDate = DateTime.now();
+              final f = new init.DateFormat('yyyy-MM-dd');
 
-            certificate.certificateIssuerInterMediateCAName = CustomDropDownButtonState.selectIntermediateCAName;
-            certificate.selectProduceName = CustomDropDownButtonState.selectProduceName;
-            certificate.certificateSerialCode = nationalCodeController;
-            certificate.certificateExpirationDate = f.format(issuedDate);
-            certificate.certificateIssuedDate = f.format(expireDate);
-            
-            setDateBloc.add(SaveCertificateToStoreEvent(certificateModel: certificate));
+              DateTime expireDate = DateTime(issuedDate.year+1 , issuedDate.month, issuedDate.day);
 
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage(cameras: cameras)),
-            );
+              certificate.certificateIssuerInterMediateCAName = selectIntermediateCAName;
+              certificate.selectProduceName = selectProduceName;
+              certificate.certificateSerialCode = nationalCodeController;
+              certificate.certificateExpirationDate = f.format(issuedDate);
+              certificate.certificateIssuedDate = f.format(expireDate);
+
+              setDateBloc.add(SaveCertificateToStoreEvent(certificateModel: certificate));
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage(cameras: cameras)),
+              );
+            }
           },
           child: Container(
             margin: EdgeInsets.only(
@@ -128,6 +149,6 @@ class _IssuedCertificatePageState extends State<IssuedCertificatePage> {
           ),
         ),
       ),
-    );
+    );});
   }
 }

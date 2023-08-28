@@ -25,6 +25,7 @@ class CertificateManagementPage extends StatefulWidget {
 class _CertificateManagementPageState extends State<CertificateManagementPage> {
 
   final List<CameraDescription> cameras;
+
   _CertificateManagementPageState(this.cameras);
 
   @override
@@ -44,7 +45,8 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
       floatingActionButton: MYAppFloatingActionButton(
         buttonName: 'صدور گواهی جدید',
         buttonType: 'CertificateManagementPage',
-        cameras: widget.cameras),
+        cameras: widget.cameras,
+        ),
       body: Container(
         decoration: baseBackgroundDecoration,
         child: BlocBuilder<CertificateBloc, CertificateState>(builder: (context, state){

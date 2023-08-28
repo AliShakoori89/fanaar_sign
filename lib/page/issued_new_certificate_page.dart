@@ -1,10 +1,11 @@
 import 'package:camera/camera.dart';
-import 'package:fanar_sign/component/custom_drop_down_button.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 import '../component/background_image.dart';
 import '../component/base_appbar.dart';
 import '../component/my_app_button.dart';
+import '../const/app_color.dart';
 
 class IssuedNewCertificatePage extends StatefulWidget {
 
@@ -28,8 +29,55 @@ class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
   ];
 
   final List<CameraDescription> cameras;
+  List<String>? itemName;
+  String? dropdownButtonName;
+  String? selectIntermediateCAName;
+  String? selectProduceName;
 
   _IssuedNewCertificatePageState(this.cameras);
+
+  List<DropdownMenuItem<String>> _addDividersAfterItems(List<String> items) {
+    final List<DropdownMenuItem<String>> menuItems = [];
+    for (final String item in items) {
+      menuItems.addAll(
+        [
+          DropdownMenuItem<String>(
+            value: item,
+            alignment: Alignment.center,
+            child: Column(
+              children: [
+                SizedBox(
+                    height: MediaQuery.of(context).size.height / 100
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    textAlign: TextAlign.right,
+                    item,
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width / 30,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                    height: MediaQuery.of(context).size.height / 100
+                ),
+                item != itemName!.last ? Expanded(
+                  flex: 1,
+                  child: Divider(
+                    color: Colors.grey[600],
+                    thickness: 1,
+                  ),
+                ) : Container()
+              ],
+            ),
+          ),
+        ],
+      );
+    }
+    return menuItems;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +107,72 @@ class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
                   fontSize: MediaQuery.of(context).size.width / 30,),),
               ),
               SizedBox(height: MediaQuery.of(context).size.height / 100,),
-              Center(child: CustomDropDownButton(
-                  dropdownButtonName: "انتخاب مرکز میانی صدور گواهی",
-                  itemName: intermediateCAName)),
+              Center(child: DropdownButtonHideUnderline(
+                child: DropdownButton2<String>(
+                    itemHeight: MediaQuery.of(context).size.width / 8,
+                    isDense: false,
+                    isExpanded: true,
+                    hint: Center(
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        "انتخاب مرکز میانی صدور گواهی",
+                        style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width / 35,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    items: _addDividersAfterItems(itemName!),
+                    value: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+                        ? selectIntermediateCAName
+                        : selectProduceName,
+                    onChanged: (String? value) {
+                      setState(() {
+                        dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+                            ? selectIntermediateCAName = value
+                            : selectProduceName = value;
+                      });
+                    },
+                    selectedItemBuilder: (BuildContext context) {
+                      //<-- SEE HERE
+                      return itemName!.map((String value) {
+                        return Center(
+                            child: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+                                ? Text(selectIntermediateCAName == null
+                                ? dropdownButtonName!
+                                : selectIntermediateCAName!,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: MediaQuery.of(context).size.width / 35,
+                                  fontWeight: FontWeight.w700),)
+                                : Text(selectProduceName == null
+                                ? dropdownButtonName!
+                                : selectProduceName!,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: MediaQuery.of(context).size.width / 35,
+                                    fontWeight: FontWeight.w700))
+                        );
+                      }).toList();
+                    },
+                    buttonDecoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height / 50,),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: AppColors.mainColor,
+                      ),
+                    ),
+                    buttonHeight: MediaQuery.of(context).size.height / 15,
+                    buttonWidth: MediaQuery.of(context).size.width / 1.5,
+                    // dropdownScrollPadding: const EdgeInsets.symmetric(vertical: 0.0),
+
+                    dropdownDecoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                    icon: Icon(Icons.arrow_drop_down, color: Colors.white,
+                      size: MediaQuery.of(context).size.height / 30,),
+                    iconEnabledColor: Colors.white),
+
+              )),
               SizedBox(height: MediaQuery.of(context).size.height / 25,),
               Align(
                 alignment: Alignment.centerRight,
@@ -71,7 +182,69 @@ class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
                     fontSize: MediaQuery.of(context).size.width / 30,),),
               ),
               SizedBox(height: MediaQuery.of(context).size.height / 100,),
-              Center(child: CustomDropDownButton(dropdownButtonName: "انتخاب نام محصول", itemName: produceName)),
+              Center(child: DropdownButton2<String>(
+                  itemHeight: MediaQuery.of(context).size.width / 8,
+                  isDense: false,
+                  isExpanded: true,
+                  hint: Center(
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      "انتخاب نام محصول",
+                      style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width / 35,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                  items: _addDividersAfterItems(itemName!),
+                  value: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+                      ? selectIntermediateCAName
+                      : selectProduceName,
+                  onChanged: (String? value) {
+                    setState(() {
+                      dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+                          ? selectIntermediateCAName = value
+                          : selectProduceName = value;
+                    });
+                  },
+                  selectedItemBuilder: (BuildContext context) {
+                    //<-- SEE HERE
+                    return itemName!.map((String value) {
+                      return Center(
+                          child: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+                              ? Text(selectIntermediateCAName == null
+                              ? dropdownButtonName!
+                              : selectIntermediateCAName!,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: MediaQuery.of(context).size.width / 35,
+                                fontWeight: FontWeight.w700),)
+                              : Text(selectProduceName == null
+                              ? dropdownButtonName!
+                              : selectProduceName!,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: MediaQuery.of(context).size.width / 35,
+                                  fontWeight: FontWeight.w700))
+                      );
+                    }).toList();
+                  },
+                  buttonDecoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height / 50,),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: AppColors.mainColor,
+                    ),
+                  ),
+                  buttonHeight: MediaQuery.of(context).size.height / 15,
+                  buttonWidth: MediaQuery.of(context).size.width / 1.5,
+                  // dropdownScrollPadding: const EdgeInsets.symmetric(vertical: 0.0),
+
+                  dropdownDecoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                  icon: Icon(Icons.arrow_drop_down, color: Colors.white,
+                    size: MediaQuery.of(context).size.height / 30,),
+                  iconEnabledColor: Colors.white)),
               SizedBox(height: MediaQuery.of(context).size.height / 25,),
               Align(
                 alignment: Alignment.centerRight,
