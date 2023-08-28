@@ -88,7 +88,9 @@ class MyAppButton extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) =>
-                      InputInformationPage(cameras: cameras!)),
+                      InputInformationPage(cameras: cameras!,
+                        selectedIntermediateCaItemsValue: selectIntermediateCAName!,
+                      selectedCertificateItemsValue: selectProduceName!,)),
                 );
               }
             } else if (pageName == "HomePage") {
@@ -116,6 +118,8 @@ class MyAppButton extends StatelessWidget {
                               postCodeController: postCodeController!,
                               selectIntermediateCAName: selectIntermediateCAName!,
                               selectProduceName: selectProduceName!,
+                              selectedIntermediateCaItemsValue: selectIntermediateCAName!,
+                              selectedCertificateItemsValue: selectProduceName!,
                               cameras: cameras!)),
                 );
               } else {
@@ -134,6 +138,8 @@ class MyAppButton extends StatelessWidget {
                             birthdayController: birthdayController!,
                             nationalCodeSerialController: nationalCodeSerialController!,
                             postCodeController: postCodeController!,
+                            selectedIntermediateCaItemsValue: selectIntermediateCAName!,
+                            selectedCertificateItemsValue: selectProduceName!,
                             cameras: cameras!,
                           )
                   ),
@@ -173,6 +179,8 @@ class MyAppButton extends StatelessWidget {
                           birthdayController: birthdayController!,
                           nationalCodeSerialController: nationalCodeSerialController!,
                           postCodeController: postCodeController!,
+                          selectedIntermediateCaItemsValue: selectIntermediateCAName!,
+                          selectedCertificateItemsValue: selectIntermediateCAName!,
                           cameras: cameras!,
                         )
                 ),
@@ -192,6 +200,8 @@ class MyAppButton extends StatelessWidget {
                               birthdayController: birthdayController!,
                               nationalCodeSerialController: nationalCodeSerialController!,
                               postCodeController: postCodeController!,
+                              selectedIntermediateCaItemsValue: selectIntermediateCAName!,
+                              selectedCertificateItemsValue: selectProduceName!,
                               cameras: cameras!,
                             )
                     ),

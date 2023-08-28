@@ -9,14 +9,10 @@ class MYAppFloatingActionButton extends StatelessWidget {
   MYAppFloatingActionButton({super.key,
     required this.buttonName,
     required this.buttonType,
-    this.cameras,
-    this.selectIntermediateCAName,
-    this.selectProduceName});
+    this.cameras,});
 
   final String buttonName;
   final String buttonType;
-  String? selectIntermediateCAName;
-  String? selectProduceName;
   List<CameraDescription>? cameras;
 
   @override

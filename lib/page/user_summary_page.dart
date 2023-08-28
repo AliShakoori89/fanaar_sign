@@ -13,25 +13,29 @@ class UserSummaryPage extends StatefulWidget {
   final String postCodeController;
   final String selectIntermediateCAName;
   final String selectProduceName;
+  final String selectedIntermediateCaItemsValue;
+  final String selectedCertificateItemsValue;
   final List<CameraDescription> cameras;
 
   UserSummaryPage({super.key, required this.nationalCodeController,
     required this.mobileNumberController, required this.birthdayController,
     required this.nationalCodeSerialController, required this.postCodeController,
     required this.selectIntermediateCAName, required this.selectProduceName,
+    required this.selectedIntermediateCaItemsValue, required this.selectedCertificateItemsValue,
     required this.cameras});
 
   @override
   State<UserSummaryPage> createState() => _UserSummaryPageState(nationalCodeController,
       mobileNumberController, birthdayController, nationalCodeSerialController,
-      postCodeController ,selectIntermediateCAName ,selectProduceName ,cameras);
+      postCodeController ,selectIntermediateCAName ,selectProduceName ,selectedIntermediateCaItemsValue,
+      selectedCertificateItemsValue, cameras);
 }
 
 class _UserSummaryPageState extends State<UserSummaryPage> {
 
   _UserSummaryPageState(this.nationalCodeController, this.mobileNumberController, this.birthdayController,
       this.nationalCodeSerialController, this.postCodeController, this.selectIntermediateCAName,
-      this.selectProduceName, this.cameras);
+      this.selectProduceName, this.selectedIntermediateCaItemsValue, this.selectedCertificateItemsValue, this.cameras);
 
   final String nationalCodeController;
   final String mobileNumberController;
@@ -40,6 +44,8 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
   final String postCodeController;
   final String selectIntermediateCAName;
   final String selectProduceName;
+  final String selectedIntermediateCaItemsValue;
+  final String selectedCertificateItemsValue;
   final List<CameraDescription> cameras;
   bool checkBox = false;
 
@@ -57,6 +63,8 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
           birthdayController: birthdayController,
           nationalCodeSerialController: nationalCodeSerialController,
           postCodeController: postCodeController,
+          selectIntermediateCAName: selectedIntermediateCaItemsValue,
+          selectProduceName: selectedCertificateItemsValue,
           cameras: cameras,
           checkBox: checkBox,
           pageName: "UserSummaryPage"
@@ -102,37 +110,43 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(selectIntermediateCAName,
-                              style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.width / 25,
-                                  color: Colors.blue
-                              )),
-                          SizedBox(height: MediaQuery.of(context).size.height / 50,),
-                          Text(selectProduceName,
-                              style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.width / 25,
-                                  color: Colors.blue
-                              ))
-                        ],
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(selectIntermediateCAName,
+                                style: TextStyle(
+                                    fontSize: MediaQuery.of(context).size.width / 30,
+                                    color: Colors.blue
+                                )),
+                            SizedBox(height: MediaQuery.of(context).size.height / 50,),
+                            Text(selectProduceName,
+                                style: TextStyle(
+                                    fontSize: MediaQuery.of(context).size.width / 30,
+                                    color: Colors.blue
+                                ))
+                          ],
+                        ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text("نام مرکز میانی صادر کننده",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                              fontSize: MediaQuery.of(context).size.width / 25
-                          )),
-                          SizedBox(height: MediaQuery.of(context).size.height / 50,),
-                          Text("نام محصول",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: MediaQuery.of(context).size.width / 25
-                              ))
-                        ],
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text("نام مرکز میانی صادر کننده",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                                fontSize: MediaQuery.of(context).size.width / 25
+                            )),
+                            SizedBox(height: MediaQuery.of(context).size.height / 50,),
+                            Text("نام محصول",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: MediaQuery.of(context).size.width / 25
+                                ))
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -162,55 +176,61 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(widget.nationalCodeController,
-                                style: TextStyle(
-                                    fontSize: MediaQuery.of(context).size.width / 25,
-                                    color: Colors.blue
-                                )
-                            ),
-                            SizedBox(height: MediaQuery.of(context).size.height / 40,),
-                            Text(widget.nationalCodeSerialController,
-                                style: TextStyle(
-                                    fontSize: MediaQuery.of(context).size.width / 25,
-                                    color: Colors.blue
-                                )
-                            ),
-                            SizedBox(height: MediaQuery.of(context).size.height / 40,),
-                            Text(widget.birthdayController,
-                                style: TextStyle(
-                                    fontSize: MediaQuery.of(context).size.width / 25,
-                                    color: Colors.blue
-                                )
-                            ),
-                          ],
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(widget.nationalCodeController,
+                                  style: TextStyle(
+                                      fontSize: MediaQuery.of(context).size.width / 30,
+                                      color: Colors.blue
+                                  )
+                              ),
+                              SizedBox(height: MediaQuery.of(context).size.height / 40,),
+                              Text(widget.nationalCodeSerialController,
+                                  style: TextStyle(
+                                      fontSize: MediaQuery.of(context).size.width / 30,
+                                      color: Colors.blue
+                                  )
+                              ),
+                              SizedBox(height: MediaQuery.of(context).size.height / 40,),
+                              Text(widget.birthdayController,
+                                  style: TextStyle(
+                                      fontSize: MediaQuery.of(context).size.width / 30,
+                                      color: Colors.blue
+                                  )
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text("کد ملی",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: MediaQuery.of(context).size.width / 25
-                                )),
-                            SizedBox(height: MediaQuery.of(context).size.height / 50,),
-                            Text("سریال کارت ملی",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: MediaQuery.of(context).size.width / 25
-                                )),
-                            SizedBox(height: MediaQuery.of(context).size.height / 50,),
-                            Text("تاریخ تولد",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: MediaQuery.of(context).size.width / 25
-                                )),
-                          ],
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text("کد ملی",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: MediaQuery.of(context).size.width / 25
+                                  )),
+                              SizedBox(height: MediaQuery.of(context).size.height / 50,),
+                              Text("سریال کارت ملی",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: MediaQuery.of(context).size.width / 25
+                                  )),
+                              SizedBox(height: MediaQuery.of(context).size.height / 50,),
+                              Text("تاریخ تولد",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: MediaQuery.of(context).size.width / 25
+                                  )),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -241,48 +261,54 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(widget.mobileNumberController,
-                                style: TextStyle(
-                                    fontSize: MediaQuery.of(context).size.width / 25,
-                                    color: Colors.blue
-                                )
-                            ),
-                            SizedBox(height: MediaQuery.of(context).size.height / 50,),
-                            Text(widget.postCodeController,
-                                style: TextStyle(
-                                    fontSize: MediaQuery.of(context).size.width / 25,
-                                    color: Colors.blue
-                                )
-                            ),
-                          ],
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(widget.mobileNumberController,
+                                  style: TextStyle(
+                                      fontSize: MediaQuery.of(context).size.width / 30,
+                                      color: Colors.blue
+                                  )
+                              ),
+                              SizedBox(height: MediaQuery.of(context).size.height / 50,),
+                              Text(widget.postCodeController,
+                                  style: TextStyle(
+                                      fontSize: MediaQuery.of(context).size.width / 30,
+                                      color: Colors.blue
+                                  )
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text("تلفن تماس",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: MediaQuery.of(context).size.width / 25
-                                )),
-                            SizedBox(height: MediaQuery.of(context).size.height / 50,),
-                            Text("کد پستی",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: MediaQuery.of(context).size.width / 25
-                                )),
-                          ],
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text("تلفن تماس",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: MediaQuery.of(context).size.width / 25
+                                  )),
+                              SizedBox(height: MediaQuery.of(context).size.height / 50,),
+                              Text("کد پستی",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: MediaQuery.of(context).size.width / 25
+                                  )),
+                            ],
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height / 6),
+                SizedBox(height: MediaQuery.of(context).size.height / 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

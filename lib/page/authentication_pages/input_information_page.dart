@@ -11,12 +11,16 @@ import '../../component/background_image.dart';
 
 class InputInformationPage extends StatefulWidget {
 
-  InputInformationPage({super.key, this.index, required this.cameras});
+  InputInformationPage({super.key, this.index, required this.selectedIntermediateCaItemsValue,
+    required this.selectedCertificateItemsValue, required this.cameras});
   int? index;
+  final String selectedIntermediateCaItemsValue;
+  final String selectedCertificateItemsValue;
   final List<CameraDescription> cameras;
 
   @override
-  State<InputInformationPage> createState() => _InputInformationPageState(index, cameras);
+  State<InputInformationPage> createState() => _InputInformationPageState(index, selectedIntermediateCaItemsValue
+      , selectedCertificateItemsValue, cameras);
 }
 
 class _InputInformationPageState extends State<InputInformationPage> {
@@ -30,8 +34,11 @@ class _InputInformationPageState extends State<InputInformationPage> {
 
   final formKey = GlobalKey<FormState>();
   int? index;
+  final String selectedIntermediateCaItemsValue;
+  final String selectedCertificateItemsValue;
 
-  _InputInformationPageState(this.index, this.cameras);
+  _InputInformationPageState(this.index, this.selectedIntermediateCaItemsValue,
+      this.selectedCertificateItemsValue, this.cameras);
 
   @override
   void dispose() {
@@ -61,6 +68,8 @@ class _InputInformationPageState extends State<InputInformationPage> {
           birthdayController: birthdayController.text,
           nationalCodeSerialController: nationalCodeSerialController.text,
           postCodeController: postCodeController.text,
+          selectIntermediateCAName: selectedIntermediateCaItemsValue,
+          selectProduceName: selectedCertificateItemsValue,
           cameras: cameras,
           pageName: "InputInformationPage",
           formKey: formKey,

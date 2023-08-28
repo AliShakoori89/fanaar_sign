@@ -12,12 +12,15 @@ class DescriptionPage extends StatelessWidget {
   final String birthdayController;
   final String nationalCodeSerialController;
   final String postCodeController;
+  final String selectedIntermediateCaItemsValue;
+  final String selectedCertificateItemsValue;
   final List<CameraDescription> cameras;
   
   const DescriptionPage({super.key, required this.nationalCodeController, 
   required this.mobileNumberController, required this.birthdayController, 
   required this.nationalCodeSerialController, required this.postCodeController,
-  required this.cameras});
+  required this.selectedIntermediateCaItemsValue, required this.selectedCertificateItemsValue,
+    required this.cameras});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +34,8 @@ class DescriptionPage extends StatelessWidget {
         birthdayController: birthdayController,
         nationalCodeSerialController: nationalCodeSerialController,
         postCodeController: postCodeController,
+        selectIntermediateCAName: selectedIntermediateCaItemsValue,
+        selectProduceName: selectedCertificateItemsValue,
         cameras: cameras,
       ),
       appBar: BaseAppBar(

@@ -6,6 +6,7 @@ import '../component/background_image.dart';
 import '../component/base_appbar.dart';
 import '../component/my_app_button.dart';
 import '../const/app_color.dart';
+import 'dart:ui' as ui;
 
 class IssuedNewCertificatePage extends StatefulWidget {
 
@@ -19,65 +20,64 @@ class IssuedNewCertificatePage extends StatefulWidget {
 
 class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
 
-  final List<String> intermediateCAName = [
+  final List<CameraDescription> cameras;
+
+  _IssuedNewCertificatePageState(this.cameras);
+
+  // List<DropdownMenuItem<String>> _addDividersAfterItems(List<String> items) {
+  //   final List<DropdownMenuItem<String>> menuItems = [];
+  //   for (final String item in items) {
+  //     menuItems.addAll(
+  //       [
+  //         DropdownMenuItem<String>(
+  //           value: item,
+  //           alignment: Alignment.center,
+  //           child: Column(
+  //             children: [
+  //               SizedBox(
+  //                   height: MediaQuery.of(context).size.height / 100
+  //               ),
+  //               Expanded(
+  //                 flex: 1,
+  //                 child: Text(
+  //                   textAlign: TextAlign.right,
+  //                   item,
+  //                   style: TextStyle(
+  //                     fontSize: MediaQuery.of(context).size.width / 30,
+  //                     color: Colors.black,
+  //                   ),
+  //                 ),
+  //               ),
+  //               SizedBox(
+  //                   height: MediaQuery.of(context).size.height / 100
+  //               ),
+  //               item != itemName!.last ? Expanded(
+  //                 flex: 1,
+  //                 child: Divider(
+  //                   color: Colors.grey[600],
+  //                   thickness: 1,
+  //                 ),
+  //               ) : Container()
+  //             ],
+  //           ),
+  //         ),
+  //       ],
+  //     );
+  //   }
+  //   return menuItems;
+  // }
+
+  final List<String> intermediateCaItems = [
     'مرکز میانی فن آوران اعتماد راهبر',
     'مرکز میانی نماد'
   ];
 
-  final List<String> produceName = [
+  final List<String> certificateItems = [
     'گواهی موبایل برنز حقیقی مستقل'
   ];
 
-  final List<CameraDescription> cameras;
-  List<String>? itemName;
-  String? dropdownButtonName;
-  String? selectIntermediateCAName;
-  String? selectProduceName;
-
-  _IssuedNewCertificatePageState(this.cameras);
-
-  List<DropdownMenuItem<String>> _addDividersAfterItems(List<String> items) {
-    final List<DropdownMenuItem<String>> menuItems = [];
-    for (final String item in items) {
-      menuItems.addAll(
-        [
-          DropdownMenuItem<String>(
-            value: item,
-            alignment: Alignment.center,
-            child: Column(
-              children: [
-                SizedBox(
-                    height: MediaQuery.of(context).size.height / 100
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Text(
-                    textAlign: TextAlign.right,
-                    item,
-                    style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width / 30,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                    height: MediaQuery.of(context).size.height / 100
-                ),
-                item != itemName!.last ? Expanded(
-                  flex: 1,
-                  child: Divider(
-                    color: Colors.grey[600],
-                    thickness: 1,
-                  ),
-                ) : Container()
-              ],
-            ),
-          ),
-        ],
-      );
-    }
-    return menuItems;
-  }
+  String? selectedIntermediateCaItemsValue;
+  String? selectedCertificateItemsValue;
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +86,8 @@ class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
       FloatingActionButtonLocation.centerFloat,
       floatingActionButton: MyAppButton(
         pageName: "IssuedNewCertificatePage",
+        selectIntermediateCAName: selectedIntermediateCaItemsValue,
+        selectProduceName: selectedCertificateItemsValue,
         cameras: cameras,
       ),
       appBar: BaseAppBar(title: 'صدور گواهی جدید'),
@@ -107,72 +109,144 @@ class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
                   fontSize: MediaQuery.of(context).size.width / 30,),),
               ),
               SizedBox(height: MediaQuery.of(context).size.height / 100,),
-              Center(child: DropdownButtonHideUnderline(
-                child: DropdownButton2<String>(
-                    itemHeight: MediaQuery.of(context).size.width / 8,
-                    isDense: false,
-                    isExpanded: true,
-                    hint: Center(
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        "انتخاب مرکز میانی صدور گواهی",
-                        style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width / 35,
+              Center(
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton2<String>(
+                        isExpanded: true,
+                        hint: Text(
+                          'انتخاب مرکز میانی صادر کننده گواهی',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        items: intermediateCaItems
+                            .map((String item) => DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(
+                            item,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            textDirection: ui.TextDirection.ltr,
+                          ),
+                          alignment: Alignment.centerRight,
+                        ))
+                            .toList(),
+                        value: selectedIntermediateCaItemsValue,
+                        onChanged: (String? value) {
+                          setState(() {
+                            selectedIntermediateCaItemsValue = value;
+                          });
+                        },
+                        buttonStyleData: ButtonStyleData(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width / 1.5,
+                          padding: const EdgeInsets.only(left: 14, right: 14),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            border: Border.all(
+                              color: Colors.black26,
+                            ),
                             color: Colors.white,
-                            fontWeight: FontWeight.w700),
+                          ),
+                          elevation: 2,
+                        ),
+                        dropdownStyleData: DropdownStyleData(
+                          maxHeight: MediaQuery.of(context).size.height / 7,
+                          width: MediaQuery.of(context).size.width / 2,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            color: Colors.white,
+                          ),
+                          offset: const Offset(-20, 0),
+                          scrollbarTheme: ScrollbarThemeData(
+                            radius: const Radius.circular(40),
+                            thickness: MaterialStateProperty.all<double>(6),
+                            thumbVisibility: MaterialStateProperty.all<bool>(true),
+                          ),
+                        ),
+                        menuItemStyleData: const MenuItemStyleData(
+                          height: 40,
+                          // padding: EdgeInsets.only(left: 14, right: 14),
+                        ),
                       ),
                     ),
-                    items: _addDividersAfterItems(itemName!),
-                    value: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
-                        ? selectIntermediateCAName
-                        : selectProduceName,
-                    onChanged: (String? value) {
-                      setState(() {
-                        dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
-                            ? selectIntermediateCAName = value
-                            : selectProduceName = value;
-                      });
-                    },
-                    selectedItemBuilder: (BuildContext context) {
-                      //<-- SEE HERE
-                      return itemName!.map((String value) {
-                        return Center(
-                            child: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
-                                ? Text(selectIntermediateCAName == null
-                                ? dropdownButtonName!
-                                : selectIntermediateCAName!,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: MediaQuery.of(context).size.width / 35,
-                                  fontWeight: FontWeight.w700),)
-                                : Text(selectProduceName == null
-                                ? dropdownButtonName!
-                                : selectProduceName!,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: MediaQuery.of(context).size.width / 35,
-                                    fontWeight: FontWeight.w700))
-                        );
-                      }).toList();
-                    },
-                    buttonDecoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height / 50,),
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: AppColors.mainColor,
-                      ),
-                    ),
-                    buttonHeight: MediaQuery.of(context).size.height / 15,
-                    buttonWidth: MediaQuery.of(context).size.width / 1.5,
-                    // dropdownScrollPadding: const EdgeInsets.symmetric(vertical: 0.0),
-
-                    dropdownDecoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                    icon: Icon(Icons.arrow_drop_down, color: Colors.white,
-                      size: MediaQuery.of(context).size.height / 30,),
-                    iconEnabledColor: Colors.white),
-
-              )),
+                  )
+              //     DropdownButtonHideUnderline(
+              //       child: DropdownButton2<String>(
+              //       itemHeight: MediaQuery.of(context).size.width / 8,
+              //       isDense: false,
+              //       isExpanded: true,
+              //       hint: Center(
+              //         child: Text(
+              //           textAlign: TextAlign.center,
+              //           "انتخاب مرکز میانی صدور گواهی",
+              //           style: TextStyle(
+              //               fontSize: MediaQuery.of(context).size.width / 35,
+              //               color: Colors.white,
+              //               fontWeight: FontWeight.w700),
+              //         ),
+              //       ),
+              //       items: _addDividersAfterItems(itemName!),
+              //       value: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+              //           ? selectIntermediateCAName
+              //           : selectProduceName,
+              //       onChanged: (String? value) {
+              //         setState(() {
+              //           dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+              //               ? selectIntermediateCAName = value
+              //               : selectProduceName = value;
+              //         });
+              //       },
+              //       selectedItemBuilder: (BuildContext context) {
+              //         //<-- SEE HERE
+              //         return itemName!.map((String value) {
+              //           return Center(
+              //               child: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+              //                   ? Text(selectIntermediateCAName == null
+              //                   ? dropdownButtonName!
+              //                   : selectIntermediateCAName!,
+              //                 style: TextStyle(
+              //                     color: Colors.white,
+              //                     fontSize: MediaQuery.of(context).size.width / 35,
+              //                     fontWeight: FontWeight.w700),)
+              //                   : Text(selectProduceName == null
+              //                   ? dropdownButtonName!
+              //                   : selectProduceName!,
+              //                   style: TextStyle(
+              //                       color: Colors.white,
+              //                       fontSize: MediaQuery.of(context).size.width / 35,
+              //                       fontWeight: FontWeight.w700))
+              //           );
+              //         }).toList();
+              //       },
+              //       buttonDecoration: BoxDecoration(
+              //         borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height / 50,),
+              //         gradient: LinearGradient(
+              //           begin: Alignment.topLeft,
+              //           end: Alignment.bottomRight,
+              //           colors: AppColors.mainColor,
+              //         ),
+              //       ),
+              //       buttonHeight: MediaQuery.of(context).size.height / 15,
+              //       buttonWidth: MediaQuery.of(context).size.width / 1.5,
+              //       // dropdownScrollPadding: const EdgeInsets.symmetric(vertical: 0.0),
+              //
+              //       dropdownDecoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+              //       icon: Icon(Icons.arrow_drop_down, color: Colors.white,
+              //         size: MediaQuery.of(context).size.height / 30,),
+              //       iconEnabledColor: Colors.white),
+              //
+              // )
+              ),
               SizedBox(height: MediaQuery.of(context).size.height / 25,),
               Align(
                 alignment: Alignment.centerRight,
@@ -182,69 +256,144 @@ class _IssuedNewCertificatePageState extends State<IssuedNewCertificatePage> {
                     fontSize: MediaQuery.of(context).size.width / 30,),),
               ),
               SizedBox(height: MediaQuery.of(context).size.height / 100,),
-              Center(child: DropdownButton2<String>(
-                  itemHeight: MediaQuery.of(context).size.width / 8,
-                  isDense: false,
-                  isExpanded: true,
-                  hint: Center(
-                    child: Text(
-                      textAlign: TextAlign.center,
-                      "انتخاب نام محصول",
-                      style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width / 35,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700),
+              Center(
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton2<String>(
+                        isExpanded: true,
+                        hint: Text(
+                          'انتخاب نوع گواهی',
+                          textDirection: TextDirection.rtl,
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        items: certificateItems
+                            .map((String item) => DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(
+                            item,
+                            textDirection: TextDirection.rtl,
+                            textAlign: TextAlign.right,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          alignment: Alignment.centerRight,
+                        ))
+                            .toList(),
+                        value: selectedCertificateItemsValue,
+                        onChanged: (String? value) {
+                          setState(() {
+                            selectedCertificateItemsValue = value;
+                          });
+                        },
+                        buttonStyleData: ButtonStyleData(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width / 1.5,
+                          padding: const EdgeInsets.only(left: 14, right: 14),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            border: Border.all(
+                              color: Colors.black26,
+                            ),
+                            color: Colors.white,
+                          ),
+                          elevation: 2,
+                        ),
+                        dropdownStyleData: DropdownStyleData(
+                          maxHeight: MediaQuery.of(context).size.height / 7,
+                          width: MediaQuery.of(context).size.width / 1.9,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            color: Colors.white,
+                          ),
+                          offset: const Offset(-20, 0),
+                          scrollbarTheme: ScrollbarThemeData(
+                            radius: const Radius.circular(40),
+                            thickness: MaterialStateProperty.all<double>(6),
+                            thumbVisibility: MaterialStateProperty.all<bool>(true),
+                          ),
+                        ),
+                        menuItemStyleData: const MenuItemStyleData(
+                          height: 40,
+                          padding: EdgeInsets.only(left: 14, right: 14),
+                        ),
+                      ),
                     ),
-                  ),
-                  items: _addDividersAfterItems(itemName!),
-                  value: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
-                      ? selectIntermediateCAName
-                      : selectProduceName,
-                  onChanged: (String? value) {
-                    setState(() {
-                      dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
-                          ? selectIntermediateCAName = value
-                          : selectProduceName = value;
-                    });
-                  },
-                  selectedItemBuilder: (BuildContext context) {
-                    //<-- SEE HERE
-                    return itemName!.map((String value) {
-                      return Center(
-                          child: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
-                              ? Text(selectIntermediateCAName == null
-                              ? dropdownButtonName!
-                              : selectIntermediateCAName!,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: MediaQuery.of(context).size.width / 35,
-                                fontWeight: FontWeight.w700),)
-                              : Text(selectProduceName == null
-                              ? dropdownButtonName!
-                              : selectProduceName!,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: MediaQuery.of(context).size.width / 35,
-                                  fontWeight: FontWeight.w700))
-                      );
-                    }).toList();
-                  },
-                  buttonDecoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height / 50,),
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: AppColors.mainColor,
-                    ),
-                  ),
-                  buttonHeight: MediaQuery.of(context).size.height / 15,
-                  buttonWidth: MediaQuery.of(context).size.width / 1.5,
-                  // dropdownScrollPadding: const EdgeInsets.symmetric(vertical: 0.0),
-
-                  dropdownDecoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                  icon: Icon(Icons.arrow_drop_down, color: Colors.white,
-                    size: MediaQuery.of(context).size.height / 30,),
-                  iconEnabledColor: Colors.white)),
+                  )
+                  // DropdownButton2<String>(
+                  // itemHeight: MediaQuery.of(context).size.width / 8,
+                  // isDense: false,
+                  // isExpanded: true,
+                  // hint: Center(
+                  //   child: Text(
+                  //     textAlign: TextAlign.center,
+                  //     "انتخاب نام محصول",
+                  //     style: TextStyle(
+                  //         fontSize: MediaQuery.of(context).size.width / 35,
+                  //         color: Colors.white,
+                  //         fontWeight: FontWeight.w700),
+                  //   ),
+                  // ),
+                  // items: _addDividersAfterItems(itemName!),
+                  // value: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+                  //     ? selectIntermediateCAName
+                  //     : selectProduceName,
+                  // onChanged: (String? value) {
+                  //   setState(() {
+                  //     dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+                  //         ? selectIntermediateCAName = value
+                  //         : selectProduceName = value;
+                  //   });
+                  // },
+                  // selectedItemBuilder: (BuildContext context) {
+                  //   //<-- SEE HERE
+                  //   return itemName!.map((String value) {
+                  //     return Center(
+                  //         child: dropdownButtonName == "انتخاب مرکز میانی صدور گواهی"
+                  //             ? Text(selectIntermediateCAName == null
+                  //             ? dropdownButtonName!
+                  //             : selectIntermediateCAName!,
+                  //           style: TextStyle(
+                  //               color: Colors.white,
+                  //               fontSize: MediaQuery.of(context).size.width / 35,
+                  //               fontWeight: FontWeight.w700),)
+                  //             : Text(selectProduceName == null
+                  //             ? dropdownButtonName!
+                  //             : selectProduceName!,
+                  //             style: TextStyle(
+                  //                 color: Colors.white,
+                  //                 fontSize: MediaQuery.of(context).size.width / 35,
+                  //                 fontWeight: FontWeight.w700))
+                  //     );
+                  //   }).toList();
+                  // },
+                  // buttonDecoration: BoxDecoration(
+                  //   borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height / 50,),
+                  //   gradient: LinearGradient(
+                  //     begin: Alignment.topLeft,
+                  //     end: Alignment.bottomRight,
+                  //     colors: AppColors.mainColor,
+                  //   ),
+                  // ),
+                  // buttonHeight: MediaQuery.of(context).size.height / 15,
+                  // buttonWidth: MediaQuery.of(context).size.width / 1.5,
+                  // // dropdownScrollPadding: const EdgeInsets.symmetric(vertical: 0.0),
+                  //
+                  // dropdownDecoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                  // icon: Icon(Icons.arrow_drop_down, color: Colors.white,
+                  //   size: MediaQuery.of(context).size.height / 30,),
+                  // iconEnabledColor: Colors.white)
+              ),
               SizedBox(height: MediaQuery.of(context).size.height / 25,),
               Align(
                 alignment: Alignment.centerRight,

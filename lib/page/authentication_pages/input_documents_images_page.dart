@@ -13,15 +13,20 @@ class InputDocumentsImagesPage extends StatefulWidget {
   final String birthdayController;
   final String nationalCodeSerialController;
   final String postCodeController;
+  final String selectedIntermediateCaItemsValue;
+  final String selectedCertificateItemsValue;
   final List<CameraDescription> cameras;
 
   InputDocumentsImagesPage({super.key, required this.nationalCodeController,
   required this.mobileNumberController, required this.birthdayController,
-  required this.nationalCodeSerialController, required this.postCodeController, required this.cameras});
+  required this.nationalCodeSerialController, required this.postCodeController,
+  required this.selectedIntermediateCaItemsValue, required this.selectedCertificateItemsValue
+    , required this.cameras});
 
   @override
   State<InputDocumentsImagesPage> createState() => _InputDocumentsImagesPageState(nationalCodeController,
-  mobileNumberController, birthdayController, nationalCodeSerialController, postCodeController ,cameras);
+  mobileNumberController, birthdayController, nationalCodeSerialController, postCodeController ,
+      selectedIntermediateCaItemsValue, selectedCertificateItemsValue, cameras);
 }
 
 class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
@@ -39,10 +44,13 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
   final String birthdayController;
   final String nationalCodeSerialController;
   final String postCodeController;
+  final String selectedIntermediateCaItemsValue;
+  final String selectedCertificateItemsValue;
   final List<CameraDescription> cameras;
 
   _InputDocumentsImagesPageState(this.nationalCodeController, this.mobileNumberController, this.birthdayController,
-      this.nationalCodeSerialController, this.postCodeController, this.cameras);
+      this.nationalCodeSerialController, this.postCodeController, this.selectedIntermediateCaItemsValue
+      , this.selectedCertificateItemsValue, this.cameras);
 
   cameraConnectFromNationalCode() async {
     var img = await ImagePicker().pickImage(source: ImageSource.camera);
@@ -231,6 +239,8 @@ class _InputDocumentsImagesPageState extends State<InputDocumentsImagesPage> {
         birthdayController: birthdayController,
         nationalCodeSerialController: nationalCodeSerialController,
         postCodeController: postCodeController,
+        selectIntermediateCAName: selectedIntermediateCaItemsValue,
+        selectProduceName: selectedCertificateItemsValue,
         cameras: cameras,
       ),
       appBar: BaseAppBar(
