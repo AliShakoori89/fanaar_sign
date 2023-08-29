@@ -77,48 +77,52 @@ class _InputInformationPageState extends State<InputInformationPage> {
           index : index),
       body: Container(
         decoration: baseBackgroundDecoration,
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: [
-              SizedBox(height: MediaQuery.of(context).size.height / 5,),
-              Container(
-                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width / 20, right: MediaQuery.of(context).size.width / 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MyTextField(
-                        hintText: "کد ملی",
-                        labelText: "کد ملی",
-                        controller: nationalCodeController),
-                    SizedBox(height: MediaQuery.of(context).size.height / 50),
-                    MyTextField(
-                        hintText: "شماره موبایل",
-                        labelText: "شماره موبایل",
-                        controller: mobileNumberController
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 50),
-                    DateTimePickerTextField(
-                        hintText: "تاریخ تولد",
-                        labelText: "تاریخ تولد",
-                        controller: birthdayController
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 25),
-                    MyTextField(
-                        hintText: "سریال کارت ملی",
-                        labelText: "سریال کارت ملی",
-                        controller: nationalCodeSerialController
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 50),
-                    MyTextField(
-                        hintText: "کد پستی",
-                        labelText: "کد پستی",
-                        controller: postCodeController
-                    ),
-                  ],
-                ),
-              )
-            ],
+        child: SafeArea(
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width / 20,
+                      right: MediaQuery.of(context).size.width / 20,
+                      top: MediaQuery.of(context).size.width / 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      MyTextField(
+                          hintText: "کد ملی",
+                          labelText: "کد ملی",
+                          controller: nationalCodeController),
+                      SizedBox(height: MediaQuery.of(context).size.height / 50),
+                      MyTextField(
+                          hintText: "شماره موبایل",
+                          labelText: "شماره موبایل",
+                          controller: mobileNumberController
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height / 50),
+                      DateTimePickerTextField(
+                          hintText: "تاریخ تولد",
+                          labelText: "تاریخ تولد",
+                          controller: birthdayController
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height / 25),
+                      MyTextField(
+                          hintText: "سریال کارت ملی",
+                          labelText: "سریال کارت ملی",
+                          controller: nationalCodeSerialController
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height / 50),
+                      MyTextField(
+                          hintText: "کد پستی",
+                          labelText: "کد پستی",
+                          controller: postCodeController
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

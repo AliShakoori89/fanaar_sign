@@ -1,6 +1,5 @@
 import 'package:camera/camera.dart';
 import 'package:fanar_sign/bloc/certificate_store/event.dart';
-import 'package:fanar_sign/component/main_page_card.dart';
 import 'package:fanar_sign/page/no_data_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +8,6 @@ import '../bloc/certificate_store/state.dart';
 import '../component/background_image.dart';
 import '../component/base_appbar.dart';
 import '../component/floating_action_button.dart';
-import '../const/app_color.dart';
 import 'certificate_details_page.dart';
 
 class CertificateManagementPage extends StatefulWidget {
@@ -119,6 +117,15 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
                                       height: MediaQuery.of(context).size.height / 100,
                                     ),
                                     Text(
+                                      "سریال گواهی :",
+                                      style: TextStyle(color: Colors.black,
+                                        fontSize: MediaQuery.of(context).size.width / 27,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height / 100,
+                                    ),
+                                    Text(
                                       "تاریخ صدور :",
                                       style: TextStyle(color: Colors.black,
                                         fontSize: MediaQuery.of(context).size.width / 27,
@@ -133,18 +140,10 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
                                         fontSize: MediaQuery.of(context).size.width / 27,
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: MediaQuery.of(context).size.height / 100,
-                                    ),
-                                    Text(
-                                      "سریال گواهی :",
-                                      style: TextStyle(color: Colors.black,
-                                        fontSize: MediaQuery.of(context).size.width / 27,
-                                      ),
-                                    ),
                                   ],
                                 ),
                                 Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     SizedBox(
                                       height: MediaQuery.of(context).size.height / 40,
@@ -169,6 +168,15 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
                                       height: MediaQuery.of(context).size.height / 60,
                                     ),
                                     Text(
+                                      state.storeCertificate[index].certificateSerialCode!,
+                                      style: TextStyle(color: Colors.black,
+                                        fontSize: MediaQuery.of(context).size.width / 27,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height / 60,
+                                    ),
+                                    Text(
                                       state.storeCertificate[index].certificateIssuedDate!,
                                       style: TextStyle(color: Colors.black,
                                         fontSize: MediaQuery.of(context).size.width / 27,
@@ -179,15 +187,6 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
                                     ),
                                     Text(
                                       state.storeCertificate[index]. certificateExpirationDate!,
-                                      style: TextStyle(color: Colors.black,
-                                        fontSize: MediaQuery.of(context).size.width / 27,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: MediaQuery.of(context).size.height / 60,
-                                    ),
-                                    Text(
-                                      state.storeCertificate[index].certificateSerialCode!,
                                       style: TextStyle(color: Colors.black,
                                         fontSize: MediaQuery.of(context).size.width / 27,
                                       ),

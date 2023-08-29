@@ -63,6 +63,7 @@ class DatabaseHelper {
     for (Map<String, dynamic> m in listMap) {
       listCertificates.add(CertificateDetailsModel.fromJson(m));
     }
+    print("0000000000000000000000       "+listMap.toString());
     return listCertificates;
   }
 

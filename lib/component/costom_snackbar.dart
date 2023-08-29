@@ -16,7 +16,7 @@ class CustomWidgets {
           child: CustomSnackBar.success(
             backgroundColor: Colors.red.shade300,
             message:
-            "لطفا مرکز میانی مورد نظر را انتخاب کنید.",
+            message,
             textStyle: TextStyle(
                 fontSize: MediaQuery.of(context).size.width / 25,
                 color: Colors.white

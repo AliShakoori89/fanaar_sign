@@ -41,7 +41,7 @@ class _DateTimePickerTextFieldState extends State<DateTimePickerTextField> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: TextFormField(
-        style: TextStyle(fontSize: MediaQuery.of(context).size.width / 20),
+        style: TextStyle(fontSize: MediaQuery.of(context).size.width / 25),
         textAlign: TextAlign.left,
         showCursor: false,
         controller: widget.controller,

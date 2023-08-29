@@ -19,7 +19,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             child: Text(title,
                 style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width / 20,
+                    fontSize: MediaQuery.of(context).size.width / 25,
                     color: Colors.white
                 )),
           ),

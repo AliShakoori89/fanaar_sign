@@ -73,7 +73,7 @@ class MyAppButton extends StatelessWidget {
             child: Center(
               child: Text("مرحله بعد",
                   style: TextStyle(color: Colors.white,
-                      fontSize: MediaQuery.of(context).size.width / 20)),
+                      fontSize: MediaQuery.of(context).size.width / 25)),
             ),
           ),
           onTap: () {

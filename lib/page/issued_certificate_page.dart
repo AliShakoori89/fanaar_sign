@@ -1,6 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../../../component/base_appbar.dart';
 import 'package:intl/intl.dart' as init;
 import '../bloc/certificate_store/bloc.dart';
@@ -85,10 +87,31 @@ class _IssuedCertificatePageState extends State<IssuedCertificatePage> {
               certificate.certificateIssuerInterMediateCAName = selectIntermediateCAName;
               certificate.selectProduceName = selectProduceName;
               certificate.certificateSerialCode = nationalCodeController;
-              certificate.certificateExpirationDate = f.format(issuedDate);
-              certificate.certificateIssuedDate = f.format(expireDate);
+              certificate.certificateExpirationDate = f.format(expireDate);
+              certificate.certificateIssuedDate = f.format(issuedDate);
+              certificate.certificateValidityPeriod = (expireDate.year - issuedDate.year).toString();
 
               setDateBloc.add(SaveCertificateToStoreEvent(certificateModel: certificate));
+
+              showTopSnackBar(
+                snackBarPosition: SnackBarPosition.bottom,
+                Overlay.of(context),
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.width / 6,
+                    child: CustomSnackBar.success(
+                      backgroundColor: Colors.green.shade300,
+                      message:
+                      "گواهی با موفقیت صادر گردید.",
+                      textStyle: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width / 25,
+                          color: Colors.white
+                      ),
+                    ),
+                  ),
+                ),
+              );
 
               Navigator.push(
                 context,
@@ -112,7 +135,7 @@ class _IssuedCertificatePageState extends State<IssuedCertificatePage> {
             child: Center(
               child: Text("صدور گواهی",
                   style: TextStyle(color: Colors.white,
-                      fontSize: MediaQuery.of(context).size.width / 20)),
+                      fontSize: MediaQuery.of(context).size.width / 25)),
             ),
           )
       ),

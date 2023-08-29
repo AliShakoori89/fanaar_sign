@@ -72,13 +72,12 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
       body: Container(
         height: double.infinity,
         decoration: baseBackgroundDecoration,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Container(
-            margin: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height / 30,
-                left: MediaQuery.of(context).size.width / 30,
-                right: MediaQuery.of(context).size.width / 30),
+        child: Container(
+          margin: EdgeInsets.only(
+              top: MediaQuery.of(context).size.height / 30,
+              left: MediaQuery.of(context).size.width / 30,
+              right: MediaQuery.of(context).size.width / 30),
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 Text("تایید و ثبت مشخصات", style: TextStyle(
@@ -103,9 +102,9 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                 ),
                 Container(
                   margin: EdgeInsets.only(
-                    right: MediaQuery.of(context).size.width / 20,
-                    left: MediaQuery.of(context).size.width / 20,
-                    top: MediaQuery.of(context).size.height / 40
+                      right: MediaQuery.of(context).size.width / 20,
+                      left: MediaQuery.of(context).size.width / 20,
+                      top: MediaQuery.of(context).size.height / 40
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -135,10 +134,10 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text("نام مرکز میانی صادر کننده",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                                fontSize: MediaQuery.of(context).size.width / 25
-                            )),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: MediaQuery.of(context).size.width / 25
+                                )),
                             SizedBox(height: MediaQuery.of(context).size.height / 50,),
                             Text("نام محصول",
                                 style: TextStyle(
@@ -308,13 +307,13 @@ class _UserSummaryPageState extends State<UserSummaryPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height / 8),
+                SizedBox(height: MediaQuery.of(context).size.height / 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text("تمامی اطلاعات فوق را خوانده ام و تایید می کنم.", style: TextStyle(
-                        color: Colors.black,
-                        fontSize: MediaQuery.of(context).size.width / 25,
+                      color: Colors.black,
+                      fontSize: MediaQuery.of(context).size.width / 25,
                       fontWeight: FontWeight.w700,
                     ),
                       textDirection: TextDirection.rtl,),

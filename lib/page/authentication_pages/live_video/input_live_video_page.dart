@@ -115,15 +115,15 @@ class Demo extends StatelessWidget {
 
   build(context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20, right: 20),
+      margin: EdgeInsets.only(bottom: 20),
       child: Stack(
         children: [
           Align(
             alignment: Alignment.center,
             child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(100)),
+              borderRadius: BorderRadius.all(Radius.circular(50)),
               child: Container(
-                width: MediaQuery.of(context).size.width / 2.1,
+                width: MediaQuery.of(context).size.width / 2.3,
                 height: MediaQuery.of(context).size.height / 2.5,
                 decoration: BoxDecoration(
                   // border: Border.all(width: 2, color: Colors.black),
@@ -219,7 +219,7 @@ class SquareState extends State<Square> {
               height: MediaQuery.of(context).size.height * 0.06,
               width: double.infinity,
               decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
                   color: Colors.black),
               child: Container(
                 margin: EdgeInsets.only(

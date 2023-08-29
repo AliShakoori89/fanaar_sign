@@ -36,7 +36,7 @@ class MyTextField extends StatelessWidget {
               keyboardType: labelText == "سریال کارت ملی" ? null : TextInputType.number,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.width / 20
+                  fontSize: MediaQuery.of(context).size.width / 25
               ),
               autofocus: true,
               validator: (val) {
