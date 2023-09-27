@@ -73,7 +73,7 @@ class _CertificateManagementPageState extends State<CertificateManagementPage> {
                       Directionality(
                         textDirection: TextDirection.rtl,
                         child: Container(
-                          height: MediaQuery.of(context).size.height / 4,
+                          height: MediaQuery.of(context).size.width / 2,
                           margin: const EdgeInsets.only(
                             top: 10,
                             right: 15,

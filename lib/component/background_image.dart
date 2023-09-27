@@ -4,6 +4,6 @@ BoxDecoration baseBackgroundDecoration =
 BoxDecoration(
     image: DecorationImage(
         image: AssetImage("assets/image/fanaar background image.png"),
-        fit: BoxFit.fitHeight,
+        fit: BoxFit.fill,
         opacity: 0.15)
 );

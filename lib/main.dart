@@ -21,11 +21,6 @@ Future <void> main() async{
     ),
   );
 }
-// void main() {
-//   runApp(
-//       const MyApp()
-//   );
-// }
 
 class MyApp extends StatelessWidget {
   MyApp({super.key, required this.cameras});

@@ -3,7 +3,9 @@ import 'package:camera/camera.dart';
 import 'package:fanar_sign/component/main_page_header.dart';
 import 'package:flutter/material.dart';
 import '../component/background_image.dart';
+import '../component/drawer.dart';
 import '../component/main_page_footer.dart';
+import '../component/profile_pic.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -33,7 +35,12 @@ class _HomePageState extends State<HomePage> {
             children: [
               Expanded(
                 flex: 4,
-                  child: MainPageHeader(mainPage: true)),
+                  child: ClipPath(
+                    clipper: ArcClipper(),
+                    child: MainPageHeader(mainPage: true,)
+                  ),
+                  // MainPageHeader(mainPage: true)
+              ),
               Expanded(
                   flex: 12,
                   child: MainPageFooter(cameras: cameras))
@@ -72,5 +79,27 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     )) ?? false;
+  }
+}
+
+class ArcClipper extends CustomClipper<Path> {
+
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, 0);
+    path.lineTo(0, size.height - 40);
+    path.quadraticBezierTo(
+        size.width / 4, size.height, size.width / 2, size.height);
+    path.quadraticBezierTo(
+        size.width - size.width / 4, size.height, size.width, size.height - 40);
+    path.lineTo(size.width, 0);
+    path.lineTo(0, 0);
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return true;
   }
 }
