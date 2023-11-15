@@ -1,11 +1,12 @@
 import 'package:camera/camera.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:fanar_sign/bloc/certificate_store/bloc.dart';
-import 'package:fanar_sign/page/home_page.dart';
-import 'package:fanar_sign/repository/certificate_repository.dart';
+import 'package:fanar_sign/presentation/bloc/certificate_store/bloc.dart';
+import 'package:fanar_sign/presentation/page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'logic/repository/certificate_repository.dart';
 
 Future <void> main() async{
   WidgetsFlutterBinding.ensureInitialized();

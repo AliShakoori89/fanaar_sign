@@ -1,7 +1,7 @@
-import 'package:fanar_sign/bloc/certificate_store/state.dart';
-import 'package:fanar_sign/model/certificate_model.dart';
-import 'package:fanar_sign/repository/certificate_repository.dart';
+import 'package:fanar_sign/presentation/bloc/certificate_store/state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../data/model/certificate_model.dart';
+import '../../../logic/repository/certificate_repository.dart';
 import 'event.dart';
 
 class CertificateBloc extends Bloc<CertificateEvent, CertificateState>{

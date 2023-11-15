@@ -1,4 +1,4 @@
-import 'package:fanar_sign/model/certificate_model.dart';
+import '../../../data/model/certificate_model.dart';
 
 abstract class CertificateEvent{
   List<Object> get props => [];

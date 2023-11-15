@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:fanar_sign/model/certificate_model.dart';
+import '../../../data/model/certificate_model.dart';
 
 enum CertificateStatus { initial, success, error, loading }
 

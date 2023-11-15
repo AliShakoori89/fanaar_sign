@@ -1,5 +1,5 @@
-import 'package:fanar_sign/database/data_base.dart';
-import 'package:fanar_sign/model/certificate_model.dart';
+import '../../data/database/data_base.dart';
+import '../../data/model/certificate_model.dart';
 
 class CertificateRepository{
   late final DatabaseHelper helper;
