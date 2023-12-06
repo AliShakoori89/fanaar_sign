@@ -12,14 +12,14 @@ Future <void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   final cameras =await availableCameras();
   runApp(
-    DevicePreview(
-      enabled: true,
-      tools: [
-        ...DevicePreview.defaultTools,
-      ],
-      builder: (context) =>
+    // DevicePreview(
+    //   enabled: true,
+    //   tools: [
+    //     ...DevicePreview.defaultTools,
+    //   ],
+    //   builder: (context) =>
           MyApp(cameras: cameras),
-    ),
+    // ),
   );
 }
 
